@@ -18,6 +18,16 @@ app.factory('svPhieuDeNghi', function (myAppConfig, $resource) {
                     return { str: angular.fromJson(data) };
                 }
             },
-           
+            'delete': {
+                method: 'GET',
+                isArray: false,
+                url: baseUrl + '/api/phieudenghi/getDemo',
+                params: {
+                    sDemo: '@sDemo'
+                },
+                transformResponse: function (data) {
+                    return { str: angular.fromJson(data) };
+                }
+            },
         })
 });

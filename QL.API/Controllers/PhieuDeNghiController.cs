@@ -21,7 +21,6 @@ namespace QL.API.Controllers
         {
             try
             {
-                CanBoManager
                 return HttpOk("");
             }
             catch (Exception ex)
