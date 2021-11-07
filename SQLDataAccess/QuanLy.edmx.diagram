@@ -7,10 +7,12 @@
       <Diagram DiagramId="7ca53fc0e26242b08cfa381447fb4e23" Name="Diagram1" >
         <EntityTypeShape EntityType="QuanLy.CanBo" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="QuanLy.KhoaPhong" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="QuanLy.PhieuDeNghi" Width="1.5" PointX="5.25" PointY="1" />
         <AssociationConnector Association="QuanLy.FK_CanBo_KhoaPhong" />
+        <EntityTypeShape EntityType="QuanLy.DanhMucCongViec" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="QuanLy.PhieuDeNghi" Width="1.5" PointX="5.25" PointY="2.125" />
         <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_CanBo" />
         <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_CanBo1" />
+        <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_DanhMucCongViec" />
         <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_KhoaPhong" />
       </Diagram>
     </edmx:Diagrams>

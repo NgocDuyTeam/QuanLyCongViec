@@ -19,4 +19,7 @@ namespace SQLDataAccess
     public partial class KhoaPhong : BaseData
     {
     }
+    public partial class DanhMucCongViec : BaseData
+    {
+    }
 }

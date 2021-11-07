@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Management;
+using BusinessLogic.Model;
 using QL.API.Http;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace QL.API.Controllers
 {
-    [RoutePrefix("phieudenghi")]
+    [RoutePrefix("api/phieudenghi")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PhieuDeNghiController : QLApiControlle
     {
@@ -21,6 +22,20 @@ namespace QL.API.Controllers
         {
             try
             {
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("savePhieuDeNghi")]
+        [HttpPost]
+        public HttpResponseMessage SavePhieuDeNghi(PhieuDeNghiModel value)
+        {
+            try
+            {
+                PhieuDeNghiManager.Instance.AddOrUpdatePhieu(value);
                 return HttpOk("");
             }
             catch (Exception ex)

@@ -143,7 +143,8 @@
   <ItemGroup>
     <Content Include="app\app.module.js" />
     <Content Include="app\app.route.js" />
-    <Content Include="app\components\phieudenghi\P100PhieuDeNghiCtrl.js" />
+    <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
+    <Content Include="app\services\svDMCongViec.js" />
     <Content Include="app\services\svPhieuDeNghi.js" />
     <Content Include="Content\assets\images\36.png" />
     <Content Include="Content\assets\images\avatar\1.jpg" />
@@ -5263,6 +5264,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Js\BaseJS.js" />
+    <Content Include="Js\gritter\images\gritter-light.png" />
+    <Content Include="Js\gritter\images\gritter-long.png" />
+    <Content Include="Js\gritter\images\gritter.png" />
+    <Content Include="Js\gritter\images\ie-spacer.gif" />
+    <Content Include="Js\gritter\jquery.gritter.css" />
+    <Content Include="Js\gritter\jquery.gritter.js" />
+    <Content Include="Js\gritter\jquery.gritter.min.js" />
+    <Content Include="Js\jquery\jquery-1.8.2.js" />
+    <Content Include="Js\jquery\jquery-ui-1.8.23.js" />
     <Content Include="Js\lib\angucomplete-alt\angucomplete-alt.css" />
     <Content Include="Js\lib\angucomplete-alt\angucomplete-alt.js" />
     <Content Include="Js\lib\angucomplete-alt\dist\angucomplete-alt.min.js" />
@@ -5441,6 +5451,8 @@
     <Content Include="Js\lib\bootstrap\js\tooltip.js" />
     <Content Include="Js\lib\bootstrap\js\transition.js" />
     <Content Include="Js\lib\bootstrap\package.js" />
+    <Content Include="Js\lib\bpopup\jquery.bpopup-0.7.0.js" />
+    <Content Include="Js\lib\bpopup\popup.css" />
     <Content Include="Js\lib\chart.js\.gitignore" />
     <Content Include="Js\lib\chart.js\dist\Chart.bundle.js" />
     <Content Include="Js\lib\chart.js\dist\Chart.bundle.min.js" />
@@ -8632,6 +8644,7 @@
     <Content Include="Scripts\test-bundles\angular-route.js" />
     <Content Include="Scripts\test-bundles\angular-sanitize.js" />
     <Content Include="Scripts\test-bundles\angular-touch.js" />
+    <Content Include="Style\bootstrap.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -8649,8 +8662,16 @@
     <Content Include="Views\PhieuDeNghi\SC100_PhieuDeNghi.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
+    <Content Include="WebTemp.config" />
+    <Content Include="WebTemp.Debug.config">
+      <DependentUpon>WebTemp.config</DependentUpon>
+    </Content>
+    <Content Include="WebTemp.Release.config">
+      <DependentUpon>WebTemp.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\components\danhmuc\" />
     <Folder Include="app\utils\" />
     <Folder Include="App_Data\" />
     <Folder Include="Helper\" />

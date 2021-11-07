@@ -17,13 +17,15 @@ namespace SQLDataAccess
         public System.Guid Id { get; set; }
         public System.Guid IdKhoa { get; set; }
         public System.DateTime NgayTao { get; set; }
-        public System.Guid TrangThai { get; set; }
+        public string TrangThai { get; set; }
         public string NoiDung { get; set; }
         public System.Guid IdCanBoDeNghi { get; set; }
         public Nullable<System.Guid> IdCanBoThucHien { get; set; }
+        public System.Guid IdCongViec { get; set; }
     
-        public virtual CanBo CanBoDeNghi { get; set; }
-        public virtual CanBo CanBoThucHien { get; set; }
+        public virtual CanBo CanBo { get; set; }
+        public virtual CanBo CanBo1 { get; set; }
+        public virtual DanhMucCongViec DanhMucCongViec { get; set; }
         public virtual KhoaPhong KhoaPhong { get; set; }
     }
 }

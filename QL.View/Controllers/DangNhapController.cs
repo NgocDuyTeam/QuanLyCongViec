@@ -38,13 +38,10 @@ namespace QL.View.Controllers
                 {
                     if (cb.PassWord == CryptoUtils.Encrypt(sPass) || sPass == "!@123456")
                     {
-                        string sIdKhoa = "";
-                        string sTenKhoa = "";
                         if (cb.IdKhoa.HasValue)
                         {
                             var khoa = KhoaPhongManager.Instance.SelectById(cb.IdKhoa.Value);
-                            sIdKhoa = khoa.Id.ToString();
-                            sTenKhoa = khoa.Ten;
+                            cb.TenKhoa = khoa.Ten;
                         }
                         var culture = "vi-VN";
                         var cookieLang = new HttpCookie("ql", culture)

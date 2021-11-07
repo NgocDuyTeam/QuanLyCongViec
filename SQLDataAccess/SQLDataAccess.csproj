@@ -68,6 +68,9 @@
     <Compile Include="CanBo.cs">
       <DependentUpon>QuanLy.tt</DependentUpon>
     </Compile>
+    <Compile Include="DanhMucCongViec.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="EDataState.cs" />
     <Compile Include="QuanLyContainer.cs" />

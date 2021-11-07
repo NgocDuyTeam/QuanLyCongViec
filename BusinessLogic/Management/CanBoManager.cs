@@ -44,7 +44,7 @@ namespace BusinessLogic.Management
         {
             using (var uow = new UnitOfWork())
             {
-                var cb = uow.Repository<CanBo>().Query().Filter(x => x.UserName == UserName).OrderBy(x=>x.OrderBy(y=>y.HoVaTen)).Get();
+                var cb = uow.Repository<CanBo>().Query().Filter(x => x.UserName == UserName).FirstOrDefault();
 
                 if (cb != null)
                 {

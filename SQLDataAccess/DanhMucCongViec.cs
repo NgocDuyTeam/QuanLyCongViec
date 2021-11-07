@@ -12,27 +12,19 @@ namespace SQLDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class CanBo
+    public partial class DanhMucCongViec
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CanBo()
+        public DanhMucCongViec()
         {
             this.PhieuDeNghis = new HashSet<PhieuDeNghi>();
-            this.PhieuDeNghis1 = new HashSet<PhieuDeNghi>();
         }
     
         public System.Guid Id { get; set; }
-        public string Ma { get; set; }
-        public string HoVaTen { get; set; }
-        public Nullable<System.Guid> IdKhoa { get; set; }
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
-        public string Role { get; set; }
+        public string TenCongViec { get; set; }
+        public string GhiChu { get; set; }
     
-        public virtual KhoaPhong KhoaPhong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDeNghi> PhieuDeNghis { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuDeNghi> PhieuDeNghis1 { get; set; }
     }
 }
