@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row content-all-ql" data-ng-controller="P100PhieuDeNghiCtrl" ng-cloak>
+    <div class="row col-lg-12">
+        <div class="row col-lg-12 text-center">
+            <div class="col-lg-4">
+                <div>BỆNH VIỆN K</div>
+                <div>
+                    KHOA, PHÒNG
+                </div>
+            </div>
+            <div class="col-lg-8 text-center">
+                <div>
+                    CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+                </div>
+                <div>
+                    Độc lập - Tự do - Hạnh phúc
+                    <div style="border-top: 1px solid #000000; width: 22%;margin:0px auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 text-right">
+            <i> Hà Nội, ngày {{NgayTao | date: 'dd'}} tháng {{NgayTao | date: 'MM'}} năm {{NgayTao | date: 'yyyy'}} </i>
+        </div>
+        <div class="col-lg-12 text-center" style="padding-top:20px">
+            <div> GIẤY ĐỀ NGHỊ SỮA CHỮA, LẮP ĐẶT</div>
+            <div> Kính gửi: Phòng Quản trị.</div>
+        </div>
+        <div class="col-lg-12" style="padding-top:20px">
+            <div> Khoa(Phòng): </div>
+        </div>
+        <div class="col-lg-12">
+            <div> Đề nghị phòng Quản trị sửa chữa các nội dung sau: </div>
+        </div>
+        <div class="row col-lg-12">
+            <div class="col-lg-2">Mục đề nghị</div>
+            <div class="col-lg-4">
+               
+            </div>
+        </div>
+        <div class="row col-lg-12">
+            <div class="col-lg-2">Nội dung đề nghị</div>
+            <div class="col-lg-4">
+                <textarea rows="3" class="form-control" name="NoiDungDeNghi" type="text" data-ng-model="NoiDungDeNghi" required></textarea>
+            </div>
+        </div>
+        <div class="row col-lg-12">
+            <div>Xin trân trọng cảm ơn!</div>
+
+        </div>
+        <div class="row col-lg-12 text-center">
+            <div class="col-lg-6">
+                <div>Trưởng Khoa/Phòng</div>
+                <div><i>(Ký, ghi rõ họ tên)</i></div>
+            </div>
+            <div class="col-lg-6">
+                <div>Người đề nghị</div>
+                <div><i>(Ký, ghi rõ họ tên)</i></div>
+            </div>
+
+        </div>
+        <div class="row col-lg-12" style="padding-top:50px;padding-right:50px">
+            <div class="row col-lg-12">
+                PHẦN GHI CHÚ CỦA PHÒNG QUẢN TRỊ
+            </div>
+            <div class="row col-lg-12">
+                Nhân viên sữa chữa: ..............................................
+            </div>
+            <div class="row col-lg-12">
+                Thời gian dự kiến hoàn thành: ..............................................
+            </div>
+            <div class="row col-lg-12">
+                PHẦN GHI CHÚ CỦA KHOA PHÒNG
+            </div>
+            <div class="row col-lg-12">
+                Tính trạng sau sữa chữa: ..............................................
+            </div>
+            <div class="row col-lg-12" style="padding-top:20px">
+                Thời gian hoàn thành công việc ngày ..... tháng .... năm ....
+            </div>
+        </div>
+        <div class="row col-lg-12 text-center" style="height:70px">
+            <div class="col-lg-6">
+            </div>
+            <div class="col-lg-6">
+                <div>Xác nhận của Khoa/Phòng</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

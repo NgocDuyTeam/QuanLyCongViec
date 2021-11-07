@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLy.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CanBo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoVaTen" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="IdKhoa" Type="uniqueidentifier" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KhoaPhong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="PhieuDeNghi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdKhoa" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" Nullable="false" />
+          <Property Name="TrangThai" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NoiDung" Type="ntext" />
+          <Property Name="IdCanBoDeNghi" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdCanBoThucHien" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_CanBo_KhoaPhong">
+          <End Role="KhoaPhong" Type="Self.KhoaPhong" Multiplicity="0..1" />
+          <End Role="CanBo" Type="Self.CanBo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaPhong">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CanBo">
+              <PropertyRef Name="IdKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_CanBo">
+          <End Role="CanBo" Type="Self.CanBo" Multiplicity="1" />
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="IdCanBoDeNghi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_CanBo1">
+          <End Role="CanBo" Type="Self.CanBo" Multiplicity="0..1" />
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="IdCanBoThucHien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_KhoaPhong">
+          <End Role="KhoaPhong" Type="Self.KhoaPhong" Multiplicity="1" />
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaPhong">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="IdKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyStoreContainer">
+          <EntitySet Name="CanBo" EntityType="Self.CanBo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhoaPhong" EntityType="Self.KhoaPhong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhieuDeNghi" EntityType="Self.PhieuDeNghi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CanBo_KhoaPhong" Association="Self.FK_CanBo_KhoaPhong">
+            <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+            <End Role="CanBo" EntitySet="CanBo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_CanBo" Association="Self.FK_PhieuDeNghi_CanBo">
+            <End Role="CanBo" EntitySet="CanBo" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_CanBo1" Association="Self.FK_PhieuDeNghi_CanBo1">
+            <End Role="CanBo" EntitySet="CanBo" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_KhoaPhong" Association="Self.FK_PhieuDeNghi_KhoaPhong">
+            <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="QuanLy" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="QuanLyContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CanBoes" EntityType="QuanLy.CanBo" />
+          <EntitySet Name="KhoaPhongs" EntityType="QuanLy.KhoaPhong" />
+          <EntitySet Name="PhieuDeNghis" EntityType="QuanLy.PhieuDeNghi" />
+          <AssociationSet Name="FK_CanBo_KhoaPhong" Association="QuanLy.FK_CanBo_KhoaPhong">
+            <End Role="KhoaPhong" EntitySet="KhoaPhongs" />
+            <End Role="CanBo" EntitySet="CanBoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_CanBo" Association="QuanLy.FK_PhieuDeNghi_CanBo">
+            <End Role="CanBo" EntitySet="CanBoes" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_CanBo1" Association="QuanLy.FK_PhieuDeNghi_CanBo1">
+            <End Role="CanBo" EntitySet="CanBoes" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_KhoaPhong" Association="QuanLy.FK_PhieuDeNghi_KhoaPhong">
+            <End Role="KhoaPhong" EntitySet="KhoaPhongs" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CanBo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoVaTen" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IdKhoa" Type="Guid" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KhoaPhong" Relationship="QuanLy.FK_CanBo_KhoaPhong" FromRole="CanBo" ToRole="KhoaPhong" />
+          <NavigationProperty Name="PhieuDeNghis" Relationship="QuanLy.FK_PhieuDeNghi_CanBo" FromRole="CanBo" ToRole="PhieuDeNghi" />
+          <NavigationProperty Name="PhieuDeNghiThucHien" Relationship="QuanLy.FK_PhieuDeNghi_CanBo1" FromRole="CanBo" ToRole="PhieuDeNghi" />
+        </EntityType>
+        <EntityType Name="KhoaPhong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CanBos" Relationship="QuanLy.FK_CanBo_KhoaPhong" FromRole="KhoaPhong" ToRole="CanBo" />
+          <NavigationProperty Name="PhieuDeNghis" Relationship="QuanLy.FK_PhieuDeNghi_KhoaPhong" FromRole="KhoaPhong" ToRole="PhieuDeNghi" />
+        </EntityType>
+        <EntityType Name="PhieuDeNghi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdKhoa" Type="Guid" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TrangThai" Type="Guid" Nullable="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCanBoDeNghi" Type="Guid" Nullable="false" />
+          <Property Name="IdCanBoThucHien" Type="Guid" />
+          <NavigationProperty Name="CanBoDeNghi" Relationship="QuanLy.FK_PhieuDeNghi_CanBo" FromRole="PhieuDeNghi" ToRole="CanBo" />
+          <NavigationProperty Name="CanBoThucHien" Relationship="QuanLy.FK_PhieuDeNghi_CanBo1" FromRole="PhieuDeNghi" ToRole="CanBo" />
+          <NavigationProperty Name="KhoaPhong" Relationship="QuanLy.FK_PhieuDeNghi_KhoaPhong" FromRole="PhieuDeNghi" ToRole="KhoaPhong" />
+        </EntityType>
+        <Association Name="FK_CanBo_KhoaPhong">
+          <End Type="QuanLy.KhoaPhong" Role="KhoaPhong" Multiplicity="0..1" />
+          <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaPhong">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CanBo">
+              <PropertyRef Name="IdKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_CanBo">
+          <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="1" />
+          <End Type="QuanLy.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="IdCanBoDeNghi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_CanBo1">
+          <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="0..1" />
+          <End Type="QuanLy.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="IdCanBoThucHien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_KhoaPhong">
+          <End Type="QuanLy.KhoaPhong" Role="KhoaPhong" Multiplicity="1" />
+          <End Type="QuanLy.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaPhong">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="IdKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="QuanLy" />
+        <Alias Key="Target" Value="QuanLy.Store" />
+        <EntityContainerMapping CdmEntityContainer="QuanLyContainer" StorageEntityContainer="QuanLyStoreContainer">
+          <EntitySetMapping Name="CanBoes">
+            <EntityTypeMapping TypeName="QuanLy.CanBo">
+              <MappingFragment StoreEntitySet="CanBo">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IdKhoa" ColumnName="IdKhoa" />
+                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhoaPhongs">
+            <EntityTypeMapping TypeName="QuanLy.KhoaPhong">
+              <MappingFragment StoreEntitySet="KhoaPhong">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuDeNghis">
+            <EntityTypeMapping TypeName="QuanLy.PhieuDeNghi">
+              <MappingFragment StoreEntitySet="PhieuDeNghi">
+                <ScalarProperty Name="IdCanBoThucHien" ColumnName="IdCanBoThucHien" />
+                <ScalarProperty Name="IdCanBoDeNghi" ColumnName="IdCanBoDeNghi" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="IdKhoa" ColumnName="IdKhoa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

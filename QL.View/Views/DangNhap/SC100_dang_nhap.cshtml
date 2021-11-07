@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+@{Layout = null;}
+
+@model  BusinessLogic.Model.CanBoModel
+<html lang="en" class="h-100" id="login-page1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Phần mềm quản lý phiếu đề nghị</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/Content/assets/images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="/Content/css/style.css" rel="stylesheet">
+    <link href="/Content/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+
+</head>
+<body class="h-100">
+
+    <div class="login-bg h-100 login-ql">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content login-form">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="logo text-center mb-60">
+                                    <a href="index.html">
+                                        @*<img class="img-fluid" src="/Content/assets/images/f-logo.png" alt="">*@
+                                    </a>
+                                </div>
+                                <h4 class="text-center mt-4 line-on-side "><span>Đăng nhập</span></h4>
+                                @using (Html.BeginForm("SC100_dang_nhap", "DangNhap", FormMethod.Post, new { id = "frmLogIn" }))
+                                {
+                                    if (@ViewBag.Error != null && @ViewBag.Error != "")
+                                    {
+                                        <ul>
+                                            <li style="color:red">@ViewBag.Error</li>
+                                        </ul>}
+
+
+                                    <div class="form-group has-icon-left">
+                                        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Tên đăng nhập" })
+                                        <div class="form-control-position">
+                                            <i class="ti-user"></i>
+                                        </div>
+                                        @Html.ValidationMessageFor(x => x.UserName)
+                                    </div>
+                                    <div class="form-group  has-icon-left">
+                                        @Html.PasswordFor(x => x.PassWord, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                                        <div class="form-control-position">
+                                            <i class="ti-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-4 mt-4">
+                                        <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-blue-crm">Đăng nhập</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+    <!-- Common JS -->
+    <script src="/Content/assets/plugins/common/common.min.js"></script>
+    <!-- Custom script -->
+    <script src="/Content/js/custom.min.js"></script>
+    <script src="/Content/js/settings.js"></script>
+    <script src="/Content/js/gleek.js"></script>
+</body>
+</html>
+
+<style>
+    .field-validation-valid {
+        width: 100%;
+        color: #ff4848;
+        font-weight: normal;
+    }
+</style>

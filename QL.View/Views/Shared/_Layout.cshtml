@@ -1,0 +1,161 @@
+﻿@using Framework.Extensions
+@using QL.View.Utility
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/Content/assets/images/favicon.png">
+    <!--Step-->
+    <link rel="stylesheet" href="/Content/js/Step/jquery-steps.css">
+
+    <link href="/Content/css/responsive.css" rel="stylesheet">
+    <link href="/Content/css/style.css" rel="stylesheet">
+    <link href="/Content/css/main.css" rel="stylesheet">
+    <link href="~/Js/lib/angular-ui-select/dist/select.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+
+    <!-- CSS-cau-hinh-->
+    <link rel="stylesheet" type="text/css" href="/Content/js/Boostrap-switch/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/js/Boostrap-switch/css/switchery.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/js/Boostrap-switch/css/switch.min.css">
+
+    <link href="/Content/assets/plugins/toastr/css/toastr.min.css" rel="stylesheet" />
+    <!-- Select2 -->
+    <!-- Upload-File-->
+    @*<link rel="stylesheet" href="/Content/js/Upload-file/all.min.css">*@
+
+    <script src="/Content/assets/plugins/common/common.min.js"></script>
+
+</head>
+<body ng-app="uiApp">
+
+    <input type="hidden" value="@ConfigurationUtility.GetConfigurationSettingValue("baseUrl")" name="apiUrl" id="config_ApiUrl" />
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper" class="main-ql">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header head-ql">
+
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b><img style="width:50px;height:40px" src="/Content/assets/images/logoImg.png" alt="" /> </b>
+                    <span class="brand-title">
+                        <img style="width: 110px; height: 40px" src="/Content/assets/images/logoName.png" alt="" />
+                    </span>
+                </a>
+            </div>
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span>  <span class="line"></span>  <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header head-ql-top">
+            <div class="header-content">
+                <div class="header-left">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/trang-chu"><i class="ti-home"></i></a>
+                        </li>
+                        @Html.Raw(ViewBag.TitleUrl)
+                    </ol>
+                </div>
+                <div class="header-right">
+                    <ul>
+                        <li class="icons">
+                            <a href="javascript:void(0)" class="log-user">
+                                <img src="/Content/assets/images/avatar/1.jpg" alt="" />
+                                <span>@Global.TaiKhoan_Login.HoVaTen</span>  <i class="fa fa-caret-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-profile animated bounceInDown">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="/doi-mat-khau"><i class="icon-user"></i> <span>Đổi mật khẩu</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/DangNhap/Logout"><i class="icon-power"></i> <span>Đăng xuất</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end
+        ***********************************-->
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        @{ Html.RenderPartial("/Views/Shared/_LeftMenu.cshtml");}
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body content-body-ql">
+            <div class="container-fluid col-md-12" style="padding-top:20px" id="bodyAllPage">
+                <input type="text" style="display:none" value="@ViewBag.Quyen" id="sQuyen" />
+                <input type="text" style="display:none" value="@ViewBag.IdDonVi" id="IdDonVi" />
+                @RenderBody()
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+    </div>
+
+
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+
+    <script src="/Content/js/custom.min.js"></script>
+    <script src="/Content/js/settings.js"></script>
+    <script src="/Content/js/gleek.js"></script>
+    <script src="/Content/js/styleSwitcher.js"></script>
+
+    <script src="~/Js/lib/angular/angular.js"></script>
+    <script src="~/Js/lib/angular-cookies/angular-cookies.js"></script>
+    <script src="~/Js/lib/angular-resource/angular-resource.js"></script>
+    <script src="~/Js/lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="~/Js/lib/angular-ui-mask/dist/mask.js"></script>
+    <script src="~/Js/lib/angular-ui-select/dist/select.js"></script>
+    <script src="~/Js/lib/AngularJS-Toaster/toaster.js"></script>
+    <script src="~/Js/lib/ngprogress/build/ngProgress.js"></script>
+    <script src="~/Js/lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Js/BaseJS.js"></script>
+    <script src="~/Js/lib/moment/moment.js"></script>
+    <script src="~/app/app.module.js"></script>
+    <script src="~/app/app.route.js"></script>
+
+
+    @*app components*@
+    <script src="~/app/components/phieudenghi/P100PhieuDeNghiCtrl.js"></script>
+
+    @*app services*@
+    <script src="~/app/services/svPhieuDeNghi.js"></script>
+</body>
+</html>

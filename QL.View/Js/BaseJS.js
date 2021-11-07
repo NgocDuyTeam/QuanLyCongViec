@@ -1,0 +1,1 @@
+﻿var _baseUrl = $("#config_ApiUrl").val();

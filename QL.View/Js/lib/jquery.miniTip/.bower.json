@@ -1,0 +1,24 @@
+{
+  "name": "jquery.miniTip",
+  "homepage": "https://github.com/jmmerino/miniTip",
+  "authors": [
+    "James Simpson"
+  ],
+  "description": "Ultra lightweight jQuery tooltip plugin",
+  "main": "src/jquery.miniTip.js",
+  "keywords": [
+    "jquery",
+    "minitip",
+    "tooltip"
+  ],
+  "license": "MIT and GPL",
+  "_release": "11c08f5092",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "11c08f509249f53b79cee246c0273d3d88df5649"
+  },
+  "_source": "https://github.com/jmmerino/miniTip.git",
+  "_target": "*",
+  "_originalSource": "jquery.miniTip"
+}
