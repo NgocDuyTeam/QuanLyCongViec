@@ -1,6 +1,10 @@
 ## ngProgress.js
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/VictorBjelkholm/ngProgress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/VictorBjelkholm/ngProgress.png?branch=master)](https://travis-ci.org/VictorBjelkholm/ngProgress)
+
+[![CDNJS](https://img.shields.io/cdnjs/v/ngprogress.svg)](https://cdnjs.com/libraries/ngprogress)
 
 **ngProgress** is a provider for angular for showing a loading status of something.
 Use cases can be fetching external resources, showing a action taking more-than-normal length
@@ -14,10 +18,10 @@ Download ngProgress.js manually or install with bower
 $ bower install ngprogress
 ```
 
-Include **ngProgress.js** ( or **ngProgress.min.js**) and **ngProgress.css** in your website.
+Include **ngProgress.js** ( or **ngprogress.min.js**) and **ngProgress.css** in your website.
 
 ```html
-<script src="app/components/ngProgress/ngProgress.min.js"></script>
+<script src="app/components/ngprogress/ngprogress.min.js"></script>
 <link rel="stylesheet" href="ngProgress.css">
 ```
 
@@ -28,17 +32,25 @@ var app = angular.module('progressApp', ['ngProgress']);
 ```
 
 
-Inject **ngProgress** provider in controller
+Inject **ngProgressFactory** in your controller
 
 ```javascript
-var MainCtrl = function($scope, $timeout, ngProgress) {}
+var MainCtrl = function($scope, $timeout, ngProgressFactory) {}
+```
+
+Create a instance of the progressbar
+
+```javascript
+$scope.progressbar = ngProgressFactory.createInstance();
 ```
 
 Use with the API down below
 
 ```javascript
-ngProgress.start();
-$timeout(ngProgress.complete(), 1000);
+$scope.progressbar.start();
+$timeout(function() {
+  $scope.progressbar.complete()
+}, 1000);
 ```
 
 ## API
@@ -50,17 +62,17 @@ to hide it
 ```javascript
 ngProgress.start();
 ```
-* **height** - Sets the height of the progressbar. Use any valid CSS value
+* **setHeight** - Sets the height of the progressbar. Use any valid CSS value
 Eg '10px', '1em' or '1%'
 
 ```javascript
-ngProgress.height('10px');
+ngProgress.setHeight('10px');
 ```
 
-* **color** - Sets the color of the progressbar and it's shadow. Use any valid HTML color
+* **setColor** - Sets the color of the progressbar and it's shadow. Use any valid HTML color
 
 ```javascript
-ngProgress.color('#fff');
+ngProgress.setColor('#fff');
 ```
 
 * **status** - Returns on how many percent the progressbar is at. Should'nt be needed
@@ -105,7 +117,21 @@ ngProgress.setParent(document.getElementById('container'));
 var element = ngProgress.getDomElement();
 ```
 
-##License
+## Releasing a new version
+
+The current (and quite hacky solution, honestly) to make a new release:
+
+* Update package.json to have new version.
+
+* Commit changes
+
+* Run ```bower version patch|minor|major```
+
+## Publishing new Github-pages version
+
+Merge ```master``` into ```gh-pages```, run ```grunt``` and push to Github
+
+## License
 
 The MIT License (MIT)
 

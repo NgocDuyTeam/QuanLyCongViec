@@ -235,13 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="WebTemp.config" />
-    <Content Include="WebTemp.Debug.config">
-      <DependentUpon>WebTemp.config</DependentUpon>
-    </Content>
-    <Content Include="WebTemp.Release.config">
-      <DependentUpon>WebTemp.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">

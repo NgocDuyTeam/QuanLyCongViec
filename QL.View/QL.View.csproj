@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DanhSachKhoaPhongController.cs" />
     <Compile Include="Controllers\PhieuDeNghiController .cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -143,8 +144,10 @@
   <ItemGroup>
     <Content Include="app\app.module.js" />
     <Content Include="app\app.route.js" />
+    <Content Include="app\components\danhmuc\SC200DanhMucKhoaPhongCtrl.js" />
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
     <Content Include="app\services\svDMCongViec.js" />
+    <Content Include="app\services\svDMKhoaPhong.js" />
     <Content Include="app\services\svPhieuDeNghi.js" />
     <Content Include="Content\assets\images\36.png" />
     <Content Include="Content\assets\images\avatar\1.jpg" />
@@ -8662,16 +8665,9 @@
     <Content Include="Views\PhieuDeNghi\SC100_PhieuDeNghi.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
-    <Content Include="WebTemp.config" />
-    <Content Include="WebTemp.Debug.config">
-      <DependentUpon>WebTemp.config</DependentUpon>
-    </Content>
-    <Content Include="WebTemp.Release.config">
-      <DependentUpon>WebTemp.config</DependentUpon>
-    </Content>
+    <Content Include="Views\DanhSachKhoaPhong\SC200DanhSachKhoaPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\danhmuc\" />
     <Folder Include="app\utils\" />
     <Folder Include="App_Data\" />
     <Folder Include="Helper\" />
