@@ -27,6 +27,7 @@ app.controller('SC100PhieuDeNghiCtrl',
                     function (d) {
                         toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
                         ngProgress.complete();
+                        window.location.href = "/PhieuDeNghi/SC101_DSPhieuDeNghi";
                     }, function (err) {
                         ngProgress.complete();
                         $scope.isDisabled = false;

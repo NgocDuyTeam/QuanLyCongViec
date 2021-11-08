@@ -16,5 +16,10 @@ namespace BusinessLogic.Model
         public Guid IdCanBoDeNghi { get; set; }
         public Guid? IdCanBoThucHien { get; set; }
         public Guid IdCongViec { get; set; }
+        ///////////////////////
+        public string TenKhoa { get; set; }
+        public string TenCBThucHien { get; set; }
+        public string TenCongViec { get; set; }
+        public string sTrangThai { get; set; }
     }
 }

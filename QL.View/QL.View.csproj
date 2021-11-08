@@ -143,6 +143,7 @@
   <ItemGroup>
     <Content Include="app\app.module.js" />
     <Content Include="app\app.route.js" />
+    <Content Include="app\components\phieudenghi\SC101DSPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
     <Content Include="app\services\svDMCongViec.js" />
     <Content Include="app\services\svPhieuDeNghi.js" />
@@ -5259,10 +5260,10 @@
     <Content Include="Content\js\Trumbowyg-master-editor\src\ui\icons\view-html.svg" />
     <Content Include="Content\js\Upload-file\all.min.css" />
     <Content Include="Content\js\Upload-file\shieldui-all.min.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Js\BaseJS.js" />
     <Content Include="Js\gritter\images\gritter-light.png" />
     <Content Include="Js\gritter\images\gritter-long.png" />
@@ -5271,6 +5272,24 @@
     <Content Include="Js\gritter\jquery.gritter.css" />
     <Content Include="Js\gritter\jquery.gritter.js" />
     <Content Include="Js\gritter\jquery.gritter.min.js" />
+    <Content Include="Js\jquery-ui-1.13.0\AUTHORS.txt" />
+    <Content Include="Js\jquery-ui-1.13.0\external\jquery\jquery.js" />
+    <Content Include="Js\jquery-ui-1.13.0\images\ui-icons_444444_256x240.png" />
+    <Content Include="Js\jquery-ui-1.13.0\images\ui-icons_555555_256x240.png" />
+    <Content Include="Js\jquery-ui-1.13.0\images\ui-icons_777620_256x240.png" />
+    <Content Include="Js\jquery-ui-1.13.0\images\ui-icons_777777_256x240.png" />
+    <Content Include="Js\jquery-ui-1.13.0\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Js\jquery-ui-1.13.0\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Js\jquery-ui-1.13.0\index.html" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.css" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.js" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.min.css" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.min.js" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.structure.css" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.structure.min.css" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.theme.css" />
+    <Content Include="Js\jquery-ui-1.13.0\jquery-ui.theme.min.css" />
+    <Content Include="Js\jquery-ui-1.13.0\LICENSE.txt" />
     <Content Include="Js\jquery\jquery-1.8.2.js" />
     <Content Include="Js\jquery\jquery-ui-1.8.23.js" />
     <Content Include="Js\lib\angucomplete-alt\angucomplete-alt.css" />
@@ -7886,6 +7905,7 @@
     <Content Include="Content\Report\Templates\DeNghiCongNhanTNCu.xlsx" />
     <Content Include="Content\Report\Templates\KhongDuDKCongNhanTN.xlsx" />
     <Content Include="Content\Report\Templates\KhongDuDKCongNhanTNCu.xlsx" />
+    <Content Include="Js\jquery-ui-1.13.0\package.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -8669,6 +8689,7 @@
     <Content Include="WebTemp.Release.config">
       <DependentUpon>WebTemp.config</DependentUpon>
     </Content>
+    <Content Include="Views\PhieuDeNghi\SC101_DSPhieuDeNghi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\danhmuc\" />

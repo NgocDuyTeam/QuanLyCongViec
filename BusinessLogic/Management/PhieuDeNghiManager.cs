@@ -50,6 +50,53 @@ namespace BusinessLogic.Management
                 uow.Save();
             }
         }
+        public List<PhieuDeNghiModel> GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
+            , int iPageIndex, int iPageSize, out int iTotal)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                IEnumerable<PhieuDeNghi> lstPhieu = null;
+                var query = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay);
+                if (IdKhoa.HasValue)
+                {
+                    query = query.Filter(x => x.IdKhoa == IdKhoa);
+                }
+                if (sTrangThai.IsNotNullOrEmpty())
+                {
+                    query = query.Filter(x => sTrangThai.ToLower().Contains(x.TrangThai.ToLower()));
+                }
+                if (iPageIndex != -1)
+                {
+                    lstPhieu = query.OrderBy(x => x.OrderByDescending(y => y.NgayTao)).GetPage(iPageIndex, iPageSize, out iTotal);
+                }
+                else
+                {
+                    lstPhieu = query.OrderBy(x => x.OrderByDescending(y => y.NgayTao)).Get();
+                    iTotal = lstPhieu.Count();
+                }
+                return lstPhieu.Select(x =>
+                {
+                    var phieu = x.CopyAs<PhieuDeNghiModel>();
+                    if (x.KhoaPhong != null)
+                    {
+                        phieu.TenKhoa = x.KhoaPhong.Ten;
+                    }
+                    if (x.CanBoDeNghi != null)
+                    {
+                        phieu.TenCBThucHien = x.CanBoDeNghi.HoVaTen;
+                    }
+                    if (x.DanhMucCongViec != null)
+                    {
+                        phieu.TenCongViec = x.DanhMucCongViec.TenCongViec;
+                    }
+                    if (x.TrangThai =="GuiYeuCau")
+                    {
+                        phieu.sTrangThai = "Gửi yêu cầu";
+                    }
+                    return phieu;
+                }).ToList();
+            }
+        }
 
         #endregion
 

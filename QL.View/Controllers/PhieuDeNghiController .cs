@@ -14,5 +14,11 @@ namespace QL.View.Controllers
             ViewBag.TitleUrl = " / Tạo phiếu đề nghị";
             return View();
         }
+        public ActionResult SC101_DSPhieuDeNghi()
+        {
+            ViewBag.Title = "Bệnh viện K - Hệ thống quản lý phiếu đề nghị";
+            ViewBag.TitleUrl = " / Danh sách phiếu đề nghị";
+            return View();
+        }
     }
 }

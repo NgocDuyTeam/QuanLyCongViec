@@ -11,5 +11,17 @@ app.factory('svPhieuDeNghi', function (myAppConfig, $resource) {
                 method: 'POST',
                 url: baseUrl + 'api/phieudenghi/savePhieuDeNghi',
             },
+            'getPhieuDeNghiByPage': {
+                method: 'GET',
+                params: {
+                    IdKhoa: '@IdKhoa',
+                    TuNgay: '@TuNgay',
+                    DenNgay: '@DenNgay',
+                    sTrangThai: '@sTrangThai',
+                    iPageIndex: '@iPageIndex',
+                    iPageSize: '@iPageSize'
+                },
+                url: baseUrl + 'api/phieudenghi/getPhieuDeNghiByPage',
+            },
         })
 });
