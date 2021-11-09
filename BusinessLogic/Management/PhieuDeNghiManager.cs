@@ -50,6 +50,48 @@ namespace BusinessLogic.Management
                 uow.Save();
             }
         }
+        public PhieuDeNghiModel SelectById(Guid IdPhieu)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == IdPhieu).FirstOrDefault();
+                if (phieu != null)
+                {
+                    var result = phieu.CopyAs<PhieuDeNghiModel>();
+                    if (phieu.KhoaPhong != null)
+                    {
+                        result.TenKhoa = phieu.KhoaPhong.Ten;
+                    }
+                    if (phieu.CanBoDeNghi != null)
+                    {
+                        result.TenCBThucHien = phieu.CanBoDeNghi.HoVaTen;
+                    }
+                    if (phieu.DanhMucCongViec != null)
+                    {
+                        result.TenCongViec = phieu.DanhMucCongViec.TenCongViec;
+                    }
+                    if (phieu.TrangThai == "GuiYeuCau")
+                    {
+                        result.sTrangThai = "Gửi yêu cầu";
+                    }
+                    return result;
+                }
+            }
+            return null;
+        }
+        public void DeleteById(Guid IdPhieu)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == IdPhieu).FirstOrDefault();
+                if (phieu != null)
+                {
+                    phieu.State = EDataState.Deleted;
+                    uow.Repository<PhieuDeNghi>().Delete(phieu);
+                    uow.Save();
+                }
+            }
+        }
         public List<PhieuDeNghiModel> GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
             , int iPageIndex, int iPageSize, out int iTotal)
         {
@@ -89,7 +131,7 @@ namespace BusinessLogic.Management
                     {
                         phieu.TenCongViec = x.DanhMucCongViec.TenCongViec;
                     }
-                    if (x.TrangThai =="GuiYeuCau")
+                    if (x.TrangThai == "GuiYeuCau")
                     {
                         phieu.sTrangThai = "Gửi yêu cầu";
                     }
