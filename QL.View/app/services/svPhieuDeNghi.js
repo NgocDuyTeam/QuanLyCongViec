@@ -23,5 +23,19 @@ app.factory('svPhieuDeNghi', function (myAppConfig, $resource) {
                 },
                 url: baseUrl + 'api/phieudenghi/getPhieuDeNghiByPage',
             },
+            'GetPhieuById': {
+                method: 'GET',
+                params: {
+                    IdPhieu: '@IdPhieu',
+                },
+                url: baseUrl + 'api/phieudenghi/getPhieuDeId',
+            },
+            'DeletePhieuById': {
+                method: 'Post',
+                params: {
+                    IdPhieu: '@IdPhieu',
+                },
+                url: baseUrl + 'api/phieudenghi/deletePhieuDeNghiById',
+            },
         })
 });

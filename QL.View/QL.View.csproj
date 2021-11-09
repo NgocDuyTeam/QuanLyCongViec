@@ -147,6 +147,10 @@
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
     <Content Include="app\services\svDMCongViec.js" />
     <Content Include="app\services\svPhieuDeNghi.js" />
+    <Content Include="app\vendor\jquery.ba-bbq.js" />
+    <Content Include="app\vendor\jquery.ba-bbq.min.js" />
+    <Content Include="app\vendor\jquery.jkey.js" />
+    <Content Include="app\vendor\jquery.jkey.min.js" />
     <Content Include="Content\assets\images\36.png" />
     <Content Include="Content\assets\images\avatar\1.jpg" />
     <Content Include="Content\assets\images\avatar\1.png" />

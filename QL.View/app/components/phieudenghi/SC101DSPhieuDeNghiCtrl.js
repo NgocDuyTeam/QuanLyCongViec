@@ -9,7 +9,7 @@ app.controller('SC101DSPhieuDeNghiCtrl',
             $scope.IdKhoa = myAppConfig.IdKhoa;
             $scope.sTrangThai = "GuiYeuCau";
             $scope.iPageIndex = 1;
-            $scope.iPageSize = 20;
+            $scope.iPageSize = "20";
             $scope.DSPhieu = [];
 
             $scope.refreshData = function (iPageIndex) {
@@ -33,4 +33,13 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                     }, function (err) { ngProgress.complete(); });
             }
             $scope.refreshData(1);
+            $scope.DeletePhieu = function (IdPhieu) {
+                svPhieuDeNghi.DeletePhieuById({
+                    IdPhieu: IdPhieu
+                }).$promise.then(
+                    function (d) {
+                        toaster.pop('success', "Thông báo", "Xóa thành công.");
+                        $scope.refreshData(1);
+                    }, function (err) { ngProgress.complete(); });
+            }
         }]);
