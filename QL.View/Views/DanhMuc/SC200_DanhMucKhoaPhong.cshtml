@@ -28,6 +28,13 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="row" ng-visible="{{iTotalPage>1}}">
+                <div class="col-sm-12" style="float: right">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination" id="lstPage"></ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

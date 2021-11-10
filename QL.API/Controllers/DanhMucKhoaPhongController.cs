@@ -18,19 +18,19 @@ namespace QL.API.Controllers
         // GET api/<controller>
         [Route("getDanhSach")]
         [HttpGet]
-        public HttpResponseMessage GetDanhSach(Guid Id, int iPageIndex, int iPageSize)
+        public HttpResponseMessage GetDanhSach(int iPageIndex, int iPageSize)
         {
             try
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = DanhMucKhoaPhongManager.Instance.SelectAll(Id, iPageIndex, iPageSize, out iTotal);
+                result.List = DanhMucKhoaPhongManager.Instance.SelectAll(iPageIndex, iPageSize, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
             }
             catch (Exception ex)
             {
-                return HttpInternalServerError(ex.Message);
+                return null;
             }
         }
     }

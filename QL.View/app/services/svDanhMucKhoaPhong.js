@@ -9,6 +9,10 @@ app.factory('svDanhMucKhoaPhong', function (myAppConfig, $resource) {
         {
             'GetDanhSachKhoaPhong': {
                 method: 'GET',
+                params: {
+                    iPageIndex: '@iPageIndex',
+                    iPageSize: '@iPageSize'
+                },
                 url: baseUrl + 'api/dmkhoaphong/getDanhSach',
             },
         })

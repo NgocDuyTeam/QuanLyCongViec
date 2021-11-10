@@ -29,7 +29,7 @@ namespace BusinessLogic.Management
 
         #region  public
        
-        public List<KhoaPhongModel> SelectAll(Guid IdKhoa, int iPageIndex, int iPageSize, out int iTotal)
+        public List<KhoaPhongModel> SelectAll(int iPageIndex, int iPageSize, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
