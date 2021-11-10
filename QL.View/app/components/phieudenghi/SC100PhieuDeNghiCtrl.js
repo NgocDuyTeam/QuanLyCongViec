@@ -2,8 +2,8 @@
 var app = angular.module('uiApp');
 
 app.controller('SC100PhieuDeNghiCtrl',
-    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi', 'svDMCongViec',
-        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svDMCongViec) {
+    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi', 'svDanhMucCongViec',
+        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svDanhMucCongViec) {
             $scope.NgayTao = moment().format('YYYY-MM-DD');
             $scope.TenKhoa = myAppConfig.TenKhoa;
             $scope.Phieu = {};
@@ -11,7 +11,7 @@ app.controller('SC100PhieuDeNghiCtrl',
             $scope.Phieu.IdKhoa = myAppConfig.IdKhoa;
             $scope.Phieu.TrangThai = "GuiYeuCau";
             $scope.loadDMCongViec = function () {
-                svDMCongViec.GetDanhSachCongViec().$promise.then(
+                svDanhMucCongViec.GetDanhSachCongViec().$promise.then(
                     function (d) {
                         $scope.DSCongViec = d.List;
                     }, function (err) { ngProgress.complete(); });

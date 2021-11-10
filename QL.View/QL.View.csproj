@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\PhieuDeNghiController .cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

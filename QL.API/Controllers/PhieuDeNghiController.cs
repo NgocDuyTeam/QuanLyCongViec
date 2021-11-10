@@ -32,7 +32,7 @@ namespace QL.API.Controllers
         }
         [Route("savePhieuDeNghi")]
         [HttpPost]
-        public HttpResponseMessage SavePhieuDeNghi(string id,PhieuDeNghiModel value)
+        public HttpResponseMessage SavePhieuDeNghi(PhieuDeNghiModel value)
         {
             try
             {
