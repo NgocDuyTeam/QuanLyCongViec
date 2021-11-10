@@ -29,5 +29,6 @@ namespace SQLDataAccess
         public virtual DbSet<KhoaPhong> KhoaPhongs { get; set; }
         public virtual DbSet<DanhMucCongViec> DanhMucCongViecs { get; set; }
         public virtual DbSet<PhieuDeNghi> PhieuDeNghis { get; set; }
+        public virtual DbSet<MauPhieuIn> MauPhieuIns { get; set; }
     }
 }

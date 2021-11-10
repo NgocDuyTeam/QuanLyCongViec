@@ -22,4 +22,7 @@ namespace SQLDataAccess
     public partial class DanhMucCongViec : BaseData
     {
     }
+    public partial class MauPhieuIn : BaseData
+    {
+    }
 }

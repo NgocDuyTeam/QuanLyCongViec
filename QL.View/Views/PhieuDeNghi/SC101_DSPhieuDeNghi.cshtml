@@ -43,6 +43,9 @@
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
                         <td>{{phieu.TenCongViec}}</td>
                         <td class="text-right">
+                            <a ng-click="PrintPhieu(phieu)" title="In">
+                                <i class="fas fa-print"></i>
+                            </a>&nbsp;&nbsp;
                             <a href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Sửa">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>&nbsp;&nbsp;

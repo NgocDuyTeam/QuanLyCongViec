@@ -14,6 +14,7 @@
         <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_CanBo1" />
         <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_DanhMucCongViec" />
         <AssociationConnector Association="QuanLy.FK_PhieuDeNghi_KhoaPhong" />
+        <EntityTypeShape EntityType="QuanLy.MauPhieuIn" Width="1.5" PointX="3.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

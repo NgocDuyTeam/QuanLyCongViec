@@ -5,18 +5,20 @@
 
 <div class="row content-all-ql" data-ng-controller="SC100PhieuDeNghiCtrl" ng-cloak>
     <div class="row col-lg-12">
-        <div class="row col-lg-12 text-center">
+        <div class="row col-lg-12 text-center" style="font-size:16px">
             <div class="col-lg-4">
                 <div>BỆNH VIỆN K</div>
-                <div>
-                    KHOA, PHÒNG
+                <div style="font-weight:bold">
+                    KHOA, PHÒNG ..............
+                    <div style=" width: 22%;margin:0px auto">***
+                    </div>
                 </div>
             </div>
             <div class="col-lg-8 text-center">
-                <div>
+                <div style="font-weight:bold">
                     CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
                 </div>
-                <div>
+                <div style="font-weight:bold">
                     Độc lập - Tự do - Hạnh phúc
                     <div style="border-top: 1px solid #000000; width: 22%;margin:0px auto">
                     </div>
@@ -26,8 +28,8 @@
         <div class="col-lg-12 text-right">
             <i> Hà Nội, ngày {{NgayTao | date: 'dd'}} tháng {{NgayTao | date: 'MM'}} năm {{NgayTao | date: 'yyyy'}} </i>
         </div>
-        <div class="col-lg-12 text-center" style="padding-top:20px">
-            <div> GIẤY ĐỀ NGHỊ SỮA CHỮA, LẮP ĐẶT</div>
+        <div class="col-lg-12 text-center" style="padding-top: 20px; font-weight:bold">
+            <div style="font-size: 16px"> GIẤY ĐỀ NGHỊ SỮA CHỮA, LẮP ĐẶT</div>
             <div> Kính gửi: Phòng Quản trị.</div>
         </div>
         <div class="col-lg-12" style="padding-top:20px">
@@ -38,8 +40,7 @@
         </div>
         <div class="row col-lg-12">
             <div class="col-lg-2">Mục đề nghị</div>
-            <div class="col-lg-4">
-
+            <div class="col-lg-2" style="padding-top:3px;padding-bottom:3px">
                 <ui-select ng-model="Phieu.IdCongViec" reset-search-input="false">
                     <ui-select-match placeholder="Chọn ... ">{{$select.selected.TenCongViec}}</ui-select-match>
                     <ui-select-choices repeat="cv.Id as cv in DSCongViec | filter: $select.search" value="{{$select.selected.Id}}">
@@ -60,11 +61,11 @@
         </div>
         <div class="row col-lg-12 text-center">
             <div class="col-lg-6">
-                <div>Trưởng Khoa/Phòng</div>
+                <div style="font-weight:bold">Trưởng Khoa/Phòng</div>
                 <div><i>(Ký, ghi rõ họ tên)</i></div>
             </div>
             <div class="col-lg-6">
-                <div>Người đề nghị</div>
+                <div style="font-weight:bold">Người đề nghị</div>
                 <div><i>(Ký, ghi rõ họ tên)</i></div>
             </div>
 
@@ -94,7 +95,7 @@
             <div class="col-lg-6">
             </div>
             <div class="col-lg-6">
-                <div>Xác nhận của Khoa/Phòng</div>
+                <div style="font-weight:bold">Xác nhận của Khoa/Phòng</div>
             </div>
 
         </div>

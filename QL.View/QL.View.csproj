@@ -152,6 +152,7 @@
     <Content Include="app\services\svDanhMucCanBo.js" />
     <Content Include="app\services\svDanhMucCongViec.js" />
     <Content Include="app\services\svDanhMucKhoaPhong.js" />
+    <Content Include="app\services\svMauPhieuIn.js" />
     <Content Include="app\services\svPhieuDeNghi.js" />
     <Content Include="app\vendor\jquery.ba-bbq.js" />
     <Content Include="app\vendor\jquery.ba-bbq.min.js" />

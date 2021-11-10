@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="EDataState.cs" />
+    <Compile Include="MauPhieuIn.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyContainer.cs" />
     <Compile Include="Entities\BaseData.cs" />
     <Compile Include="Interface\IDbContext.cs" />
