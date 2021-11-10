@@ -16,6 +16,19 @@ app.controller('SC100PhieuDeNghiCtrl',
                         $scope.DSCongViec = d.List;
                     }, function (err) { ngProgress.complete(); });
             }
+            $scope.loadThongTinPhieu = function (IdPhieu) {
+                svPhieuDeNghi.GetPhieuById({
+                    IdPhieu: IdPhieu
+                }).$promise.then(
+                    function (d) {
+                        $scope.Phieu = d;
+                    }, function (err) { ngProgress.complete(); });
+            }
+            var urlObj = $.deparam.querystring();
+            if (urlObj.idPhieu) {
+                $scope.loadThongTinPhieu(urlObj.idPhieu);
+            };
+            
             $scope.savePhieu = function () {
                 if (typeof $scope.Phieu.IdCongViec === "undefined" || typeof $scope.Phieu.NoiDung === "undefined") {
                     toaster.pop('warning', "Thông báo", "Vui lòng chọn công việc.");
@@ -27,13 +40,13 @@ app.controller('SC100PhieuDeNghiCtrl',
                     function (d) {
                         toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
                         ngProgress.complete();
+                        window.location.href = "/PhieuDeNghi/SC101_DSPhieuDeNghi";
                     }, function (err) {
                         ngProgress.complete();
                         $scope.isDisabled = false;
                     });
 
             }
-
             $scope.loadDMCongViec();
 
 

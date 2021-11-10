@@ -222,8 +222,8 @@
           <Property Name="IdCanBoDeNghi" Type="Guid" Nullable="false" />
           <Property Name="IdCanBoThucHien" Type="Guid" />
           <Property Name="IdCongViec" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="CanBo" Relationship="QuanLy.FK_PhieuDeNghi_CanBo" FromRole="PhieuDeNghi" ToRole="CanBo" />
-          <NavigationProperty Name="CanBo1" Relationship="QuanLy.FK_PhieuDeNghi_CanBo1" FromRole="PhieuDeNghi" ToRole="CanBo" />
+          <NavigationProperty Name="CanBoDeNghi" Relationship="QuanLy.FK_PhieuDeNghi_CanBo" FromRole="PhieuDeNghi" ToRole="CanBo" />
+          <NavigationProperty Name="CanBoYeuCau" Relationship="QuanLy.FK_PhieuDeNghi_CanBo1" FromRole="PhieuDeNghi" ToRole="CanBo" />
           <NavigationProperty Name="DanhMucCongViec" Relationship="QuanLy.FK_PhieuDeNghi_DanhMucCongViec" FromRole="PhieuDeNghi" ToRole="DanhMucCongViec" />
           <NavigationProperty Name="KhoaPhong" Relationship="QuanLy.FK_PhieuDeNghi_KhoaPhong" FromRole="PhieuDeNghi" ToRole="KhoaPhong" />
         </EntityType>
