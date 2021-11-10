@@ -27,7 +27,19 @@ namespace BusinessLogic.Management
         }
         #endregion
 
-        #region  public
+        #region  
+        public List<CanBoModel> SelectAll()
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var lstCB = uow.Repository<CanBo>().Query().OrderBy(x => x.OrderBy(y => y.HoVaTen)).Get();
+                return lstCB.Select(x =>
+                {
+                    return x.CopyAs<CanBoModel>();
+                }).ToList();
+            }
+               
+        }
         public CanBoModel SelectById(Guid Id)
         {
             using (var uow = new UnitOfWork())
