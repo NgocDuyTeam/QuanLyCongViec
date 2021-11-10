@@ -23,7 +23,7 @@
             </select>
         </div>
         <div class="col-sm-2">
-            <input class="btn btn-primary" type="button" style="float: right; margin-bottom: 5px; margin-right: 20px" value="Tìm kiếm" ng-click="refreshData()" />
+            <input class="btn btn-primary" type="button" style="float: right; margin-bottom: 5px; margin-right: 20px" value="Tìm kiếm" ng-click="refreshData(1)" />
         </div>
     </div>
     <div class="row col-lg-12" style="margin-top:15px">
@@ -39,14 +39,14 @@
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="phieu in DSPhieu">
-                        <td class="text-center">{{$index+1}}</td>
+                        <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
                         <td>{{phieu.TenCongViec}}</td>
                         <td class="text-right">
                             <a href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Sửa">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>&nbsp;&nbsp;
-                            <a ng-click="HuyPhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa"></i> </a>
+                            <a ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa"></i> </a>
                         </td>
                     </tr>
                 </tbody>
