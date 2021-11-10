@@ -40,7 +40,7 @@ namespace BusinessLogic.Management
                 }).ToList();
 
 
-                return null;
+     
             }
         }
 
