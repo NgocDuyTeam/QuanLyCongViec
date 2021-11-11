@@ -5,27 +5,6 @@ app.controller('SC200DanhMucKhoaPhongCtrl',
     ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svDanhMucKhoaPhong',
         function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svDanhMucKhoaPhong) {
             $scope.NgayTao = moment().format('YYYY-MM-DD');
-<<<<<<< HEAD
-          
-            $scope.loadDMKhoaPhong = function () {
-                svDanhMucKhoaPhong.GetDanhSachKhoaPhong().$promise.then(
-                    function (d) {
-                        $scope.DSKhoaPhong = d.List;
-                    }, function (err) { ngProgress.complete(); });
-            }
-        
-            $scope.loadDMKhoaPhong();
-
-
-
-            //$scope.openPopupDemo = function () {
-            //    $("#modelDemo").bPopup({ escClose: false, modalClose: false });
-            //    $("#modelDemo").show();
-            //};
-            //$scope.closePopupDemo = function () {
-            //    $("#modelDemo").bPopup({}).close();
-            //};
-=======
             $scope.iPageIndex = 1;
             $scope.iPageSize = 20;
 
@@ -50,5 +29,5 @@ app.controller('SC200DanhMucKhoaPhongCtrl',
 
             $scope.loadDMKhoaPhong(1);
 
->>>>>>> abceccb6d08bb73ae86e6e60e54c47f51342d16d
+
         }]);
