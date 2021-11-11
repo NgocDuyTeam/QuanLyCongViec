@@ -34,6 +34,14 @@
           <Property Name="Ten" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="MauPhieuIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MaPhieuIn" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoiDung" Type="ntext" />
+        </EntityType>
         <EntityType Name="PhieuDeNghi">
           <Key>
             <PropertyRef Name="Id" />
@@ -111,6 +119,7 @@
           <EntitySet Name="CanBo" EntityType="Self.CanBo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucCongViec" EntityType="Self.DanhMucCongViec" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhoaPhong" EntityType="Self.KhoaPhong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MauPhieuIn" EntityType="Self.MauPhieuIn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuDeNghi" EntityType="Self.PhieuDeNghi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CanBo_KhoaPhong" Association="Self.FK_CanBo_KhoaPhong">
             <End Role="KhoaPhong" EntitySet="KhoaPhong" />
@@ -162,6 +171,7 @@
             <End Role="KhoaPhong" EntitySet="KhoaPhongs" />
             <End Role="PhieuDeNghi" EntitySet="PhieuDeNghis" />
           </AssociationSet>
+          <EntitySet Name="MauPhieuIns" EntityType="QuanLy.MauPhieuIn" />
         </EntityContainer>
         <EntityType Name="CanBo">
           <Key>
@@ -275,6 +285,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MauPhieuIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="MaPhieuIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -325,6 +343,15 @@
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="IdKhoa" ColumnName="IdKhoa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MauPhieuIns">
+            <EntityTypeMapping TypeName="QuanLy.MauPhieuIn">
+              <MappingFragment StoreEntitySet="MauPhieuIn">
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="MaPhieuIn" ColumnName="MaPhieuIn" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

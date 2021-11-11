@@ -11,21 +11,17 @@ using System.Web.Http.Cors;
 
 namespace QL.API.Controllers
 {
-    [RoutePrefix("api/dmkhoaphong")]
+    [RoutePrefix("api/mauphieuin")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class DanhMucKhoaPhongController : QLApiControlle
+    public class MauPhieuInController : QLApiControlle
     {
-        // GET api/<controller>
-        [Route("getDanhSachKP")]
+        [Route("getByMa")]
         [HttpGet]
-        public HttpResponseMessage GetDanhSach(int iPageIndex, int iPageSize)
+        public HttpResponseMessage GetByMa(string sMa)
         {
             try
             {
-                int iTotal = 0;
-                var result = new ListSelect();
-                result.List = DanhMucKhoaPhongManager.Instance.SelectAll(iPageIndex, iPageSize, out iTotal);
-                result.iTotal = iTotal;
+                var result = MauPhieuInManager.Instance.SelectByMa(sMa);
                 return HttpOk(result);
             }
             catch (Exception ex)

@@ -2,8 +2,8 @@
 var app = angular.module('uiApp');
 
 app.controller('SC101DSPhieuDeNghiCtrl',
-    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi',
-        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi) {
+    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi','svMauPhieuIn',
+        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svMauPhieuIn) {
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
             $scope.IdKhoa = myAppConfig.IdKhoa;
@@ -40,6 +40,30 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                     function (d) {
                         toaster.pop('success', "Thông báo", "Xóa thành công.");
                         $scope.refreshData(1);
+                    }, function (err) { ngProgress.complete(); });
+            }
+            $scope.PrintPhieu = function (phieu) {
+                svMauPhieuIn.GetByMa({
+                    sMa: 'PhieuDeNghi'
+                }).$promise.then(
+                    function (d) {
+                        var strPrint = d.NoiDung.replace("[TenKhoa]", phieu.TenKhoa)
+                            .replace("[NoiDung]", phieu.NoiDung.replace(/\n/g, "<br/>"))
+                            .replace("[CongViec]", phieu.TenCongViec)
+                            .replace("[Ngay]", moment(phieu.NgayTao).format("DD"))
+                            .replace("[Thang]", moment(phieu.NgayTao).format("MM"))
+                            .replace("[Nam]", moment(phieu.NgayTao).format("YYYY"));
+                        $("body").append(htmlMessageBox);
+                        $("#printMessageBox").css("opacity", 444);
+                        $("#printMessageBox").delay(1000).animate({ opacity: 0 }, 700, function () {
+                            $(this).remove();
+                            var newWin = window.open('', 'Print-Window', 'width=1366,height=768');
+                            newWin.document.open();
+                            newWin.document.write('<html><body onload="window.print()">' + strPrint + '</body></html>');
+                            newWin.document.close();
+                            setTimeout(function () { newWin.close(); }, 10);
+                        });
+
                     }, function (err) { ngProgress.complete(); });
             }
         }]);

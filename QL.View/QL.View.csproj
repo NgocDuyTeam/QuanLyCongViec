@@ -130,7 +130,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\DanhSachKhoaPhongController.cs" />
+=======
+    <Compile Include="Controllers\DanhMucController.cs" />
+>>>>>>> abceccb6d08bb73ae86e6e60e54c47f51342d16d
     <Compile Include="Controllers\PhieuDeNghiController .cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -145,13 +149,26 @@
     <Content Include="app\app.module.js" />
     <Content Include="app\app.route.js" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="app\components\danhmuc\SC200DanhMucKhoaPhongCtrl.js" />
 =======
+=======
+    <Content Include="app\components\danhmuc\SC200DanhMucKhoaPhongCtrl.js" />
+    <Content Include="app\components\danhmuc\SC201DanhMucCongViecCtrl.js" />
+    <Content Include="app\components\danhmuc\SC202DanhMucCanBoCtrl.js" />
+>>>>>>> abceccb6d08bb73ae86e6e60e54c47f51342d16d
     <Content Include="app\components\phieudenghi\SC101DSPhieuDeNghiCtrl.js" />
 >>>>>>> 4d18d643bf88ee043a23d722c18a38fff6abe60e
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
+<<<<<<< HEAD
     <Content Include="app\services\svDMCongViec.js" />
     <Content Include="app\services\svDMKhoaPhong.js" />
+=======
+    <Content Include="app\services\svDanhMucCanBo.js" />
+    <Content Include="app\services\svDanhMucCongViec.js" />
+    <Content Include="app\services\svDanhMucKhoaPhong.js" />
+    <Content Include="app\services\svMauPhieuIn.js" />
+>>>>>>> abceccb6d08bb73ae86e6e60e54c47f51342d16d
     <Content Include="app\services\svPhieuDeNghi.js" />
     <Content Include="app\vendor\jquery.ba-bbq.js" />
     <Content Include="app\vendor\jquery.ba-bbq.min.js" />

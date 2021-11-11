@@ -49,10 +49,12 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Management\DanhMucKhoaPhongManager.cs" />
     <Compile Include="Management\DanhMucCongViecManager.cs" />
+    <Compile Include="Management\MauPhieuInManager.cs" />
     <Compile Include="Management\PhieuDeNghiManager.cs" />
     <Compile Include="Management\KhoaPhongManager.cs" />
     <Compile Include="Management\CanBoManager.cs" />
     <Compile Include="Model\DanhMucCongViecModel.cs" />
+    <Compile Include="Model\MauPhieuInModel.cs" />
     <Compile Include="Model\PhieuDeNghiModel.cs" />
     <Compile Include="Model\KhoaPhongModel.cs" />
     <Compile Include="Model\CanBoModel.cs" />

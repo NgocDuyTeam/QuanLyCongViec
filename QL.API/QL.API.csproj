@@ -171,6 +171,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\MauPhieuInController.cs" />
+    <Compile Include="Controllers\DanhMucCanBoController.cs" />
     <Compile Include="Controllers\DanhMucKhoaPhongController.cs" />
     <Compile Include="Controllers\DanhMucCongViecController.cs" />
     <Compile Include="Controllers\PhieuDeNghiController.cs" />
@@ -260,7 +262,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55562</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44330/</IISUrl>
+          <IISUrl>https://localhost:44331/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
