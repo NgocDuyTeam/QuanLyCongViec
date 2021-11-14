@@ -151,6 +151,7 @@
     <Content Include="app\components\phieudenghi\SC102QLPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC101DSPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
+    <Content Include="app\components\phieudenghi\SC103NVPhieuDeNghiCtrl.js" />
     <Content Include="app\services\svDMKhoaPhong.js" />
     <Content Include="app\services\svDanhMucCanBo.js" />
     <Content Include="app\services\svDanhMucCongViec.js" />
@@ -8706,6 +8707,7 @@
     <Content Include="Views\DanhMuc\SC200_DanhMucKhoaPhong.cshtml" />
     <Content Include="Views\DanhMuc\SC201_DanhMucCongViec.cshtml" />
     <Content Include="Views\DanhMuc\SC202_DanhMucCanBo.cshtml" />
+    <Content Include="Views\PhieuDeNghi\SC103_NVPhieDeNghi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\utils\" />

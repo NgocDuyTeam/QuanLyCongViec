@@ -44,6 +44,20 @@ namespace QL.API.Controllers
                 return HttpInternalServerError(ex.Message);
             }
         }
+        [Route("SaveTrangThaiHT")]
+        [HttpPost]
+        public HttpResponseMessage SaveTrangThaiHT(PhieuDeNghiModel value)
+        {
+            try
+            {
+                PhieuDeNghiManager.Instance.SaveTrangThaiHT(value);
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
         [Route("savePhanCongPhieuDeNghi")]
         [HttpPost]
         public HttpResponseMessage SavePhanCongPhieuDeNghi(PhieuDeNghiModel value)
@@ -62,6 +76,24 @@ namespace QL.API.Controllers
         [HttpGet]
         public HttpResponseMessage GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
             , Guid? IdCanBo, int iPageIndex, int iPageSize)
+        {
+            try
+            {
+                int iTotal = 0;
+                var result = new ListSelect();
+                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, IdCanBo, iPageIndex, iPageSize, out iTotal);
+                result.iTotal = iTotal;
+                return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("getPhieuDeNghiByPagenv")]
+        [HttpGet]
+        public HttpResponseMessage GetPhieuDeNghiByPageNV(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
+           , Guid? IdCanBo, int iPageIndex, int iPageSize)
         {
             try
             {

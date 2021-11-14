@@ -63,7 +63,7 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                             newWin.document.open();
                             newWin.document.write('<html><body onload="window.print()">' + strPrint + '</body></html>');
                             newWin.document.close();
-                            setTimeout(function () { newWin.close(); }, 10);
+                            setTimeout(function () { newWin.close(); }, 100);
                         });
 
                     }, function (err) { ngProgress.complete(); });

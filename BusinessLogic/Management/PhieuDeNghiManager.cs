@@ -50,6 +50,19 @@ namespace BusinessLogic.Management
                 uow.Save();
             }
         }
+        public void SaveTrangThaiHT(PhieuDeNghiModel value)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                if (value.Id.IsNotNull())
+                {
+                    var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
+                    phieu.TrangThai = "DaThucHien";
+                    phieu.State = EDataState.Modified;
+                }
+                uow.Save();
+            }
+        }
         public void UpdatePhanCongPhieu(PhieuDeNghiModel value)
         {
             using (var uow = new UnitOfWork())
