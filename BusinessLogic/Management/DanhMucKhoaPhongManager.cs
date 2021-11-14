@@ -28,12 +28,23 @@ namespace BusinessLogic.Management
         #endregion
 
         #region  public
-       
+
         public List<KhoaPhongModel> SelectAll(int iPageIndex, int iPageSize, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
-                var lstKhoa = uow.Repository<KhoaPhong>().Query().OrderBy(x => x.OrderBy(y => y.Ten)).GetPage(iPageIndex, iPageSize, out iTotal);
+                IEnumerable<KhoaPhong> lstKhoa = null;
+                var query = uow.Repository<KhoaPhong>().Query().OrderBy(x => x.OrderBy(y => y.Ten));
+                if (iPageIndex == -1)
+                {
+                    lstKhoa = query.Get();
+                    iTotal = lstKhoa.Count();
+                }
+                else
+                {
+                    lstKhoa = query.GetPage(iPageIndex, iPageSize, out iTotal);
+                }
+
                 return lstKhoa.Select(x =>
                 {
                     return x.CopyAs<KhoaPhongModel>();

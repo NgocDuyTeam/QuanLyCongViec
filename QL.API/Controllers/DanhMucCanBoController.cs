@@ -30,5 +30,20 @@ namespace QL.API.Controllers
                 return null;
             }
         }
+        [Route("getDanhSachByRole")]
+        [HttpGet]
+        public HttpResponseMessage GetDanhSach(string sRole)
+        {
+            try
+            {
+                var result = new ListSelect();
+                result.List = CanBoManager.Instance.SelectByRole(sRole);
+                return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

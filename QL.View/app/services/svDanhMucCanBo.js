@@ -10,5 +10,12 @@ app.factory('svDanhMucCanBo', function (myAppConfig, $resource) {
                 method: 'GET',
                 url: baseUrl + 'api/dmcanbo/getDanhSach',
             },
+            'GetDanhSachByRole': {
+                method: 'GET',
+                params: {
+                    sRole: '@sRole'
+                },
+                url: baseUrl + 'api/dmcanbo/getDanhSachByRole',
+            },
         })
 });

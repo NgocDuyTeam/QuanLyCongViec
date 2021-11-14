@@ -50,6 +50,21 @@ namespace BusinessLogic.Management
                 uow.Save();
             }
         }
+        public void UpdatePhanCongPhieu(PhieuDeNghiModel value)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                if (value.Id.IsNotNull())
+                {
+                    var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
+                    phieu.IdCanBoThucHien = value.IdCanBoThucHien;
+                    phieu.TrangThai = "DaPhanViec";
+                    phieu.State = EDataState.Modified;
+                    uow.Repository<PhieuDeNghi>().InsertOrUpdate(phieu);
+                }
+                uow.Save();
+            }
+        }
         public PhieuDeNghiModel SelectById(Guid IdPhieu)
         {
             using (var uow = new UnitOfWork())
@@ -93,7 +108,7 @@ namespace BusinessLogic.Management
             }
         }
         public List<PhieuDeNghiModel> GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
-            , int iPageIndex, int iPageSize, out int iTotal)
+            , Guid? IdCanBo, int iPageIndex, int iPageSize, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
@@ -106,6 +121,10 @@ namespace BusinessLogic.Management
                 if (sTrangThai.IsNotNullOrEmpty())
                 {
                     query = query.Filter(x => sTrangThai.ToLower().Contains(x.TrangThai.ToLower()));
+                }
+                if (IdCanBo.IsNotNull())
+                {
+                    query = query.Filter(x => x.IdCanBoThucHien == IdCanBo);
                 }
                 if (iPageIndex != -1)
                 {
@@ -134,6 +153,14 @@ namespace BusinessLogic.Management
                     if (x.TrangThai == "GuiYeuCau")
                     {
                         phieu.sTrangThai = "Gửi yêu cầu";
+                    }
+                    else if (x.TrangThai == "DaPhanViec")
+                    {
+                        phieu.sTrangThai = "Đã phân công";
+                    }
+                    else if (x.TrangThai == "DaThucHien")
+                    {
+                        phieu.sTrangThai = "Đã thực hiện";
                     }
                     return phieu;
                 }).ToList();

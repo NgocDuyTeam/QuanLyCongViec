@@ -16,7 +16,7 @@ namespace QL.API.Controllers
     public class DanhMucKhoaPhongController : QLApiControlle
     {
         // GET api/<controller>
-        [Route("getDanhSachKP")]
+        [Route("getDanhSach")]
         [HttpGet]
         public HttpResponseMessage GetDanhSach(int iPageIndex, int iPageSize)
         {

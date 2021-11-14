@@ -1,16 +1,21 @@
 ﻿'use strict';
 var app = angular.module('uiApp');
 
-app.controller('SC101DSPhieuDeNghiCtrl',
-    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi','svMauPhieuIn',
-        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svMauPhieuIn) {
+app.controller('SC102QLPhieuDeNghiCtrl',
+    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi', 'svMauPhieuIn'
+        , 'svDanhMucKhoaPhong', 'svDanhMucCanBo',
+        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svMauPhieuIn
+            , svDanhMucKhoaPhong, svDanhMucCanBo) {
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
-            $scope.IdKhoa = myAppConfig.IdKhoa;
+            $scope.IdKhoa = "";
             $scope.sTrangThai = "GuiYeuCau";
             $scope.iPageIndex = 1;
             $scope.iPageSize = "20";
+            $scope.IdCanBo = "00000000-0000-0000-0000-000000000000";
             $scope.DSPhieu = [];
+            $scope.DSKhoaPhong = [];
+            $scope.DSCanBo = [];
 
             $scope.refreshData = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;
@@ -22,7 +27,7 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                     sTrangThai: $scope.sTrangThai,
                     iPageIndex: $scope.iPageIndex,
                     iPageSize: $scope.iPageSize,
-                    IdCanBo : ""
+                    IdCanBo: $scope.IdCanBo
                 }).$promise.then(
                     function (d) {
                         $scope.DSPhieu = d.List;
@@ -34,15 +39,23 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                     }, function (err) { ngProgress.complete(); });
             }
             $scope.refreshData(1);
-            $scope.DeletePhieu = function (IdPhieu) {
-                svPhieuDeNghi.DeletePhieuById({
-                    IdPhieu: IdPhieu
-                }).$promise.then(
-                    function (d) {
-                        toaster.pop('success', "Thông báo", "Xóa thành công.");
-                        $scope.refreshData(1);
-                    }, function (err) { ngProgress.complete(); });
-            }
+
+            svDanhMucKhoaPhong.GetDanhSachKhoaPhong({
+                iPageIndex: -1,
+                iPageSize: 1
+            }).$promise.then(
+                function (d) {
+                    $scope.DSKhoaPhong = d.List;
+                    $scope.DSKhoaPhong.splice(0, 0, { Ten: "-- Tất cả -- ", Id: "" });
+                }, function (err) { });
+            svDanhMucCanBo.GetDanhSachByRole({
+                sRole: 'NhanVien'
+            }).$promise.then(
+                function (d) {
+                    $scope.DSCanBo = d.List;
+                    $scope.DSCanBo.splice(0, 0, { HoVaTen: "-- Chọn cán bộ -- ", Id: '00000000-0000-0000-0000-000000000000' });
+                }, function (err) { });
+
             $scope.PrintPhieu = function (phieu) {
                 svMauPhieuIn.GetByMa({
                     sMa: 'PhieuDeNghi'
@@ -67,5 +80,20 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                         });
 
                     }, function (err) { ngProgress.complete(); });
+            }
+            $scope.SavePhanCong = function (phieu) {
+                if (typeof phieu.IdCanBoThucHien === "undefined" || phieu.IdCanBoThucHien == null) {
+                    toaster.pop('warning', "Thông báo", "Vui lòng chọn cán bộ.");
+                    return;
+                }
+                ngProgress.start();
+                svPhieuDeNghi.savePhanCongPhieuDeNghi(phieu).$promise.then(
+                    function (d) {
+                        toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
+                        ngProgress.complete();
+                    }, function (err) {
+                        ngProgress.complete();
+                        $scope.isDisabled = false;
+                    });
             }
         }]);

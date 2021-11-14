@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\DanhSachKhoaPhongController.cs" />
     <Compile Include="Controllers\PhieuDeNghiController .cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
@@ -147,6 +148,7 @@
     <Content Include="app\components\danhmuc\SC200DanhMucKhoaPhongCtrl.js" />
     <Content Include="app\components\danhmuc\SC201DanhMucCongViecCtrl.js" />
     <Content Include="app\components\danhmuc\SC202DanhMucCanBoCtrl.js" />
+    <Content Include="app\components\phieudenghi\SC102QLPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC101DSPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
     <Content Include="app\services\svDMKhoaPhong.js" />
@@ -8700,6 +8702,10 @@
       <DependentUpon>WebTemp.config</DependentUpon>
     </Content>
     <Content Include="Views\PhieuDeNghi\SC101_DSPhieuDeNghi.cshtml" />
+    <Content Include="Views\PhieuDeNghi\SC102_QLPhieuDeNghi.cshtml" />
+    <Content Include="Views\DanhMuc\SC200_DanhMucKhoaPhong.cshtml" />
+    <Content Include="Views\DanhMuc\SC201_DanhMucCongViec.cshtml" />
+    <Content Include="Views\DanhMuc\SC202_DanhMucCanBo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\utils\" />

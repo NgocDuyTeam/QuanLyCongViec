@@ -46,12 +46,13 @@ app.controller('SC100PhieuDeNghiCtrl',
                             sMa: 'PhieuDeNghi'
                         }).$promise.then(
                             function (d) {
-                                var strPrint = d.NoiDung.replace("[TenKhoa]", $scope.Phieu.TenKhoa)
-                                    .replace("[NoiDung]", $scope.Phieu.NoiDung.replace(/\n/g, "<br/>"))
-                                    .replace("[CongViec]", $scope.Phieu.TenCongViec)
-                                    .replace("[Ngay]", moment($scope.Phieu.NgayTao).format("DD"))
-                                    .replace("[Thang]", moment($scope.Phieu.NgayTao).format("MM"))
-                                    .replace("[Nam]", moment($scope.Phieu.NgayTao).format("YYYY"));
+                                var strPrint = d.NoiDung.replace("[TenKhoa]", phieu.TenKhoa.toUpperCase())
+                                    .replace("[TenKhoa1]", phieu.TenKhoa)
+                                    .replace("[NoiDung]", phieu.NoiDung.replace(/\n/g, "<br/>"))
+                                    .replace("[CongViec]", phieu.TenCongViec)
+                                    .replace("[Ngay]", moment(phieu.NgayTao).format("DD"))
+                                    .replace("[Thang]", moment(phieu.NgayTao).format("MM"))
+                                    .replace("[Nam]", moment(phieu.NgayTao).format("YYYY"));
                                 $("body").append(htmlMessageBox);
                                 $("#printMessageBox").css("opacity", 444);
                                 $("#printMessageBox").delay(1000).animate({ opacity: 0 }, 700, function () {

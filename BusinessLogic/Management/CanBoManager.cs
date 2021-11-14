@@ -38,7 +38,7 @@ namespace BusinessLogic.Management
                     return x.CopyAs<CanBoModel>();
                 }).ToList();
             }
-               
+
         }
         public CanBoModel SelectById(Guid Id)
         {
@@ -65,7 +65,18 @@ namespace BusinessLogic.Management
                 return null;
             }
         }
+        public List<CanBoModel> SelectByRole(string sRole)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var lstCB = uow.Repository<CanBo>().Query().Filter(x => x.Role == sRole).OrderBy(x => x.OrderBy(y => y.HoVaTen)).Get();
+                return lstCB.Select(x =>
+                {
+                    return x.CopyAs<CanBoModel>();
+                }).ToList();
+            }
 
+        }
 
         #endregion
 

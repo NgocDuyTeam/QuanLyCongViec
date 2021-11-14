@@ -11,6 +11,10 @@ app.factory('svPhieuDeNghi', function (myAppConfig, $resource) {
                 method: 'POST',
                 url: baseUrl + 'api/phieudenghi/savePhieuDeNghi',
             },
+            'savePhanCongPhieuDeNghi': {
+                method: 'POST',
+                url: baseUrl + 'api/phieudenghi/savePhanCongPhieuDeNghi',
+            },
             'getPhieuDeNghiByPage': {
                 method: 'GET',
                 params: {

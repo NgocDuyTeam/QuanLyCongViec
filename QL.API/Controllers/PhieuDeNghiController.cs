@@ -44,16 +44,30 @@ namespace QL.API.Controllers
                 return HttpInternalServerError(ex.Message);
             }
         }
+        [Route("savePhanCongPhieuDeNghi")]
+        [HttpPost]
+        public HttpResponseMessage SavePhanCongPhieuDeNghi(PhieuDeNghiModel value)
+        {
+            try
+            {
+                PhieuDeNghiManager.Instance.UpdatePhanCongPhieu(value);
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
         [Route("getPhieuDeNghiByPage")]
         [HttpGet]
-        public HttpResponseMessage GetPhieuDeNghiByPage(Guid IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
-            , int iPageIndex, int iPageSize)
+        public HttpResponseMessage GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
+            , Guid? IdCanBo, int iPageIndex, int iPageSize)
         {
             try
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, iPageIndex, iPageSize, out iTotal);
+                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, IdCanBo, iPageIndex, iPageSize, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
             }
