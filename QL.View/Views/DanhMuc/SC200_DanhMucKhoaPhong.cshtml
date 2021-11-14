@@ -16,6 +16,7 @@
                         <th class="text-center">Mã</th>
                         <th class="text-center">Tên Khoa Phòng</th>
                         <th class="text-center">Ghi Chú</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,15 @@
                         <td class="text-center">{{khoaphong.Ma}}</td>
                         <td class="text-center">{{khoaphong.Ten}}</td>
                         <td class="text-center">{{khoaphong.GhiChu}}</td>
+                        <td class="text-right">
+                            <a href="/DanhMuc/SC200a_AddDanhMucKhoaPhong" title="Thêm mới">
+                                <i class="fa fa-user-plus"></i>
+                            </a>&nbsp;&nbsp;
+                            <a href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Sửa">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>&nbsp;&nbsp;
+                            <a ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa"></i> </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

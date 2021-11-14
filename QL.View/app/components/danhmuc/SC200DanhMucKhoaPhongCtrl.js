@@ -6,7 +6,11 @@ app.controller('SC200DanhMucKhoaPhongCtrl',
         function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svDanhMucKhoaPhong) {
             $scope.NgayTao = moment().format('YYYY-MM-DD');
             $scope.iPageIndex = 1;
-            $scope.iPageSize = 20;
+            $scope.iPageSize = 1;
+            $scope.KhoaPhong = {};
+
+
+            $scope.AddKhoaPhong = function()
 
             $scope.loadDMKhoaPhong = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;

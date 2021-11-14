@@ -13,6 +13,10 @@ namespace QL.View.Controllers
         {
             return View();
         }
+        public ActionResult SC200a_AddDanhMucKhoaPhong()
+        {
+            return View();
+        }
         public ActionResult SC201_DanhMucCongViec()
         {
             return View();

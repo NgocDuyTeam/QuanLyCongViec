@@ -8708,6 +8708,7 @@
     <Content Include="Views\DanhMuc\SC201_DanhMucCongViec.cshtml" />
     <Content Include="Views\DanhMuc\SC202_DanhMucCanBo.cshtml" />
     <Content Include="Views\PhieuDeNghi\SC103_NVPhieDeNghi.cshtml" />
+    <Content Include="Views\DanhMuc\SC200a_AddDanhMucKhoaPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\utils\" />
