@@ -2858,6 +2858,7 @@ input[type="checkbox"]:after {
     border-radius: 0;
     background: #fff;
     line-height: 1;
+    opacity: 0
 }
 
 input[type="checkbox"]:checked:after {
@@ -2869,6 +2870,7 @@ input[type="checkbox"]:checked:after {
     -webkit-text-stroke: 1px #fff;
     text-align: center;
     line-height: 0.9;
+    opacity: 0
 }
 
 /*-----------------Step---------------------*/
