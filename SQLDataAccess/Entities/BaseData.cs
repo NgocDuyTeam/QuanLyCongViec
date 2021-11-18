@@ -25,4 +25,10 @@ namespace SQLDataAccess
     public partial class MauPhieuIn : BaseData
     {
     }
+    public partial class CongViecTheoQuyetDinh : BaseData
+    {
+    }
+    public partial class BienBanNghiemThu : BaseData
+    {
+    }
 }

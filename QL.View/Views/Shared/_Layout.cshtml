@@ -43,7 +43,7 @@
     <input type="hidden" value="@Global.TaiKhoan_Login.TenKhoa" name="apiUrl" id="login_TenKhoa" />
     <input type="hidden" value="@Global.TaiKhoan_Login.Id" name="apiUrl" id="login_IdCanBo" />
     <input type="hidden" value="@Global.TaiKhoan_Login.IdKhoa" name="apiUrl" id="login_IdKhoa" />
-
+    <input type="hidden" value="@Global.TaiKhoan_Login.HoVaTen" name="apiUrl" id="login_HoVaTen" />
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -123,7 +123,7 @@
         ***********************************-->
         <toaster-container></toaster-container>
         <div class="content-body content-body-ql">
-            <div class="container-fluid col-md-12" style="padding-top:20px" id="bodyAllPage">
+            <div class="container-fluid col-md-12" style="padding-top:20px;padding:20px" id="bodyAllPage">
                 <input type="text" style="display:none" value="@ViewBag.Quyen" id="sQuyen" />
                 <input type="text" style="display:none" value="@ViewBag.IdDonVi" id="IdDonVi" />
                 @RenderBody()
@@ -176,6 +176,8 @@
     <script src="~/app/components/phieudenghi/SC102QLPhieuDeNghiCtrl.js"></script>
     <script src="~/app/components/phieudenghi/SC103NVPhieuDeNghiCtrl.js"></script>
 
+    <script src="~/app/components/nghiemthu/SC300BienBanNghiemThuCtrl.js"></script>
+    <script src="~/app/components/congviectheoQD/SC400CongViecTheoCtrl.js"></script>
 
     @*app services*@
 
@@ -185,6 +187,7 @@
     <script src="~/app/services/svDanhMucCongViec.js"></script>
     <script src="~/app/services/svMauPhieuIn.js"></script>
     <script src="~/app/services/svPhieuDeNghi.js"></script>
-
+    <script src="~/app/services/svBienBanNghiemThu.js"></script>
+    <script src="~/app/services/svCongViectheoQD.js"></script>
 </body>
 </html>

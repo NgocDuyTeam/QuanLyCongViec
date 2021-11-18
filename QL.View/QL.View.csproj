@@ -130,8 +130,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CongViecTheoQDController.cs" />
     <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\DanhSachKhoaPhongController.cs" />
+    <Compile Include="Controllers\NghiemThuController.cs" />
     <Compile Include="Controllers\PhieuDeNghiController .cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -145,18 +147,22 @@
   <ItemGroup>
     <Content Include="app\app.module.js" />
     <Content Include="app\app.route.js" />
+    <Content Include="app\components\congviectheoQD\SC400CongViecTheoCtrl.js" />
     <Content Include="app\components\danhmuc\SC200DanhMucKhoaPhongCtrl.js" />
     <Content Include="app\components\danhmuc\SC201DanhMucCongViecCtrl.js" />
     <Content Include="app\components\danhmuc\SC202DanhMucCanBoCtrl.js" />
+    <Content Include="app\components\nghiemthu\SC300BienBanNghiemThuCtrl.js" />
     <Content Include="app\components\phieudenghi\SC102QLPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC101DSPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
+    <Content Include="app\services\svCongViectheoQD.js" />
     <Content Include="app\components\phieudenghi\SC103NVPhieuDeNghiCtrl.js" />
     <Content Include="app\services\svDMKhoaPhong.js" />
     <Content Include="app\services\svDanhMucCanBo.js" />
     <Content Include="app\services\svDanhMucCongViec.js" />
     <Content Include="app\services\svDanhMucKhoaPhong.js" />
     <Content Include="app\services\svMauPhieuIn.js" />
+    <Content Include="app\services\svBienBanNghiemThu.js" />
     <Content Include="app\services\svPhieuDeNghi.js" />
     <Content Include="app\vendor\jquery.ba-bbq.js" />
     <Content Include="app\vendor\jquery.ba-bbq.min.js" />
@@ -8707,6 +8713,8 @@
     <Content Include="Views\DanhMuc\SC200_DanhMucKhoaPhong.cshtml" />
     <Content Include="Views\DanhMuc\SC201_DanhMucCongViec.cshtml" />
     <Content Include="Views\DanhMuc\SC202_DanhMucCanBo.cshtml" />
+    <Content Include="Views\NghiemThu\SC300_BienBanNghiemThu.cshtml" />
+    <Content Include="Views\CongViecTheoQD\SC400_CongViec.cshtml" />
     <Content Include="Views\PhieuDeNghi\SC103_NVPhieDeNghi.cshtml" />
     <Content Include="Views\DanhMuc\SC200a_AddDanhMucKhoaPhong.cshtml" />
   </ItemGroup>

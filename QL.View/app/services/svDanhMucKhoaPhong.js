@@ -15,5 +15,16 @@ app.factory('svDanhMucKhoaPhong', function (myAppConfig, $resource) {
                 },
                 url: baseUrl + 'api/dmkhoaphong/getDanhSach',
             },
+            'saveKhoaPhong': {
+                method: 'POST',
+                url: baseUrl + 'api/dmkhoaphong/saveKhoaPhong',
+            },
+            'DeleteKhoaPhongById': {
+                method: 'POST',
+                params: {
+                    IdKhoa: '@IdKhoa',
+                },
+                url: baseUrl + 'api/dmkhoaphong/deletePhieuDeNghiById',
+            },
         })
 });

@@ -65,7 +65,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BienBanNghiemThu.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
     <Compile Include="CanBo.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CongViecTheoQuyetDinh.cs">
       <DependentUpon>QuanLy.tt</DependentUpon>
     </Compile>
     <Compile Include="DanhMucCongViec.cs">

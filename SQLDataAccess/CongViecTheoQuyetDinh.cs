@@ -12,28 +12,24 @@ namespace SQLDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class PhieuDeNghi
+    public partial class CongViecTheoQuyetDinh
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PhieuDeNghi()
+        public CongViecTheoQuyetDinh()
         {
             this.BienBanNghiemThus = new HashSet<BienBanNghiemThu>();
         }
     
         public System.Guid Id { get; set; }
-        public System.Guid IdKhoa { get; set; }
-        public System.DateTime NgayTao { get; set; }
+        public string MoTaCongViec { get; set; }
+        public string DanhSachKhoa { get; set; }
+        public string TenCongViec { get; set; }
         public string TrangThai { get; set; }
-        public string NoiDung { get; set; }
-        public System.Guid IdCanBoDeNghi { get; set; }
-        public Nullable<System.Guid> IdCanBoThucHien { get; set; }
-        public System.Guid IdCongViec { get; set; }
+        public Nullable<System.Guid> IdCanBo { get; set; }
+        public System.DateTime NgayTao { get; set; }
     
-        public virtual CanBo CanBoDeNghi { get; set; }
-        public virtual CanBo CanBoYeuCau { get; set; }
-        public virtual DanhMucCongViec DanhMucCongViec { get; set; }
-        public virtual KhoaPhong KhoaPhong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BienBanNghiemThu> BienBanNghiemThus { get; set; }
+        public virtual CanBo CanBo { get; set; }
     }
 }

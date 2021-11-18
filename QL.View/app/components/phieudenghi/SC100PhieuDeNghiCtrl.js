@@ -72,11 +72,5 @@ app.controller('SC100PhieuDeNghiCtrl',
             }
             $scope.loadDMCongViec();
 
-            $scope.openPopupDemo = function () {
-                $("#modelDemo").bPopup({ escClose: false, modalClose: false });
-                $("#modelDemo").show();
-            };
-            $scope.closePopupDemo = function () {
-                $("#modelDemo").bPopup({}).close();
-            };
+         
         }]);

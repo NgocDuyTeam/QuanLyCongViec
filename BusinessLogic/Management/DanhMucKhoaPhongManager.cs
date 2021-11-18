@@ -52,7 +52,43 @@ namespace BusinessLogic.Management
             }
         }
 
-
+        public void AddOrUpdateKhoaPhong(KhoaPhongModel value)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                if (value.Id.IsNotNull())
+                {
+                    var KP = uow.Repository<KhoaPhong>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
+                    KP.Id = value.Id;
+                    KP.Ma = value.Ma;
+                    KP.Ten = value.Ten;
+                    KP.State = EDataState.Modified;
+                    uow.Repository<KhoaPhong>().InsertOrUpdate(KP);
+                }
+                else
+                {
+                    var KhoaPhong = value.CopyAs<KhoaPhong>();
+                    KhoaPhong.State = EDataState.Added;
+                    KhoaPhong.Id = Guid.NewGuid();
+                    uow.Repository<KhoaPhong>().InsertOrUpdate(KhoaPhong);
+                }
+                uow.Save();
+            }
+        }
+        public void DeleteById(Guid IdKhoa)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var KhoaPhong = uow.Repository<KhoaPhong>().Query().Filter(x => x.Id == IdKhoa).FirstOrDefault();
+                //var CanBo = uow.Repository<CanBo>().Query().Filter(y => y.IdKhoa == IdKhoa).FirstOrDefault();
+                if (KhoaPhong != null)
+                {
+                    KhoaPhong.State = EDataState.Deleted;
+                    uow.Repository<KhoaPhong>().Delete(IdKhoa);
+                    uow.Save();
+                }
+            }
+        }
         #endregion
 
         #region private

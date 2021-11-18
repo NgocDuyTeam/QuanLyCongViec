@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Management;
+using BusinessLogic.Model;
 using QL.API.Http;
 using QL.API.Models;
 using System;
@@ -33,5 +34,37 @@ namespace QL.API.Controllers
                 return null;
             }
         }
+
+        [Route("saveKhoaPhong")]
+        [HttpPost]
+        public HttpResponseMessage SaveKhoaPhong(KhoaPhongModel value)
+        {
+            try
+            {
+                DanhMucKhoaPhongManager.Instance.AddOrUpdateKhoaPhong(value);
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("deletePhieuDeNghiById")]
+        [HttpPost]
+        public HttpResponseMessage DeleteKhoaPhong(Guid IdKhoa)
+        {
+            try
+            {
+                DanhMucKhoaPhongManager.Instance.DeleteById(IdKhoa);
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+
+
+
     }
 }
