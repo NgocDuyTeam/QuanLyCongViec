@@ -24,6 +24,9 @@ namespace SQLDataAccess
         public string DauViec { get; set; }
         public string NhaThau { get; set; }
         public string PhongQuanTri { get; set; }
+        public string GoiThau { get; set; }
+        public string DoiTuongNghiemThu { get; set; }
+        public string HopDongKinhTe { get; set; }
     
         public virtual CanBo CanBo { get; set; }
         public virtual CongViecTheoQuyetDinh CongViecTheoQuyetDinh { get; set; }

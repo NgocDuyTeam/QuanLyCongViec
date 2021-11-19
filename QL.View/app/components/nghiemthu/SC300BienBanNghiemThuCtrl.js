@@ -60,6 +60,7 @@ app.controller('SC300BienBanNghiemThuCtrl',
                 svBienBanNghiemThu.saveBienBan($scope.BienBan).$promise.then(
                     function (d) {
                         toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
+                        $scope.isDisabled = false;
                         ngProgress.complete();
                         svMauPhieuIn.GetByMa({
                             sMa: 'BienBanNghiemThu1'
@@ -82,7 +83,13 @@ app.controller('SC300BienBanNghiemThuCtrl',
                                     .replace("[Thang]", moment($scope.NgayBatDau, "HHmmDDMMYYYY").format("MM"))
                                     .replace("[Nam]", moment($scope.NgayBatDau, "HHmmDDMMYYYY").format("YYYY"))
                                     .replace("[NgayBatDau]", ngaybatdau)
-                                    .replace("[NgayBatDau]", ngayketthuc)
+                                    .replace("[NgayKetThuc]", ngayketthuc)
+                                    .replace("[GoiThau]", $scope.BienBan.GoiThau.replace(/\n/g, "<br/>"))
+                                    .replace("[DoiTuongNghiemThu]", $scope.BienBan.DoiTuongNghiemThu.replace(/\n/g, "<br/>"))
+                                    .replace("[TenNhaThau]", $scope.BienBan.ObjNhaThau.TenNhaThau)
+                                    .replace("[NhaThauHoTen]", $scope.BienBan.ObjNhaThau.HoVaTen)
+                                    .replace("[NhaThauChucVu]", $scope.BienBan.ObjNhaThau.ChucVu)
+                                    .replace("[HopDongSo]", $scope.BienBan.HopDongKinhTe)
                                     ;
 
                                 var htmlTable = "";
@@ -105,6 +112,7 @@ app.controller('SC300BienBanNghiemThuCtrl',
                                     newWin.document.write('<html><body onload="window.print()">' + strPrint + '</body></html>');
                                     newWin.document.close();
                                     setTimeout(function () { newWin.close(); }, 10);
+                                    window.location.href = "/PhieuDeNghi/SC103_NVPhieDeNghi";
                                 });
                             }, function (err) { ngProgress.complete(); });
                     }, function (err) {

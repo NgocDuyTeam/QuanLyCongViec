@@ -18,8 +18,8 @@
         <div class="col-sm-2">
             <select class="form-control" style="width: 80px" ng-change="refreshData(1)" ng-model="sTrangThai">
                 <option value="">-- Tất cả --</option>
-                <option value="GuiYeuCau">Gửi yêu cầu</option>
-                <option value="DaXuLy">Đã xử lý</option>
+                <option value="GuiYeuCau_DaPhanViec">Gửi yêu cầu</option>
+                <option value="DaThucHien">Đã thực hiện</option>
             </select>
         </div>
         <div class="col-sm-2">
@@ -44,12 +44,12 @@
                         <td>{{phieu.TenCongViec}}</td>
                         <td class="text-right">
                             <a ng-click="PrintPhieu(phieu)" title="In">
-                                <i class="fas fa-print"></i>
+                                <i class="fas fa-print">In</i>
                             </a>&nbsp;&nbsp;
-                            <a href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Sửa">
-                                <i class="fas fa-pencil-alt"></i>
+                            <a ng-if="phieu.TrangThai == 'GuiYeuCau' " href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Sửa">
+                                <i class="fas fa-pencil-alt">Sửa</i>
                             </a>&nbsp;&nbsp;
-                            <a ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa"></i> </a>
+                            <a ng-if="phieu.TrangThai == 'GuiYeuCau'" ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa">Xóa</i> </a>
                         </td>
                     </tr>
                 </tbody>

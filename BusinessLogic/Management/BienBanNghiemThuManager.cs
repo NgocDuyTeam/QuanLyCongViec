@@ -33,7 +33,21 @@ namespace BusinessLogic.Management
             {
                 if (value.Id.IsNotNull())
                 {
-
+                    var bienban = uow.Repository<BienBanNghiemThu>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
+                    if (bienban != null)
+                    {
+                        var objSave = value.CopyAs<BienBanNghiemThu>();
+                        string[] strDauViec = new string[value.LstCongViec.Count()];
+                        for (int i = 0; i < value.LstCongViec.Count(); i++)
+                        {
+                            strDauViec[i] = value.LstCongViec[i].ToJson();
+                        }
+                        objSave.DauViec = strDauViec.JoinEmbeddedLength();
+                        objSave.PhongQuanTri = value.ObjPhongQuanTri.ToJson();
+                        objSave.NhaThau = value.ObjNhaThau.ToJson();
+                        objSave.State = EDataState.Modified;
+                        uow.Repository<BienBanNghiemThu>().InsertOrUpdate(objSave);
+                    }
                 }
                 else
                 {
@@ -51,6 +65,7 @@ namespace BusinessLogic.Management
                             }
                             objSave.DauViec = strDauViec.JoinEmbeddedLength();
                             objSave.PhongQuanTri = value.ObjPhongQuanTri.ToJson();
+                            objSave.NhaThau = value.ObjNhaThau.ToJson();
                             objSave.State = EDataState.Added;
                             uow.Repository<BienBanNghiemThu>().InsertOrUpdate(objSave);
                         }
@@ -75,6 +90,11 @@ namespace BusinessLogic.Management
                         result.LstCongViec.Add(cv);
                     }
                     result.ObjPhongQuanTri = bienban.PhongQuanTri.FromJson<ObjPhongQuanTri>();
+                    if (bienban.NhaThau != null)
+                    {
+                        result.ObjNhaThau = bienban.NhaThau.FromJson<ObjNhaThau>();
+                    }
+
                     return result;
                 }
                 return null;

@@ -30,7 +30,7 @@
         <div class="col-sm-2">
             <select class="form-control" ng-change="refreshData(1)" ng-model="sTrangThai">
                 <option value="">-- Tất cả --</option>
-                <option value="DaPhanViec">Chờ xử lí</option>
+                <option value="DaPhanViec">Chờ xử lý</option>
                 <option value="DaThucHien">Đã thực hiện</option>
             </select>
         </div>
@@ -52,7 +52,7 @@
                         <th class="text-center">Ngày yêu cầu</th>
                         <th class="text-center">Công việc</th>
                         <th class="text-center">Trạng thái</th>
-                        <th class="text-center">Tình trạng</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,10 +63,14 @@
                         <td>{{phieu.TenCongViec}}</td>
                         <td ng-if="phieu.TrangThai == 'DaPhanViec'">Chờ xử lý</td>
                         <td ng-if="phieu.TrangThai == 'DaThucHien'">Đã thực hiện</td>
-                        <td   class="text-center">
-                         
-                                <button ng-if="phieu.TrangThai == 'DaPhanViec'" class="btn btn-primary" ng-click="SaveTrangThaiHT(phieu)">Xác nhận hoàn thành</button>
-                  
+                        <td class="text-center">
+                            <button ng-if="phieu.TrangThai == 'DaPhanViec'" class="btn btn-primary" ng-click="SaveTrangThaiHT(phieu)">Xác nhận hoàn thành</button>
+                            <a ng-if="phieu.TrangThai == 'DaThucHien'" href="/NghiemThu/SC300_BienBanNghiemThu?idPhieu={{phieu.Id}}" title="Biên bản">
+                                <i class="fas fa-pencil-alt">Biên bản</i>
+                            </a>&nbsp;&nbsp;
+                            <a ng-if="phieu.TrangThai == 'DaThucHien' && phieu.lstBienBan!= null" ng-click="PrintBienBan(phieu)" title="In">
+                                <i class="fas fa-print">In biên bản</i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>

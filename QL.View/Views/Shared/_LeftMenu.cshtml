@@ -1,15 +1,52 @@
 ﻿
+@using QL.View.Utility
 <div class="nk-sidebar sidebar-ql">
     <div class="nk-nav-scroll">
 
         <ul class="metismenu" id="menu">
-            <li>
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti-settings"></i> <span class="nav-text">Quản lý phiếu đề nghị</span></a>
-                <ul aria-expanded="false">
-                    <li><a href="/PhieuDeNghi/SC100_PhieuDeNghi"><i class="ti-angle-right"></i>Tạo phiếu đề nghị</a></li>
-                    <li><a href="/PhieuDeNghi/SC101_DSPhieuDeNghi"><i class="ti-angle-right"></i>Danh sách đề nghị</a></li>
-                </ul>
-            </li>
+            @if (Global.TaiKhoan_Login.Role == "QuanLy")
+            {
+                <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti-settings"></i> <span class="nav-text">Quản lý phiếu đề nghị</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/PhieuDeNghi/SC102_QLPhieuDeNghi"><i class="ti-angle-right"></i>Danh sách đề nghị</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti-settings"></i> <span class="nav-text">Công việc quyết định</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/CongViecTheoQD/SC400_CongViec"><i class="ti-angle-right"></i>Quản lý công việc</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti-settings"></i> <span class="nav-text">Quản lý</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/DanhMuc/SC200_DanhMucKhoaPhong"><i class="ti-angle-right"></i>Danh sách khoa phòng</a></li>
+                        <li><a href="/DanhMuc/SC201_DanhMucCongViec"><i class="ti-angle-right"></i>Danh sách công việc</a></li>
+                        <li><a href="/DanhMuc/SC202_DanhMucCanBo"><i class="ti-angle-right"></i>Danh sách cán bộ</a></li>
+                    </ul>
+                </li>
+            }
+            else if (Global.TaiKhoan_Login.Role == "NhanVien")
+            {
+                <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti-settings"></i> <span class="nav-text">Quản lý phiếu đề nghị</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/PhieuDeNghi/SC103_NVPhieDeNghi"><i class="ti-angle-right"></i>Danh sách đề nghị</a></li>
+                    </ul>
+                </li>
+            }
+            else if (Global.TaiKhoan_Login.Role == "Khoa")
+            {
+                <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti-settings"></i> <span class="nav-text">Quản lý phiếu đề nghị</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/PhieuDeNghi/SC100_PhieuDeNghi"><i class="ti-angle-right"></i>Tạo phiếu đề nghị</a></li>
+                        <li><a href="/PhieuDeNghi/SC101_DSPhieuDeNghi"><i class="ti-angle-right"></i>Danh sách đề nghị</a></li>
+                    </ul>
+                </li>
+            }
+
         </ul>
     </div>
     <div class="footer footer-ql">

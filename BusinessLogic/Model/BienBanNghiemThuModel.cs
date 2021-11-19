@@ -17,6 +17,10 @@ namespace BusinessLogic.Model
         public string DanhSachKhoa { get; set; }
         public string DauViec { get; set; }
         public string NhaThau { get; set; }
+        public string PhongQuanTri { get; set; }
+        public string GoiThau { get; set; }
+        public string DoiTuongNghiemThu { get; set; }
+        public string HopDongKinhTe { get; set; }
         public ObjPhongQuanTri ObjPhongQuanTri { get; set; }
         public ObjNhaThau ObjNhaThau { get; set; }
         public List<ObjCongViec> LstCongViec { get; set; }

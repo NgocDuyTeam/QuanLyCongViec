@@ -19,6 +19,9 @@
           <Property Name="DauViec" Type="ntext" />
           <Property Name="NhaThau" Type="ntext" />
           <Property Name="PhongQuanTri" Type="ntext" />
+          <Property Name="GoiThau" Type="ntext" />
+          <Property Name="DoiTuongNghiemThu" Type="ntext" />
+          <Property Name="HopDongKinhTe" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CanBo">
           <Key>
@@ -424,6 +427,9 @@
           <NavigationProperty Name="CongViecTheoQuyetDinh" Relationship="QuanLy.FK_BienBanNghiemThu_CongViecTheoQuyetDinh" FromRole="BienBanNghiemThu" ToRole="CongViecTheoQuyetDinh" />
           <NavigationProperty Name="PhieuDeNghi" Relationship="QuanLy.FK_BienBanNghiemThu_PhieuDeNghi" FromRole="BienBanNghiemThu" ToRole="PhieuDeNghi" />
           <Property Name="PhongQuanTri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GoiThau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoiTuongNghiemThu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HopDongKinhTe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CongViecTheoQuyetDinh">
           <Key>
@@ -553,6 +559,9 @@
           <EntitySetMapping Name="BienBanNghiemThus">
             <EntityTypeMapping TypeName="QuanLy.BienBanNghiemThu">
               <MappingFragment StoreEntitySet="BienBanNghiemThu">
+                <ScalarProperty Name="HopDongKinhTe" ColumnName="HopDongKinhTe" />
+                <ScalarProperty Name="DoiTuongNghiemThu" ColumnName="DoiTuongNghiemThu" />
+                <ScalarProperty Name="GoiThau" ColumnName="GoiThau" />
                 <ScalarProperty Name="PhongQuanTri" ColumnName="PhongQuanTri" />
                 <ScalarProperty Name="NhaThau" ColumnName="NhaThau" />
                 <ScalarProperty Name="DauViec" ColumnName="DauViec" />

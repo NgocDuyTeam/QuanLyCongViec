@@ -174,6 +174,27 @@ namespace BusinessLogic.Management
                     else if (x.TrangThai == "DaThucHien")
                     {
                         phieu.sTrangThai = "Đã thực hiện";
+                        if (x.BienBanNghiemThus.Count() > 0)
+                        {
+                            phieu.lstBienBan = new List<BienBanNghiemThuModel>();
+                            foreach (var item in x.BienBanNghiemThus)
+                            {
+                                var bb = item.CopyAs<BienBanNghiemThuModel>();
+                                bb.LstCongViec = new List<ObjCongViec>();
+                                var lstCongViec = bb.DauViec.SplitEmbeddedLength();
+                                foreach (var itemCV in lstCongViec)
+                                {
+                                    var cv = itemCV.FromJson<ObjCongViec>();
+                                    bb.LstCongViec.Add(cv);
+                                }
+                                bb.ObjPhongQuanTri = item.PhongQuanTri.FromJson<ObjPhongQuanTri>();
+                                if (item.NhaThau != null)
+                                {
+                                    bb.ObjNhaThau = item.NhaThau.FromJson<ObjNhaThau>();
+                                }
+                                phieu.lstBienBan.Add(bb);
+                            }
+                        }
                     }
                     return phieu;
                 }).ToList();

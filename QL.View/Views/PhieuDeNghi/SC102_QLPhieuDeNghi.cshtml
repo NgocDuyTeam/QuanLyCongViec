@@ -57,6 +57,7 @@
                         <th class="text-center">Công việc</th>
                         <th class="text-center">Trạng thái</th>
                         <th class="text-center">Phân công</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,8 +74,17 @@
                                 </select>
                             </div>
                             <div class="col-sm-4">
-                                <button class="btn btn-primary" ng-click="SavePhanCong(phieu)">Lưu</button>
+                                <button ng-if="phieu.TrangThai != 'DaThucHien'" class="btn btn-primary" ng-click="SavePhanCong(phieu)">Lưu</button>
                             </div>
+                        </td>
+                        <td class="text-right">
+                            <a ng-if="phieu.TrangThai == 'DaThucHien' && phieu.lstBienBan!= null" ng-click="PrintBienBan(phieu)" title="In biên bản">
+                                <i class="fas fa-print">In biên bản</i>
+                            </a>&nbsp;&nbsp;
+                            <a ng-click="PrintPhieu(phieu)" title="In phiếu đề nghị">
+                                <i class="fas fa-print">In phiếu</i>
+                            </a>
+
                         </td>
                     </tr>
                 </tbody>
