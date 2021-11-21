@@ -27,6 +27,6 @@ var app = angular
     .constant('myAppConfig', {
         baseUrl: _baseUrl, TenKhoa: _tenKhoa
         , IdCanBo: _idCanBo, IdKhoa: _idKhoa
-        , HoVaTen: _hovaten
+        , HoVaTen: _hovaten, Role: _role
     }
     );

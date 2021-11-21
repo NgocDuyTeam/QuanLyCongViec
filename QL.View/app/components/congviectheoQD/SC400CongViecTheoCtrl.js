@@ -14,7 +14,12 @@ app.controller('SC400CongViecTheoCtrl',
             $scope.DSCongViec = [];
             $scope.DSKhoaPhong = [];
             $scope.CongViec = {};
-
+            $scope.IdKhoa = "";
+            $scope.IsKhoa = false;
+            if (myAppConfig.Role == "Khoa") {
+                $scope.IsKhoa = true;
+                $scope.IdKhoa = myAppConfig.IdKhoa;
+            }
             $scope.refreshData = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;
                 ngProgress.start();
@@ -23,6 +28,7 @@ app.controller('SC400CongViecTheoCtrl',
                     DenNgay: moment($scope.DenNgay, "DD/MM/YYYY").format("MM/DD/YYYY"),
                     iPageIndex: $scope.iPageIndex,
                     iPageSize: $scope.iPageSize,
+                    IdKhoa: $scope.IdKhoa
                 }).$promise.then(
                     function (d) {
                         $scope.DSCongViec = d.List;
@@ -80,7 +86,6 @@ app.controller('SC400CongViecTheoCtrl',
             $scope.closePopup = function () {
                 $("#popupCongViec").bPopup({}).close();
             };
-
             $scope.saveCongViec = function () {
                 ngProgress.start();
                 $scope.isDisabled = true;

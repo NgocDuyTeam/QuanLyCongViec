@@ -21,7 +21,7 @@
     </div>
     <div class="row col-sm-12">
         <div class="col-sm-2">
-            <input class="btn btn-primary" type="button" style="" value="Thêm" ng-click="ShowAddOrUpdateCongViec()" />
+            <input ng-if="!IsKhoa" class="btn btn-primary" type="button" style="" value="Thêm" ng-click="ShowAddOrUpdateCongViec()" />
         </div>
     </div>
     <div class="row col-lg-12" style="margin-top:15px">
@@ -46,10 +46,10 @@
                             <a ng-click="PrintPhieu(phieu)" title="In">
                                 <i class="fas fa-print"></i>
                             </a>&nbsp;&nbsp;
-                            <a ng-click="ShowAddOrUpdateCongViec(phieu)"  title="Sửa">
+                            <a ng-if="!IsKhoa" ng-click="ShowAddOrUpdateCongViec(phieu)"  title="Sửa">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>&nbsp;&nbsp;
-                            <a ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa"></i> </a>
+                            <a ng-if="!IsKhoa" ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa"></i> </a>
                         </td>
                     </tr>
                 </tbody>

@@ -66,7 +66,19 @@ namespace QL.View.Controllers
                         }
                         System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
                         // check role để redirec
-                        return RedirectToAction("SC100_PhieuDeNghi", "PhieuDeNghi");
+                        if (cb.Role == "QuanLy")
+                        {
+                            return RedirectToAction("SC102_QLPhieuDeNghi", "PhieuDeNghi");
+                        }
+                        else if (cb.Role == "NhanVien")
+                        {
+                            return RedirectToAction("SC103_NVPhieDeNghi", "PhieuDeNghi");
+                        }
+                        else if (cb.Role == "Khoa")
+                        {
+                            return RedirectToAction("SC101_DSPhieuDeNghi", "PhieuDeNghi");
+                        }
+                        
                     }
                 }
                 else

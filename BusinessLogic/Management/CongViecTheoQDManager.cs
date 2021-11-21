@@ -64,12 +64,14 @@ namespace BusinessLogic.Management
             }
             return null;
         }
-        public List<CongViecTheoQDModel> GetPhieuDeNghiByPage(DateTime TuNgay, DateTime DenNgay, int iPageIndex, int iPageSize, out int iTotal)
+        public List<CongViecTheoQDModel> GetPhieuDeNghiByPage(DateTime TuNgay, DateTime DenNgay, Guid? IdKhoa, int iPageIndex, int iPageSize, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
                 IEnumerable<CongViecTheoQuyetDinh> lstPhieu = null;
-                var query = uow.Repository<CongViecTheoQuyetDinh>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay);
+                var sKhoa = IdKhoa.IsNotNull() ? IdKhoa.Value.ToString() : "";
+                var query = uow.Repository<CongViecTheoQuyetDinh>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay
+                    && (sKhoa == "" || x.DanhSachKhoa.Contains(sKhoa)));
                 if (iPageIndex != -1)
                 {
                     lstPhieu = query.OrderBy(x => x.OrderByDescending(y => y.NgayTao)).GetPage(iPageIndex, iPageSize, out iTotal);

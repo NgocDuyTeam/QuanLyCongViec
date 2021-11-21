@@ -3,6 +3,7 @@ var _tenKhoa = $("#login_TenKhoa").val();
 var _idCanBo = $("#login_IdCanBo").val();
 var _idKhoa = $("#login_IdKhoa").val();
 var _hovaten = $("#login_HoVaTen").val();
+var _role = $("#login_Role").val();
 var htmlMessageBox = "<div id='printMessageBox' style='\
                               position:fixed;\
                               top:50%; left:50%;\
