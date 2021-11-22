@@ -66,7 +66,7 @@
                         <td class="text-center">
                             <button ng-if="phieu.TrangThai == 'DaPhanViec'" class="btn btn-primary" ng-click="SaveTrangThaiHT(phieu)">Xác nhận hoàn thành</button>
                             <a ng-if="phieu.TrangThai == 'DaThucHien'" href="/NghiemThu/SC300_BienBanNghiemThu?idPhieu={{phieu.Id}}" title="Biên bản">
-                                <i class="fas fa-pencil-alt">Biên bản</i>
+                                <i class="fas fa-plus">Tạo biên bản</i>
                             </a>&nbsp;&nbsp;
                             <a ng-if="phieu.TrangThai == 'DaThucHien' && phieu.lstBienBan!= null" ng-click="PrintBienBan(phieu)" title="In">
                                 <i class="fas fa-print">In biên bản</i>

@@ -31,13 +31,13 @@ namespace QL.API.Controllers
             }
         }
         [Route("getById")]
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage GetById(Guid Id)
         {
             try
             {
                 var result = CongViecTheoQDManager.Instance.SelectById(Id);
-                return HttpOk("");
+                return HttpOk(result);
             }
             catch (Exception ex)
             {
@@ -55,6 +55,20 @@ namespace QL.API.Controllers
                 result.List = CongViecTheoQDManager.Instance.GetPhieuDeNghiByPage(TuNgay, DenNgay.AddDays(1), IdKhoa, iPageIndex, iPageSize, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("deleteCongViecById")]
+        [HttpPost]
+        public HttpResponseMessage DeleteCongViecById(Guid IdCongViec)
+        {
+            try
+            {
+                CongViecTheoQDManager.Instance.DeleteById(IdCongViec);
+                return HttpOk("");
             }
             catch (Exception ex)
             {

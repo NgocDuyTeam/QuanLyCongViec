@@ -88,8 +88,85 @@ namespace BusinessLogic.Management
                     {
                         phieu.TenCanBo = x.CanBo.HoVaTen;
                     }
+                    if (x.DanhSachKhoa.IsNotNullOrEmpty())
+                    {
+                        var lstId = x.DanhSachKhoa.Split(';');
+                        Guid idKhoaTemp = Guid.Empty;
+                        foreach (var idkhoa in lstId)
+                        {
+                            Guid.TryParse(idkhoa, out idKhoaTemp);
+                            var khoa = DanhMucKhoaPhongManager.Instance.SelectById(idKhoaTemp);
+                            if (khoa != null)
+                            {
+                                phieu.sDanhSachKhoa += khoa.Ten + ", ";
+                            }
+                        }
+                    }
+                    phieu.lstBienBan = new List<BienBanNghiemThuModel>();
+                    if (x.BienBanNghiemThus.Count() > 0)
+                    {
+                        foreach (var item in x.BienBanNghiemThus)
+                        {
+                            if (!IdKhoa.IsNotNull() || (item.DanhSachKhoa.IsNotNullOrEmpty() && item.DanhSachKhoa.Contains(IdKhoa.ToString())))
+                            {
+                                var bb = item.CopyAs<BienBanNghiemThuModel>();
+                                bb.LstCongViec = new List<ObjCongViec>();
+                                if (bb.DauViec.IsNotNullOrEmpty())
+                                {
+                                    var lstCongViec = bb.DauViec.SplitEmbeddedLength();
+                                    foreach (var itemCV in lstCongViec)
+                                    {
+                                        var cv = itemCV.FromJson<ObjCongViec>();
+                                        bb.LstCongViec.Add(cv);
+                                    }
+                                }
+
+                                bb.ObjPhongQuanTri = item.PhongQuanTri.FromJson<ObjPhongQuanTri>();
+                                if (item.NhaThau != null)
+                                {
+                                    bb.ObjNhaThau = item.NhaThau.FromJson<ObjNhaThau>();
+                                }
+                                phieu.sDanhSachKhoa = "";
+                                if (item.DanhSachKhoa.IsNotNullOrEmpty())
+                                {
+                                    var lstId = item.DanhSachKhoa.Split(';');
+                                    Guid idKhoaTemp = Guid.Empty;
+                                    foreach (var idkhoa in lstId)
+                                    {
+                                        Guid.TryParse(idkhoa, out idKhoaTemp);
+                                        var khoa = DanhMucKhoaPhongManager.Instance.SelectById(idKhoaTemp);
+                                        if (khoa != null)
+                                        {
+                                            bb.sDanhSachKhoa += khoa.Ten + ", ";
+                                        }
+                                    }
+                                }
+                                phieu.lstBienBan.Add(bb);
+                            }
+                        }
+                    }
                     return phieu;
                 }).ToList();
+            }
+        }
+        public void DeleteById(Guid IdCongViec)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var cv = uow.Repository<CongViecTheoQuyetDinh>().Query().Filter(x => x.Id == IdCongViec).FirstOrDefault();
+                if (cv != null)
+                {
+                    if (cv.BienBanNghiemThus.Count > 0)
+                    {
+                        throw new Exception("Đã có biên bản nghiệm thu được tạo.");
+                    }
+                    if (cv.BienBanNghiemThus.Count() == 0)
+                    {
+                        cv.State = EDataState.Deleted;
+                        uow.Repository<CongViecTheoQuyetDinh>().Delete(cv);
+                        uow.Save();
+                    }
+                }
             }
         }
 

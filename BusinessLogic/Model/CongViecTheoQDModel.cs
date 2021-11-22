@@ -16,5 +16,11 @@ namespace BusinessLogic.Model
         public Guid IdCanBo { get; set; }
         public string TenCanBo { get; set; }
         public DateTime NgayTao { get; set; }
+
+        /// <summary>
+        /// /ex
+        /// </summary>
+        public string sDanhSachKhoa { get; set; }
+        public List<BienBanNghiemThuModel> lstBienBan { get; set; }
     }
 }

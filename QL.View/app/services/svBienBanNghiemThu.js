@@ -11,5 +11,19 @@ app.factory('svBienBanNghiemThu', function (myAppConfig, $resource) {
                 method: 'POST',
                 url: baseUrl + 'api/nghiemthu/saveBienBan',
             },
+            'DeleteBienBanById': {
+                method: 'Post',
+                params: {
+                    IdBienBan: '@IdBienBan',
+                },
+                url: baseUrl + 'api/nghiemthu/deleteBienBanById',
+            },
+            'GetById': {
+                method: 'GET',
+                params: {
+                    Id: '@Id',
+                },
+                url: baseUrl + 'api/nghiemthu/getBienBanById',
+            },
         })
 });

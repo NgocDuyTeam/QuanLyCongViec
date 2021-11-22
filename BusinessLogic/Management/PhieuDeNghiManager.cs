@@ -102,6 +102,27 @@ namespace BusinessLogic.Management
                     {
                         result.sTrangThai = "Gửi yêu cầu";
                     }
+                    if (phieu.BienBanNghiemThus.Count() > 0)
+                    {
+                        result.lstBienBan = new List<BienBanNghiemThuModel>();
+                        foreach (var item in phieu.BienBanNghiemThus)
+                        {
+                            var bb = item.CopyAs<BienBanNghiemThuModel>();
+                            bb.LstCongViec = new List<ObjCongViec>();
+                            var lstCongViec = bb.DauViec.SplitEmbeddedLength();
+                            foreach (var itemCV in lstCongViec)
+                            {
+                                var cv = itemCV.FromJson<ObjCongViec>();
+                                bb.LstCongViec.Add(cv);
+                            }
+                            bb.ObjPhongQuanTri = item.PhongQuanTri.FromJson<ObjPhongQuanTri>();
+                            if (item.NhaThau != null)
+                            {
+                                bb.ObjNhaThau = item.NhaThau.FromJson<ObjNhaThau>();
+                            }
+                            result.lstBienBan.Add(bb);
+                        }
+                    }
                     return result;
                 }
             }

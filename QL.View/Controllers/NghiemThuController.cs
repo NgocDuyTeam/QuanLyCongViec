@@ -14,5 +14,11 @@ namespace QL.View.Controllers
             ViewBag.TitleUrl = " / Biên bản nghiệm thu ";
             return View();
         }
+        public ActionResult SC301_NghiemThuCongViec()
+        {
+            ViewBag.Title = "Bệnh viện K - Hệ thống quản lý phiếu đề nghị";
+            ViewBag.TitleUrl = " / Biên bản nghiệm thu ";
+            return View();
+        }
     }
 }

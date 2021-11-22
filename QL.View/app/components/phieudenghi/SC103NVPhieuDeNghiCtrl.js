@@ -84,7 +84,7 @@ app.controller('SC103NVPhieuDeNghiCtrl',
                             + " phút, ngày " + moment(bb.NgayKetThuc).format("DD")
                             + " tháng " + moment(bb.NgayKetThuc).format("MM")
                             + " năm " + moment(bb.NgayKetThuc).format("YYYY");
-                        var strPrint = d.NoiDung.replace("[TenKhoa]", bb.TenKhoa)
+                        var strPrint = d.NoiDung.replace("[TenKhoa]", phieu.TenKhoa)
                             .replace("[PhongQuanTriHoTen]", bb.ObjPhongQuanTri.HoVaTen)
                             .replace("[PhongQuanTriChucVu]", bb.ObjPhongQuanTri.ChucVu)
                             .replace("[Ngay]", moment(bb.NgayBatDau).format("DD"))

@@ -24,6 +24,7 @@ namespace BusinessLogic.Model
         public ObjPhongQuanTri ObjPhongQuanTri { get; set; }
         public ObjNhaThau ObjNhaThau { get; set; }
         public List<ObjCongViec> LstCongViec { get; set; }
+        public string sDanhSachKhoa { get; set; }
     }
     public class ObjPhongQuanTri
     {
@@ -40,7 +41,7 @@ namespace BusinessLogic.Model
     {
         public string STT { get; set; }
         public string NoiDung { get; set; }
-        public string CongViec { get; set; }
+        public string DonVi { get; set; }
         public string KhoiLuong { get; set; }
         public string GhiChu { get; set; }
     }

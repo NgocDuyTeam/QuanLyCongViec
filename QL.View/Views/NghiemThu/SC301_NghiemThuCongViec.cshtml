@@ -1,0 +1,217 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row content-all-ql" data-ng-controller="SC301NghiemThuCongViecCtrl" ng-cloak>
+    <div class="row col-lg-12">
+        <div class="row col-lg-12 text-center" style="font-size:16px">
+            <div class="col-lg-12 text-center">
+                <div style="font-weight:bold">
+                    CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+                </div>
+                <div style="font-weight:bold">
+                    Độc lập - Tự do - Hạnh phúc
+                    <div style="border-top: 1px solid #000000; width: 22%;margin:0px auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 text-right">
+            <i> Hà Nội, ngày {{NgayTao | date: 'dd'}} tháng {{NgayTao | date: 'MM'}} năm {{NgayTao | date: 'yyyy'}} </i>
+        </div>
+        <div class="col-lg-12 text-center" style="padding-top: 20px; font-weight:bold">
+            <div style="font-size: 16px"> BIÊN BẢN NGHIỆM THU CÔNG VIỆC HOÀN THÀNH HÀNG MỤC CÔNG VIỆC</div>
+            <div><i> Số: ...../BBNT/BVK-VTP</i></div>
+        </div>
+        <div class="col-lg-12" style="padding-top:20px">
+            <div class="col-lg-3"><b>Gói thầu:</b></div>
+            <div class="col-lg-6">
+                <textarea rows="3" class="form-control" name="GoiThau" type="text" data-ng-model="BienBan.GoiThau" required></textarea>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div> <b>Địa điểm</b>: Số 30 Cầu Bươu, Xã Tân Triều, Huyện Thanh Trì, TP Hà Nội </div>
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <div class="col-lg-3"><b>1.	Đối tượng nghiệm thu</b></div>
+            <div class="col-lg-6">
+                <textarea rows="3" class="form-control" name="DoiTuongNghiemThu" type="text" data-ng-model="BienBan.DoiTuongNghiemThu" required></textarea>
+            </div>
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <div> <b>  2. Thành phần trực tiếp tham gia nghiệm thu:</b> </div>
+        </div>
+        <div class="col-lg-12">
+            <div> <b>  a. Chủ đầu tư: Bệnh viện K </b> </div>
+        </div>
+        <div class="col-lg-12">
+            <div> <b>  - Đại diện phòng Quản trị </b> </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" ng-model="BienBan.ObjPhongQuanTri.HoVaTen" />
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" ng-model="BienBan.ObjPhongQuanTri.ChucVu" />
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div> <b>  - Đại diện phòng TCKT </b> </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" value="Bà: Nguyễn Thị Hoa" ng-disabled="true" />
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" value="Chức vụ: Kế toán tài sản" ng-disabled="true" />
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div> <b>  - Đại diện Khoa/Phòng:</b> {{BienBan.TenKhoa}} </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                Ông/Bà: ..................................................................
+            </div>
+            <div class="col-lg-6">
+                Chức vụ: ..................................................................
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="col-lg-3">
+                <b>  b. Đại diện nhà thầu:</b>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                       data-ng-model="BienBan.ObjNhaThau.TenNhaThau" placeholder="Nhà thầu" />
+            </div>
+        </div>
+        <div class="col-lg-12" style="padding-top:3px">
+            <div class="col-lg-6">
+                <input type="text" class="form-control"
+                       data-ng-model="BienBan.ObjNhaThau.HoVaTen" placeholder="Ông/bà" />
+            </div>
+            <div class="col-lg-6">
+                <input type="text" class="form-control"
+                       data-ng-model="BienBan.ObjNhaThau.ChucVu" placeholder="Chức vụ" />
+            </div>
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <div> <b>3. Thời gian nghiệm thu</b> </div>
+        </div>
+        <div class="col-lg-12" style="padding-left:50px">
+            <input type="text" class="form-control" data-ui-mask="{{'Bắt đầu 99 giờ 99 phút, ngày 99 tháng 99 năm 9999'}}"
+                   data-ng-model="NgayBatDau" />
+        </div>
+        <div class="col-lg-12" style="padding-left:50px">
+            <input type="text" class="form-control" data-ui-mask="{{'Kết thúc 99 giờ 99 phút, ngày 99 tháng 99 năm 9999'}}"
+                   data-ng-model="NgayKetThuc" />
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <div> <b>4. Đánh giá công việc thực hiện</b> </div>
+        </div>
+        <div class="col-lg-12">
+            <div> <b>a. Về tài liệu làm căn cứ nghiệm thu:</b> </div>
+        </div>
+        <div class="col-lg-12" style="padding-left:30px">
+            <div class="col-lg-2">
+                Hợp đồng kinh tế số:
+            </div>
+            <div class="col-lg-2">
+                <input type="text" class="form-control"
+                       data-ng-model="BienBan.HopDongKinhTe" />
+            </div>
+            <div class="col-lg-4">
+                ký ngày ..... tháng ..... năm .....
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <b>b.	Chất lượng công việc:</b>
+        </div>
+        <div class="col-lg-12">
+            <a ng-click="AddCongViec()">Thêm công việc</a>
+        </div>
+        <div class="col-lg-12" style="padding-top:5px">
+            <div class="col-lg-1">
+                STT
+            </div>
+            <div class="col-lg-5">
+                Nội dung
+            </div>
+            <div class="col-lg-1">
+                Đơn vị
+            </div>
+            <div class="col-lg-2">
+                Khối lượng
+            </div>
+            <div class="col-lg-2">
+                Ghi chú
+            </div>
+
+        </div>
+        <div class="col-lg-12" ng-repeat="cv in LstCongViec" style="padding-top:5px">
+            <div class="col-lg-1">
+                <input type="text" class="form-control" ng-model="cv.STT" placeholder="STT" />
+            </div>
+            <div class="col-lg-5">
+                <textarea rows="2" class="form-control" ng-model="cv.NoiDung" placeholder="Nội dung"></textarea>
+            </div>
+            <div class="col-lg-1">
+                <input type="text" class="form-control" ng-model="cv.DonVi" placeholder="Đơn vị" />
+            </div>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" ng-model="cv.KhoiLuong" placeholder="Khối lượng" />
+            </div>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" ng-model="cv.GhiChu" placeholder="Ghi chú" />
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-warning" ng-click="XoaCongViec($index)">Xóa</button>
+            </div>
+        </div>
+
+        <div class="col-lg-12" style="padding-top:20px">
+            <div> <b>c. Các ý kiến khác nếu có</b> </div>
+        </div>
+        <div class="col-lg-12" style="padding-top:5px">
+            <div> <b>d.	Kết luận: Đồng ý nghiệm thu, cho triển khai các công việc tiếp theo</b> </div>
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <div> <b>5.	Các thành phần trực tiếp tham gia nghiệm thu: </b> </div>
+        </div>
+        <div class="row col-lg-12 text-center" style="font-weight:bold">
+            <div class="col-lg-8">ĐẠI DIỆN CHỦ ĐẦU TƯ</div>
+            <div class="col-lg-4">ĐẠI DIỆN NHÀ THẦU</div>
+        </div>
+        <div class="row col-lg-12 text-center" style="height:100px;font-weight:bold">
+            <div class="col-lg-8">
+                <div class="col-lg-4">
+                    Phòng Quản trị
+                </div>
+                <div class="col-lg-4">
+                    Phòng TCKT
+                </div>
+                <div class="col-lg-4">
+                    Khoa / phòng
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="col-lg-12" style="padding-top:3px">
+            <div class="col-lg-3">
+                Danh sách khoa
+            </div>
+            <div class="col-lg-9" style="overflow: scroll;height:120px">
+                <div class="col-lg-4" ng-repeat="khoa in DSKhoaPhong">
+                    <input type="checkbox" ng-model="khoa.IsCheck" /> <label>{{khoa.Ten}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 text-right">
+            <button class="btn btn-primary" ng-disabled="isDisabled" ng-click="saveBienBan()">Lưu thông tin</button>
+        </div>
+    </div>
+
+</div>
+

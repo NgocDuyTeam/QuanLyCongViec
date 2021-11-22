@@ -6,14 +6,14 @@ app.controller('SC300BienBanNghiemThuCtrl',
         function ($scope, $compile, $resource, $filter, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svBienBanNghiemThu, svMauPhieuIn) {
             $scope.Phieu = {};
             $scope.BienBan = {};
-          
+
             $scope.NgayBatDau = moment().format('HH:mm DD/MM/YYYY');
             $scope.NgayKetThuc = moment().format('HH:mm DD/MM/YYYY');
             $scope.NgayTao = moment().format('YYYY-MM-DD');
             $scope.BienBan.ObjPhongQuanTri = {};
             $scope.BienBan.ObjPhongQuanTri.HoVaTen = myAppConfig.HoVaTen;
             $scope.BienBan.ObjPhongQuanTri.ChucVu = "Chức vụ: Cán bộ kỹ thuật";
-          
+
             $scope.LstCongViec = [];
             $scope.AddCongViec = function () {
                 var obj = {};
@@ -42,6 +42,12 @@ app.controller('SC300BienBanNghiemThuCtrl',
                 }).$promise.then(
                     function (d) {
                         $scope.Phieu = d;
+                        if (d.lstBienBan.length > 0) {
+                            $scope.BienBan = d.lstBienBan[0];
+                            $scope.NgayBatDau = moment($scope.BienBan.NgayBatDau).format('HH:mm DD/MM/YYYY');
+                            $scope.NgayKetThuc = moment($scope.BienBan.NgayKetThuc).format('HH:mm DD/MM/YYYY');
+                            $scope.LstCongViec = $scope.BienBan.LstCongViec;
+                        }
                         $scope.BienBan.TenKhoa = $scope.Phieu.TenKhoa;
                     }, function (err) { ngProgress.complete(); });
             }

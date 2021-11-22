@@ -14337,7 +14337,7 @@ svg.pulse-svg .third-circle {
 .stat-widget-progress h5 span,
 .stat-widget-progress span,
 .table-striped tr td {
-    color: #abafb3 !important
+    /*color: #abafb3 !important*/
 }
 
 .avatar-group .avatar {

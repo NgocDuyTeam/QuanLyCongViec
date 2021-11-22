@@ -21,5 +21,19 @@ app.factory('svCongViectheoQD', function (myAppConfig, $resource) {
                 },
                 url: baseUrl + 'api/congviectheoqd/getByPage',
             },
+            'GetById': {
+                method: 'GET',
+                params: {
+                    Id: '@Id',
+                },
+                url: baseUrl + 'api/congviectheoqd/getById',
+            },
+            'DeleteCongViecById': {
+                method: 'Post',
+                params: {
+                    IdCongViec: '@IdCongViec',
+                },
+                url: baseUrl + 'api/congviectheoqd/deleteCongViecById',
+            },
         })
 });

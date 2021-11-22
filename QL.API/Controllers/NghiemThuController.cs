@@ -31,12 +31,26 @@ namespace QL.API.Controllers
             }
         }
         [Route("getBienBanById")]
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage GetBienBanById(Guid Id)
         {
             try
             {
                var result = BienBanNghiemThuManager.Instance.SelectById(Id);
+                return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("deleteBienBanById")]
+        [HttpPost]
+        public HttpResponseMessage DeleteBienBanById(Guid IdBienBan)
+        {
+            try
+            {
+                BienBanNghiemThuManager.Instance.DeleteById(IdBienBan);
                 return HttpOk("");
             }
             catch (Exception ex)

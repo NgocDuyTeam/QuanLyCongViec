@@ -89,6 +89,19 @@ namespace BusinessLogic.Management
                 }
             }
         }
+        public KhoaPhongModel SelectById(Guid IdKhoa)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var KhoaPhong = uow.Repository<KhoaPhong>().Query().Filter(x => x.Id == IdKhoa).FirstOrDefault();
+                //var CanBo = uow.Repository<CanBo>().Query().Filter(y => y.IdKhoa == IdKhoa).FirstOrDefault();
+                if (KhoaPhong != null)
+                {
+                    return KhoaPhong.CopyAs<KhoaPhongModel>();
+                }
+            }
+            return null;
+        }
         #endregion
 
         #region private
