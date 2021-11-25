@@ -90,6 +90,7 @@ app.controller('SC102QLPhieuDeNghiCtrl',
                 svPhieuDeNghi.savePhanCongPhieuDeNghi(phieu).$promise.then(
                     function (d) {
                         toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
+                        $scope.refreshData(1);
                         ngProgress.complete();
                     }, function (err) {
                         ngProgress.complete();

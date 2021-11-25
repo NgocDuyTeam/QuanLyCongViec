@@ -46,6 +46,7 @@ app.controller('SC100PhieuDeNghiCtrl',
                             sMa: 'PhieuDeNghi'
                         }).$promise.then(
                             function (d) {
+                                var phieu = $scope.Phieu;
                                 var strPrint = d.NoiDung.replace("[TenKhoa]", phieu.TenKhoa.toUpperCase())
                                     .replace("[TenKhoa1]", phieu.TenKhoa)
                                     .replace("[NoiDung]", phieu.NoiDung.replace(/\n/g, "<br/>"))
