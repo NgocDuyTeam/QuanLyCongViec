@@ -141,13 +141,29 @@ namespace BusinessLogic.Management
                 }
             }
         }
+        public void TuChoiDeNghi(Guid IdPhieu, string sNoiDung)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == IdPhieu).FirstOrDefault();
+                if (phieu != null)
+                {
+                    phieu.State = EDataState.Modified;
+                    phieu.IsTuChoi = true;
+                    phieu.LyDoTuChoi = sNoiDung;
+                    uow.Repository<PhieuDeNghi>().Delete(phieu);
+                    uow.Save();
+                }
+            }
+        }
         public List<PhieuDeNghiModel> GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
-            , Guid? IdCanBo, int iPageIndex, int iPageSize, out int iTotal)
+            , Guid? IdCanBo, int iPageIndex, int iPageSize, bool IsTuChoi, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
                 IEnumerable<PhieuDeNghi> lstPhieu = null;
-                var query = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay);
+                var query = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay
+                    && x.IsTuChoi == IsTuChoi);
                 if (IdKhoa.HasValue)
                 {
                     query = query.Filter(x => x.IdKhoa == IdKhoa);

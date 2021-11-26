@@ -65,6 +65,9 @@
                         <td ng-if="phieu.TrangThai == 'DaThucHien'">Đã thực hiện</td>
                         <td class="text-center">
                             <button ng-if="phieu.TrangThai == 'DaPhanViec'" class="btn btn-primary" ng-click="SaveTrangThaiHT(phieu)">Xác nhận hoàn thành</button>
+                            <a href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Xem">
+                                <i class="fas fa-info-circle">Xem</i>
+                            </a>&nbsp;&nbsp;
                             <a ng-if="phieu.TrangThai == 'DaThucHien'" href="/NghiemThu/SC300_BienBanNghiemThu?idPhieu={{phieu.Id}}" title="Biên bản">
                                 <i class="fas fa-plus">Tạo biên bản</i>
                             </a>&nbsp;&nbsp;
@@ -72,6 +75,9 @@
                                 <i class="fas fa-print">In biên bản</i>
                             </a>
                         </td>
+                    </tr>
+                    <tr ng-if="DSPhieu.length == 0">
+                        <td class="text-center" colspan="7">Không có dữ liệu</td>
                     </tr>
                 </tbody>
             </table>

@@ -12,6 +12,7 @@ app.controller('SC100PhieuDeNghiCtrl',
             $scope.Phieu.TrangThai = "GuiYeuCau";
             $scope.Phieu.TenKhoa = myAppConfig.TenKhoa;
             $scope.Phieu.NgayTao = moment().format('MM/DD/YYYY');
+            $scope.IsEdit = true;
             $scope.loadDMCongViec = function () {
                 svDanhMucCongViec.GetDanhSachCongViec().$promise.then(
                     function (d) {
@@ -24,6 +25,9 @@ app.controller('SC100PhieuDeNghiCtrl',
                 }).$promise.then(
                     function (d) {
                         $scope.Phieu = d;
+                        if (myAppConfig.Role == "Khoa" && $scope.Phieu.TrangThai == "GuiYeuCau") {
+                            $scope.IsEdit = false;
+                        }
                     }, function (err) { ngProgress.complete(); });
             }
             var urlObj = $.deparam.querystring();

@@ -48,10 +48,10 @@
 
     .popup_sla .title,
     .popup h4 {
-        font-size: 12px;
+        font-size: 15px;
         color: #44afc6;
         font-weight: bold;
-        line-height: 24px;
+        line-height: 35px;
         background-color: #eef5f6;
         background: -moz-linear-gradient(center top, #eef5f6 0%, #FFFFFF 60px) repeat scroll 0 0 #FFFFFF;
         border: 1px solid #b4cfd6;

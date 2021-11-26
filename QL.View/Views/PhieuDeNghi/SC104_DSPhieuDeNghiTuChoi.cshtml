@@ -43,16 +43,9 @@
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
                         <td>{{phieu.TenCongViec}}</td>
                         <td class="text-right">
-                            <a ng-if="phieu.TrangThai == 'DaThucHien' && phieu.lstBienBan!= null" ng-click="PrintBienBan(phieu)" title="In">
-                                <i class="fas fa-print">In biên bản</i>
-                            </a>&nbsp;&nbsp;
                             <a ng-click="PrintPhieu(phieu)" title="In">
                                 <i class="fas fa-print">In</i>
                             </a>&nbsp;&nbsp;
-                            <a ng-if="phieu.TrangThai == 'GuiYeuCau' " href="/PhieuDeNghi/SC100_PhieuDeNghi?idPhieu={{phieu.Id}}" title="Sửa">
-                                <i class="fas fa-pencil-alt">Sửa</i>
-                            </a>&nbsp;&nbsp;
-                            <a ng-if="phieu.TrangThai == 'GuiYeuCau'" ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa">Xóa</i> </a>
                         </td>
                     </tr>
                     <tr ng-if="DSPhieu.length == 0">

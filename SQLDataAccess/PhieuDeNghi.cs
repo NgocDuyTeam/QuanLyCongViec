@@ -28,6 +28,8 @@ namespace SQLDataAccess
         public System.Guid IdCanBoDeNghi { get; set; }
         public Nullable<System.Guid> IdCanBoThucHien { get; set; }
         public System.Guid IdCongViec { get; set; }
+        public string LyDoTuChoi { get; set; }
+        public bool IsTuChoi { get; set; }
     
         public virtual CanBo CanBoDeNghi { get; set; }
         public virtual CanBo CanBoYeuCau { get; set; }

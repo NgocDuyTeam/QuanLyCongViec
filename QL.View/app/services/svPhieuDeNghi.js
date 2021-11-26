@@ -28,7 +28,8 @@ app.factory('svPhieuDeNghi', function (myAppConfig, $resource) {
                     sTrangThai: '@sTrangThai',
                     iPageIndex: '@iPageIndex',
                     iPageSize: '@iPageSize',
-                    IdCanBo: '@IdCanBo'
+                    IdCanBo: '@IdCanBo',
+                    IsTuChoi: '@IsTuChoi'
                 },
                 url: baseUrl + 'api/phieudenghi/getPhieuDeNghiByPage',
             },
@@ -58,6 +59,14 @@ app.factory('svPhieuDeNghi', function (myAppConfig, $resource) {
                     IdPhieu: '@IdPhieu',
                 },
                 url: baseUrl + 'api/phieudenghi/deletePhieuDeNghiById',
+            },
+            'TuChoiDeNghi': {
+                method: 'Post',
+                params: {
+                    IdPhieu: '@IdPhieu',
+                    sNoiDung: '@sNoiDung',
+                },
+                url: baseUrl + 'api/phieudenghi/tuChoiDeNghi',
             },
         })
 });

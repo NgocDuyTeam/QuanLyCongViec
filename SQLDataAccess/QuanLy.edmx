@@ -84,6 +84,8 @@
           <Property Name="IdCanBoDeNghi" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IdCanBoThucHien" Type="uniqueidentifier" />
           <Property Name="IdCongViec" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LyDoTuChoi" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsTuChoi" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_BienBanNghiemThu_CanBo">
           <End Role="CanBo" Type="Self.CanBo" Multiplicity="0..1" />
@@ -353,6 +355,8 @@
           <NavigationProperty Name="DanhMucCongViec" Relationship="QuanLy.FK_PhieuDeNghi_DanhMucCongViec" FromRole="PhieuDeNghi" ToRole="DanhMucCongViec" />
           <NavigationProperty Name="KhoaPhong" Relationship="QuanLy.FK_PhieuDeNghi_KhoaPhong" FromRole="PhieuDeNghi" ToRole="KhoaPhong" />
           <NavigationProperty Name="BienBanNghiemThus" Relationship="QuanLy.FK_BienBanNghiemThu_PhieuDeNghi" FromRole="PhieuDeNghi" ToRole="BienBanNghiemThu" />
+          <Property Name="LyDoTuChoi" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsTuChoi" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_PhieuDeNghi_CanBo">
           <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="1" />
@@ -536,6 +540,8 @@
           <EntitySetMapping Name="PhieuDeNghis">
             <EntityTypeMapping TypeName="QuanLy.PhieuDeNghi">
               <MappingFragment StoreEntitySet="PhieuDeNghi">
+                <ScalarProperty Name="IsTuChoi" ColumnName="IsTuChoi" />
+                <ScalarProperty Name="LyDoTuChoi" ColumnName="LyDoTuChoi" />
                 <ScalarProperty Name="IdCongViec" ColumnName="IdCongViec" />
                 <ScalarProperty Name="IdCanBoThucHien" ColumnName="IdCanBoThucHien" />
                 <ScalarProperty Name="IdCanBoDeNghi" ColumnName="IdCanBoDeNghi" />
