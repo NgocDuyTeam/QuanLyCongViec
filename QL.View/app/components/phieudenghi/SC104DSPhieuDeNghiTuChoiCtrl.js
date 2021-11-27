@@ -2,8 +2,8 @@
 var app = angular.module('uiApp');
 
 app.controller('SC104DSPhieuDeNghiTuChoiCtrl',
-    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi','svMauPhieuIn',
-        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svMauPhieuIn) {
+    ['$scope', '$compile', '$resource', 'myAppConfig', 'ngProgress', 'toaster', 'svPhieuDeNghi', 'svMauPhieuIn', 'svDanhMucKhoaPhong',
+        function ($scope, $compile, $resource, myAppConfig, ngProgress, toaster, svPhieuDeNghi, svMauPhieuIn, svDanhMucKhoaPhong) {
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
             $scope.IdKhoa = myAppConfig.IdKhoa;
@@ -11,7 +11,19 @@ app.controller('SC104DSPhieuDeNghiTuChoiCtrl',
             $scope.iPageIndex = 1;
             $scope.iPageSize = "20";
             $scope.DSPhieu = [];
-
+            $scope.DSKhoaPhong = [];
+            $scope.IsKhoa = true;
+            if (myAppConfig.Role == "Khoa") {
+                $scope.IsKhoa = false;
+            }
+            svDanhMucKhoaPhong.GetDanhSachKhoaPhong({
+                iPageIndex: -1,
+                iPageSize: 1
+            }).$promise.then(
+                function (d) {
+                    $scope.DSKhoaPhong = d.List;
+                    $scope.DSKhoaPhong.splice(0, 0, { Ten: "-- Tất cả -- ", Id: "" });
+                }, function (err) { });
             $scope.refreshData = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;
                 ngProgress.start();
@@ -55,7 +67,7 @@ app.controller('SC104DSPhieuDeNghiTuChoiCtrl',
                             newWin.document.open();
                             newWin.document.write('<html><body onload="window.print()">' + strPrint + '</body></html>');
                             newWin.document.close();
-                            setTimeout(function () { newWin.close(); }, 100);
+                            setTimeout(function () { newWin.close(); }, 10);
                         });
 
                     }, function (err) { ngProgress.complete(); });

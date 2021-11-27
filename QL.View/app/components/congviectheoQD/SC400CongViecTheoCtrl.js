@@ -78,6 +78,7 @@ app.controller('SC400CongViecTheoCtrl',
                         $scope.DSKhoaPhong[i].IsCheck = false;
                     }
                 }
+                $('#txtTenCongViec').focus();
             }
             $scope.openPopup = function () {
                 $("#popupCongViec").bPopup({ escClose: false, modalClose: false });
@@ -89,6 +90,10 @@ app.controller('SC400CongViecTheoCtrl',
             $scope.saveCongViec = function () {
                 ngProgress.start();
                 $scope.isDisabled = true;
+                if ($scope.CongViec.TenCongViec == "" || $scope.CongViec.MoTaCongViec) {
+                    toaster.pop('warning', "Thông báo", "Vui lòng nhập đủ thông tin.");
+                    return;
+                }
                 $scope.CongViec.DanhSachKhoa = "";
                 for (var i = 0; i < $scope.DSKhoaPhong.length; i++) {
                     if ($scope.DSKhoaPhong[i].IsCheck) {

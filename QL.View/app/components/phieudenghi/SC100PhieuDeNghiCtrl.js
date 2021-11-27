@@ -13,6 +13,9 @@ app.controller('SC100PhieuDeNghiCtrl',
             $scope.Phieu.TenKhoa = myAppConfig.TenKhoa;
             $scope.Phieu.NgayTao = moment().format('MM/DD/YYYY');
             $scope.IsEdit = true;
+            if (myAppConfig.Role == "Khoa") {
+                $scope.IsEdit = false;
+            }
             $scope.loadDMCongViec = function () {
                 svDanhMucCongViec.GetDanhSachCongViec().$promise.then(
                     function (d) {
@@ -25,8 +28,8 @@ app.controller('SC100PhieuDeNghiCtrl',
                 }).$promise.then(
                     function (d) {
                         $scope.Phieu = d;
-                        if (myAppConfig.Role == "Khoa" && $scope.Phieu.TrangThai == "GuiYeuCau") {
-                            $scope.IsEdit = false;
+                        if (myAppConfig.Role != "Khoa" || $scope.Phieu.TrangThai != "GuiYeuCau") {
+                            $scope.IsEdit = true;
                         }
                     }, function (err) { ngProgress.complete(); });
             }
@@ -66,8 +69,8 @@ app.controller('SC100PhieuDeNghiCtrl',
                                     newWin.document.open();
                                     newWin.document.write('<html><body onload="window.print()">' + strPrint + '</body></html>');
                                     newWin.document.close();
-                                    setTimeout(function () { newWin.close(); }, 10);
-                                    window.location.href = "/PhieuDeNghi/SC101_DSPhieuDeNghi";
+                                    setTimeout(function () { newWin.close(); window.location.href = "/PhieuDeNghi/SC101_DSPhieuDeNghi"; }, 10);
+
                                 });
                             }, function (err) { ngProgress.complete(); });
                     }, function (err) {
