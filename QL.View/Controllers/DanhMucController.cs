@@ -25,5 +25,11 @@ namespace QL.View.Controllers
         {
             return View();
         }
+        public ActionResult SC203_DanhMucSanPham()
+        {
+            ViewBag.Title = "Bệnh viện K - Hệ thống quản lý phiếu đề nghị";
+            ViewBag.TitleUrl = " / Danh mục sản phẩm";
+            return View();
+        }
     }
 }

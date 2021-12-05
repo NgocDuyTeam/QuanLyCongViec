@@ -31,4 +31,25 @@ namespace SQLDataAccess
     public partial class BienBanNghiemThu : BaseData
     {
     }
+    public partial class KhoDMSanPham : BaseData
+    {
+    }
+    public partial class KhoGiaoDich : BaseData
+    {
+    }
+    public partial class KhoGiaoDichChiTiet : BaseData
+    {
+    }
+    public partial class KhoTonKho : BaseData
+    {
+    }
+    public partial class TuDien : BaseData
+    {
+    }
+    public partial class TuDienLoai : BaseData
+    {
+    }
+    public partial class BangMa : BaseData
+    {
+    }
 }

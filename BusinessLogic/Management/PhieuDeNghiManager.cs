@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Model;
+﻿using BusinessLogic.Helper;
+using BusinessLogic.Model;
 using Framework.Extensions;
 using SQLDataAccess;
 using System;
@@ -57,7 +58,7 @@ namespace BusinessLogic.Management
                 if (value.Id.IsNotNull())
                 {
                     var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
-                    phieu.TrangThai = "DaThucHien";
+                    phieu.TrangThai = CTrangThaiPhieu.DaThucHien;
                     phieu.State = EDataState.Modified;
                 }
                 uow.Save();
@@ -71,7 +72,7 @@ namespace BusinessLogic.Management
                 {
                     var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
                     phieu.IdCanBoThucHien = value.IdCanBoThucHien;
-                    phieu.TrangThai = "DaPhanViec";
+                    phieu.TrangThai = CTrangThaiPhieu.DaPhanViec;
                     phieu.State = EDataState.Modified;
                     uow.Repository<PhieuDeNghi>().InsertOrUpdate(phieu);
                 }
@@ -98,7 +99,7 @@ namespace BusinessLogic.Management
                     {
                         result.TenCongViec = phieu.DanhMucCongViec.TenCongViec;
                     }
-                    if (phieu.TrangThai == "GuiYeuCau")
+                    if (phieu.TrangThai == CTrangThaiPhieu.GuiYeuCau)
                     {
                         result.sTrangThai = "Gửi yêu cầu";
                     }
@@ -148,6 +149,10 @@ namespace BusinessLogic.Management
                 var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == IdPhieu).FirstOrDefault();
                 if (phieu != null)
                 {
+                    if (phieu.TrangThai != CTrangThaiPhieu.GuiYeuCau)
+                    {
+                        throw new Exception("Không thể từ chối phiếu khi đã tiếp nhận.");
+                    }
                     phieu.State = EDataState.Modified;
                     phieu.IsTuChoi = true;
                     phieu.LyDoTuChoi = sNoiDung;
@@ -200,15 +205,15 @@ namespace BusinessLogic.Management
                     {
                         phieu.TenCongViec = x.DanhMucCongViec.TenCongViec;
                     }
-                    if (x.TrangThai == "GuiYeuCau")
+                    if (x.TrangThai == CTrangThaiPhieu.GuiYeuCau)
                     {
                         phieu.sTrangThai = "Gửi yêu cầu";
                     }
-                    else if (x.TrangThai == "DaPhanViec")
+                    else if (x.TrangThai == CTrangThaiPhieu.DaPhanViec)
                     {
                         phieu.sTrangThai = "Đã phân công";
                     }
-                    else if (x.TrangThai == "DaThucHien")
+                    else if (x.TrangThai == CTrangThaiPhieu.DaThucHien)
                     {
                         phieu.sTrangThai = "Đã thực hiện";
                         if (x.BienBanNghiemThus.Count() > 0)

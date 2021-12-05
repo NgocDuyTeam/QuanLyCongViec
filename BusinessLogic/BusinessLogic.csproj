@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Management\BienBanNghiemThuManager.cs" />
+    <Compile Include="Management\BangMaManager.cs" />
+    <Compile Include="Management\KhoManager.cs" />
+    <Compile Include="Management\TuDienManager.cs" />
+    <Compile Include="Management\KhoDMSanPhamManager.cs" />
     <Compile Include="Management\DanhMucKhoaPhongManager.cs" />
     <Compile Include="Management\DanhMucCongViecManager.cs" />
     <Compile Include="Management\MauPhieuInManager.cs" />
@@ -55,6 +59,12 @@
     <Compile Include="Management\PhieuDeNghiManager.cs" />
     <Compile Include="Management\KhoaPhongManager.cs" />
     <Compile Include="Management\CanBoManager.cs" />
+    <Compile Include="Model\BangMaModel.cs" />
+    <Compile Include="Model\KhoGiaoDichChiTietModel.cs" />
+    <Compile Include="Model\KhoTonKhoModel.cs" />
+    <Compile Include="Model\KhoGiaoDichModel.cs" />
+    <Compile Include="Model\TuDienModel.cs" />
+    <Compile Include="Model\KhoDMSanPhamModel.cs" />
     <Compile Include="Model\DanhMucCongViecModel.cs" />
     <Compile Include="Model\MauPhieuInModel.cs" />
     <Compile Include="Model\BienBanNghiemThuModel.cs" />
@@ -63,6 +73,7 @@
     <Compile Include="Model\KhoaPhongModel.cs" />
     <Compile Include="Model\CanBoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\CTuDien.cs" />
     <Compile Include="Utils\CookieHelper.cs" />
     <Compile Include="Utils\CryptoUtils.cs" />
   </ItemGroup>
