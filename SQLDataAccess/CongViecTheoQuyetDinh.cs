@@ -28,6 +28,7 @@ namespace SQLDataAccess
         public string TrangThai { get; set; }
         public Nullable<System.Guid> IdCanBo { get; set; }
         public System.DateTime NgayTao { get; set; }
+        public Nullable<decimal> SoTien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BienBanNghiemThu> BienBanNghiemThus { get; set; }

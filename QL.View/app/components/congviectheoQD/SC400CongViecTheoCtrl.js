@@ -89,8 +89,7 @@ app.controller('SC400CongViecTheoCtrl',
             };
             $scope.saveCongViec = function () {
                 ngProgress.start();
-                $scope.isDisabled = true;
-                if ($scope.CongViec.TenCongViec == "" || $scope.CongViec.MoTaCongViec) {
+                if ($scope.CongViec.TenCongViec == "" || $scope.CongViec.MoTaCongViec == "") {
                     toaster.pop('warning', "Thông báo", "Vui lòng nhập đủ thông tin.");
                     return;
                 }
@@ -100,6 +99,7 @@ app.controller('SC400CongViecTheoCtrl',
                         $scope.CongViec.DanhSachKhoa += $scope.DSKhoaPhong[i].Id + ";";
                     }
                 }
+                $scope.isDisabled = true;
                 svCongViectheoQD.saveCongViec($scope.CongViec).$promise.then(
                     function (d) {
                         toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
@@ -207,22 +207,20 @@ app.controller('SC400CongViecTheoCtrl',
             $scope.GiaoDich = {};
             $scope.SanPham = {};
             $scope.showPopupVatTu = function (phieu) {
-                $scope.openPopup();
+                $scope.openPopupVatTu();
                 $scope.Phieu = phieu;
                 $scope.GiaoDich = {
                     ChiTiet: [],
-                    IdKhoa: phieu.IdKhoa,
                     IdNguoiTao: myAppConfig.IdCanBo,
-                    IdPhieuDeNghi: phieu.Id,
+                    IdCongViec: phieu.Id,
                     LoaiGiaoDich: 0,
                 }
-                $('#txtTenCongViec').focus();
             }
-            $scope.openPopup = function () {
+            $scope.openPopupVatTu = function () {
                 $("#popupVatTu").bPopup({ escClose: false, modalClose: false });
                 $("#popupVatTu").show();
             };
-            $scope.closePopup = function () {
+            $scope.closePopupVatTu = function () {
                 $("#popupVatTu").bPopup({}).close();
             };
             $scope.refreshTonKho = function (key) {
@@ -266,27 +264,36 @@ app.controller('SC400CongViecTheoCtrl',
                     toaster.pop('warning', "Thông báo", "Chưa có vật tư nào được chọn.");
                     return;
                 }
+                $scope.GiaoDich.DanhSachKhoa = "";
+                for (var i = 0; i < $scope.DSKhoaPhong.length; i++) {
+                    if ($scope.DSKhoaPhong[i].IsCheck) {
+                        $scope.GiaoDich.DanhSachKhoa += $scope.DSKhoaPhong[i].Id + ";";
+                    }
+                }
+                if ($scope.GiaoDich.DanhSachKhoa=="") {
+                    toaster.pop('warning', "Thông báo", "Chưa có khoa/ phòng.");
+                    return;
+                }
                 confirmPopup('Cảnh báo', 'Xác nhận tạo phiếu vật tư và trừ kho ?', function () {
                     $scope.isDisabled = true;
+                    ngProgress.start();
                     svKho.TaoPhieuVTByPhieuDeNghi($scope.GiaoDich).$promise.then(
                         function (d) {
                             setTimeout(function () { toaster.pop('success', "Thông báo", "Tạo phiếu thành công."); }, 2000);
                             ngProgress.complete();
                             $scope.isDisabled = false;
-                            $scope.closePopup();
+                            $scope.closePopupVatTu();
                             $scope.refreshData(1);
                         }, function (err) {
                             toaster.pop('error', "Thông báo", err.data);
                             ngProgress.complete();
                             $scope.isDisabled = false;
                         });
-
                 }, function () {
                     return;
                 });
             }
-            $scope.InPhieuVatTu = function (phieu) {
-                var gd = phieu.GiaoDichVatTu;
+            $scope.InPhieuVatTu = function (gd) {
                 svMauPhieuIn.GetByMa({
                     sMa: 'PhieuVatTu'
                 }).$promise.then(
@@ -321,4 +328,38 @@ app.controller('SC400CongViecTheoCtrl',
                     }, function (err) { ngProgress.complete(); });
             }
             //endregion phieu vat tu
+            //region danh sach phieu vat tu
+            $scope.CongViecSelect = {};
+            $scope.ShowPopupPhieuVT = function (phieu) {
+                $scope.CongViecSelect = phieu;
+                $scope.openPopupDanhSachPhieuVT();
+                $scope.iPageIndexVT = 1;
+                $scope.iPageSizeVT = "20";
+                $scope.LoadDanhSachPhieuVT(1);
+            }
+            $scope.openPopupDanhSachPhieuVT = function () {
+                $("#popupDanhSachPhieuVT").bPopup({ escClose: false, modalClose: false });
+                $("#popupDanhSachPhieuVT").show();
+            };
+            $scope.closePopupDanhSachPhieuVT = function () {
+                $("#popupDanhSachPhieuVT").bPopup({}).close();
+            };
+            $scope.LoadDanhSachPhieuVT = function (iPageIndex) {
+                $scope.iPageIndexVT = iPageIndex;
+                ngProgress.start();
+                svKho.GetGiaoDichByCongViec({
+                    iPageIndex: $scope.iPageIndexVT,
+                    iPageSize: $scope.iPageSizeVT,
+                    IdCongViec: $scope.CongViecSelect.Id
+                }).$promise.then(
+                    function (d) {
+                        $scope.DSPhieuVT = d.List;
+                        $scope.iTotalVT = d.iTotal != null ? d.iTotal : 0;
+                        $scope.iTotalPageVT = Math.floor(($scope.iTotalVT - 1) / $scope.iPageSizeVT) + 1;
+                        var lstPage = GetlstPage($scope.iTotalPageVT, $scope.iPageIndexVT, 'LoadDanhSachPhieuVT');
+                        $("#lstPageVT").html($compile(lstPage)($scope));
+                        ngProgress.complete();
+                    }, function (err) { ngProgress.complete(); });
+            }
+            //endregion
         }]);

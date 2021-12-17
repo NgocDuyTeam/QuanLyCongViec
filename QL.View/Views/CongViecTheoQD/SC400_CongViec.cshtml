@@ -43,17 +43,20 @@
                         <td>{{phieu.TenCanBo}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
                         <td class="text-right">
-                            <a ng-if="IsKhoa" ng-click="InPhieuVatTu(phieu)" title="In vật tư">
+                            <a ng-if="IsKhoa" ng-click="InPhieuVatTu(phieu.GiaoDichVatTu)" title="In vật tư">
                                 <i class="fas fa-print">In vật tư&nbsp;&nbsp;</i>
                             </a>
                             <a ng-if="!IsKhoa" ng-click="showPopupVatTu(phieu)" title="Thêm phiếu vật tư">
                                 <i class="fas fa-plus">Phiếu vật tư &nbsp;&nbsp;</i>
                             </a>
+                            <a ng-if="!IsKhoa" ng-click="ShowPopupPhieuVT(phieu)" title="Chi tiết phiếu VT">
+                                <i class="fas fa-info-circle">Danh sách phiếu VT&nbsp;&nbsp;</i>
+                            </a>
                             <a ng-if="!IsKhoa" href="/NghiemThu/SC301_NghiemThuCongViec?idCongViec={{phieu.Id}}" title="Biên bản">
                                 <i class="fas fa-plus">Thêm biên bản&nbsp;&nbsp;</i>
                             </a>
                             <a ng-if="!IsKhoa" ng-click="ShowPopupBienBan(phieu)" title="Biên bản">
-                                <i class="fas fa-info-circle">Chi tiết biên bản&nbsp;&nbsp;</i>
+                                <i class="fas fa-info-circle">Danh sách biên bản&nbsp;&nbsp;</i>
                             </a>
                             <a ng-if="!IsKhoa" ng-click="ShowAddOrUpdateCongViec(phieu)" title="Sửa">
                                 <i class="fas fa-pencil-alt">Sửa&nbsp;&nbsp;</i>
@@ -93,6 +96,17 @@
                     </div>
                     <div class="col-lg-9">
                         <input id="txtTenCongViec" type="text" class="form-control" ng-model="CongViec.TenCongViec" />
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding-top:3px">
+                    <div class="col-lg-3">
+                        Số tiền
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="txtSoTien" type="text" class="form-control" ng-model="CongViec.SoTien" numbers-only />
+                    </div>
+                    <div class="col-lg-4" style="padding-top:10px">
+                        {{CongViec.SoTien| number}}
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top:3px">
@@ -166,10 +180,11 @@
             <button class="btn" ng-click="closePopupBienBan()">Đóng</button>
         </div>
     </div>
+    @*----------------------------------------------------------------------------------*@
     <div class="popup" style="display: none;width:800px" id="popupVatTu">
         <h4>
             Phiếu vật tư
-            <a class="action close popup_close col-lg-2 b-close" my-click-once data-ng-click="closePopup()" title="Đóng của sổ">
+            <a class="action close popup_close col-lg-2 b-close" my-click-once data-ng-click="closePopupVatTu()" title="Đóng của sổ">
                 (Đóng)
             </a>
         </h4>
@@ -192,7 +207,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top:3px">
-                    <label class="col-lg-3">Số lượng nhập</label>
+                    <label class="col-lg-3">Số lượng</label>
                     <div class="col-lg-6">
                         <input type="text" id="txtSoLuong" ng-model="SanPham.SoLuong" class="form-control" numbers-only />
                     </div>
@@ -210,15 +225,15 @@
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top:3px">
-                        <div class="col-lg-3">
-                            Danh sách khoa
-                        </div>
-                        <div class="col-lg-9" style="overflow: scroll;height:120px; border:1px solid #808080">
-                            <div class="col-lg-4" ng-repeat="khoa in DSKhoaPhong">
-                                <input type="checkbox" ng-model="khoa.IsCheck" /> <label>{{khoa.Ten}}</label>
-                            </div>
+                    <div class="col-lg-3">
+                        Danh sách khoa
+                    </div>
+                    <div class="col-lg-9" style="overflow: scroll;height:120px; border:1px solid #808080">
+                        <div class="col-lg-4" ng-repeat="khoa in DSKhoaPhong">
+                            <input type="checkbox" ng-model="khoa.IsCheck" /> <label>{{khoa.Ten}}</label>
                         </div>
                     </div>
+                </div>
             </div>
             <div class="row" style="margin-left:0px; margin-right:0px;margin-top:5px">
                 <table class="table table-striped table-bordered">
@@ -258,7 +273,55 @@
         </div>
         <div class="col-lg-12" style="margin-bottom:20px;text-align:right">
             <input class="btn btn-primary" ng-disabled="isDisabled" type="button" style="" value="Tạo phiếu vật tư" ng-click="TaoPhieuVatTu()" />
-            <button class="btn" ng-click="closePopup()">Đóng</button>
+            <button class="btn" ng-click="closePopupVatTu()">Đóng</button>
+        </div>
+    </div>
+@*----------------------------------------------------------------------------------*@
+    <div class="popup" style="display: none;width:800px" id="popupDanhSachPhieuVT" data-key-trap>
+        <h4>
+            Danh sách phiếu vật tư 
+            <a class="action close popup_close col-lg-2 b-close" my-click-once data-ng-click="closePopupDanhSachPhieuVT()" title="Đóng của sổ">
+                (Đóng)
+            </a>
+        </h4>
+        <div class="popup_content" style="">
+            <div class="row" style="margin-left:0px; margin-right:0px;">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Tên khoa</th>
+                            <th class="text-center">Ngày tạo</th>
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="phieu in DSPhieuVT">
+                            <td class="text-center">{{$index+1+ iPageSizeVT*(iPageIndexVT-1)}}</td>
+                            <td>{{phieu.TenKhoa}}</td>
+                            <td class="text-center">{{phieu.NgayTao | date: 'HH:mm dd/MM/yyyy'}}</td>
+                            <td class="text-right">
+                                <a ng-click="InPhieuVatTu(phieu)" title="In">
+                                    <i class="fas fa-print">In</i>
+                                </a>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                        <tr ng-if="DSPhieuVT.length == 0">
+                            <td class="text-center" colspan="4">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-lg-12" ng-visible="{{iTotalPageVT>1}}">
+                    <div class="col-sm-12" style="float: right">
+                        <div class="dataTables_paginate paging_simple_numbers">
+                            <ul class="pagination" id="lstPageVT"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12" style="margin-bottom:20px;text-align:right">
+            <button class="btn" ng-click="closePopupDanhSachPhieuVT()">Đóng</button>
         </div>
     </div>
 </div>

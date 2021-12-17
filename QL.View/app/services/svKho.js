@@ -61,5 +61,14 @@ app.factory('svKho', function (myAppConfig, $resource) {
                 },
                 url: baseUrl + 'api/kho/bcXuatKhoaPhong',
             },
+            'GetGiaoDichByCongViec': {
+                method: 'GET',
+                params: {
+                    IdCongViec: '@IdCongViec',
+                    iPageIndex: '@iPageIndex',
+                    iPageSize: '@iPageSize'
+                },
+                url: baseUrl + 'api/kho/getGiaoDichByCongViec',
+            },
         })
 });

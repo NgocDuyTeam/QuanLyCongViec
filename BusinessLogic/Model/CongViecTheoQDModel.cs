@@ -16,7 +16,7 @@ namespace BusinessLogic.Model
         public Guid IdCanBo { get; set; }
         public string TenCanBo { get; set; }
         public DateTime NgayTao { get; set; }
-
+        public decimal? SoTien { get; set; }
         /// <summary>
         /// /ex
         /// </summary>

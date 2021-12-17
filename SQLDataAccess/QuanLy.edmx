@@ -59,6 +59,7 @@
           <Property Name="TrangThai" Type="nvarchar" MaxLength="250" />
           <Property Name="IdCanBo" Type="uniqueidentifier" />
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
+          <Property Name="SoTien" Type="decimal" Precision="18" Scale="3" />
         </EntityType>
         <EntityType Name="DanhMucCongViec">
           <Key>
@@ -722,6 +723,7 @@
           <NavigationProperty Name="BienBanNghiemThus" Relationship="QuanLy.FK_BienBanNghiemThu_CongViecTheoQuyetDinh" FromRole="CongViecTheoQuyetDinh" ToRole="BienBanNghiemThu" />
           <NavigationProperty Name="CanBo" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_CanBo" FromRole="CongViecTheoQuyetDinh" ToRole="CanBo" />
           <NavigationProperty Name="KhoGiaoDiches" Relationship="QuanLy.FK_KhoGiaoDich_CongViecTheoQuyetDinh" FromRole="CongViecTheoQuyetDinh" ToRole="KhoGiaoDich" />
+          <Property Name="SoTien" Type="Decimal" Precision="18" Scale="3" />
         </EntityType>
         <Association Name="FK_BienBanNghiemThu_CanBo">
           <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="0..1" />
@@ -1056,6 +1058,7 @@
           <EntitySetMapping Name="CongViecTheoQuyetDinhs">
             <EntityTypeMapping TypeName="QuanLy.CongViecTheoQuyetDinh">
               <MappingFragment StoreEntitySet="CongViecTheoQuyetDinh">
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="IdCanBo" ColumnName="IdCanBo" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />

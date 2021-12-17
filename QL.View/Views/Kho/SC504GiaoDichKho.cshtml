@@ -33,7 +33,9 @@
                 <thead>
                     <tr>
                         <th class="text-center">STT</th>
+                        <th class="text-center">Mã giao dịch</th>
                         <th class="text-center">Ngày tạo</th>
+                        <th class="text-center">Khoa/ phòng</th>
                         <th class="text-center">Cán bộ</th>
                         <th class="text-center">Loại giao dịch</th>
                         <th class="text-center">Nội dung</th>
@@ -43,7 +45,9 @@
                 <tbody>
                     <tr data-ng-repeat="sp in DsGiaoDich">
                         <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
+                        <td>{{sp.MaGiaoDich}}</td>
                         <td class="text-center">{{sp.NgayTao | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{sp.TenKhoa}}</td>
                         <td>{{sp.TenCanBo}}</td>
                         <td class="text-center" ng-if="sp.LoaiGiaoDich == '1'">Nhập kho</td>
                         <td class="text-center" ng-if="sp.LoaiGiaoDich == '0'">Xuất kho</td>

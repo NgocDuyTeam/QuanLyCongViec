@@ -15,11 +15,14 @@
         <label class="col-sm-2 control-label">Chọn sản phẩm</label>
         <div class="col-sm-6">
             <ui-select data-ng-model="$parent.sanpham" ng-disabled="disabled" reset-search-input="false">
-                <ui-select-match placeholder="Chọn sản phẩm... ">{{$select.selected.Ma}} - {{$select.selected.TenSanPham}} - {{$select.selected.SoLuong}}</ui-select-match>
+                <ui-select-match placeholder="Chọn sản phẩm... ">{{$select.selected.Ma}} - {{$select.selected.TenSanPham}} </ui-select-match>
                 <ui-select-choices repeat="tk in DSTonKho" refresh="refreshTonKho($select.search)" refresh-delay="0" value="{{$select.selected.Id}}">
                     <div ng-bind-html="tk.Ma + ' - ' + tk.TenSanPham | highlight:$select.search"></div>
                 </ui-select-choices>
             </ui-select>
+        </div>
+        <div class="col-lg-3" ng-if="sanpham.Ma != ''">
+            <i>Tồn : <b>{{sanpham.SoLuong}} {{sanpham.TenDonVi}}</b></i>
         </div>
     </div>
     <div class="row col-sm-12" style="padding-top:3px">

@@ -10,6 +10,7 @@ namespace BusinessLogic.Model
     {
         public Guid Id { get; set; }
         public int LoaiGiaoDich { get; set; }
+        public string MaGiaoDich { get; set; }
         public DateTime NgayTao { get; set; }
         public Guid IdNguoiTao { get; set; }
         public bool Active { get; set; }
@@ -21,6 +22,7 @@ namespace BusinessLogic.Model
 
         public string TenCanBo { get; set; }
         public string TenKhoa { get; set; }
+        public string DanhSachKhoa { get; set; }
     }
 
 }

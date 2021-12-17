@@ -1,12 +1,15 @@
 ﻿using BusinessLogic.Management;
 using BusinessLogic.Model;
+using Framework.Extensions;
 using QL.API.Http;
 using QL.API.Models;
+using SQLDataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -23,7 +26,11 @@ namespace QL.API.Controllers
         {
             try
             {
-                KhoManager.Instance.CreateGiaoDichKho(value);
+                using (var uow = new UnitOfWork())
+                {
+                    KhoManager.Instance.CreateGiaoDichKho(uow, value);
+                    uow.Save();
+                }
                 return HttpOk("");
             }
             catch (Exception ex)
@@ -120,12 +127,53 @@ namespace QL.API.Controllers
         {
             try
             {
-                KhoManager.Instance.CreateGiaoDichKho(value);
+                if (value.DanhSachKhoa.IsNotNullOrEmpty())
+                {
+                    using (var uow = new UnitOfWork())
+                    {
+                        var lstKhoa = Regex.Split(value.DanhSachKhoa, ";");
+                        foreach (var item in lstKhoa)
+                        {
+                            Guid idkhoa = Guid.Empty;
+                            if (Guid.TryParse(item, out idkhoa))
+                            {
+                                value.IdKhoa = idkhoa;
+                                KhoManager.Instance.CreateGiaoDichKho(uow, value);
+                            }
+                        }
+                        uow.Save();
+                    }
+                }
+                else
+                {
+                    using (var uow = new UnitOfWork())
+                    {
+                        KhoManager.Instance.CreateGiaoDichKho(uow, value);
+                        uow.Save();
+                    }
+                }
                 return HttpOk("");
             }
             catch (Exception ex)
             {
                 return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("getGiaoDichByCongViec")]
+        [HttpGet]
+        public HttpResponseMessage GetGiaoDichByCongViec(int iPageIndex, int iPageSize, Guid IdCongViec)
+        {
+            try
+            {
+                int iTotal = 0;
+                var result = new ListSelect();
+                result.List = KhoManager.Instance.GetGiaoDichByCongViec(IdCongViec, iPageIndex, iPageSize, out iTotal);
+                result.iTotal = iTotal;
+                return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex);
             }
         }
     }
