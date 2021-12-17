@@ -18,6 +18,7 @@ namespace SQLDataAccess
         public CongViecTheoQuyetDinh()
         {
             this.BienBanNghiemThus = new HashSet<BienBanNghiemThu>();
+            this.KhoGiaoDiches = new HashSet<KhoGiaoDich>();
         }
     
         public System.Guid Id { get; set; }
@@ -31,5 +32,7 @@ namespace SQLDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BienBanNghiemThu> BienBanNghiemThus { get; set; }
         public virtual CanBo CanBo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KhoGiaoDich> KhoGiaoDiches { get; set; }
     }
 }

@@ -10,7 +10,8 @@ app.controller('SC501NhapKhoCtrl',
             $scope.GiaoDich = {
                 ChiTiet: [],
                 LoaiGiaoDich: 1,
-                IdNguoiTao: myAppConfig.IdCanBo
+                IdNguoiTao: myAppConfig.IdCanBo,
+                IdKhoa: myAppConfig.IdKhoa
             };
             $scope.refreshSanPham = function (key) {
                 svDanhMucSanPham.GetDanhSach({

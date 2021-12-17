@@ -14,9 +14,13 @@ namespace BusinessLogic.Model
         public Guid IdNguoiTao { get; set; }
         public bool Active { get; set; }
         public string GhiChu { get; set; }
+        public Guid IdKhoa { get; set; }
+        public Guid? IdPhieuDeNghi { get; set; }
+        public Guid? IdCongViec { get; set; }
         public List<KhoGiaoDichChiTietModel> ChiTiet { get; set; }
 
         public string TenCanBo { get; set; }
+        public string TenKhoa { get; set; }
     }
 
 }

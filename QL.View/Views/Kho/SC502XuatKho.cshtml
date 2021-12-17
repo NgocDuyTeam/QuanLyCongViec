@@ -5,14 +5,14 @@
 
 <div class="row content-all-ql" data-ng-controller="SC502XuatKhoCtrl" ng-cloak>
     <div class="row col-sm-12">
-        <label for="txtDomain" class="col-sm-2 control-label">Nội dung xuất</label>
+        <label class="col-sm-2 control-label">Nội dung xuất</label>
         <div class="col-sm-6">
             <textarea class="form-control" ng-model="GiaoDich.GhiChu" rows="3"></textarea>
         </div>
     </div>
 
     <div class="row col-sm-12" style="padding-top:3px">
-        <label for="txtDomain" class="col-sm-2 control-label">Chọn sản phẩm</label>
+        <label class="col-sm-2 control-label">Chọn sản phẩm</label>
         <div class="col-sm-6">
             <ui-select data-ng-model="$parent.sanpham" ng-disabled="disabled" reset-search-input="false">
                 <ui-select-match placeholder="Chọn sản phẩm... ">{{$select.selected.Ma}} - {{$select.selected.TenSanPham}} - {{$select.selected.SoLuong}}</ui-select-match>
@@ -23,14 +23,14 @@
         </div>
     </div>
     <div class="row col-sm-12" style="padding-top:3px">
-        <label for="txtDomain" class="col-sm-2 control-label">Số lượng xuất</label>
+        <label class="col-sm-2 control-label">Số lượng xuất</label>
         <div class="col-sm-6">
             <input type="text" id="txtSoLuong" ng-model="SanPham.SoLuong" class="form-control" numbers-only />
         </div>
     </div>
 
     <div class="row col-sm-12">
-        <label for="txtDomain" class="col-sm-2 control-label"></label>
+        <label class="col-sm-2 control-label"></label>
         <div class="col-sm-6 text-right">
             <input ng-disabled="isDisabled|| isView" class="btn btn-primary" type="button" style="" value="Thêm" ng-click="AddSanPham()" />
         </div>
@@ -67,7 +67,6 @@
         </div>
     </div>
     <div class="row col-sm-12">
-        <label for="txtDomain" class="col-sm-2 control-label"></label>
         <div class="col-sm-12 text-right">
             <input class="btn btn-primary" ng-disabled="isDisabled || isView" type="button" style="" value="Xuất kho" ng-click="XuatKho()" />
             <input class="btn" ng-if="isView" type="button" style="" value="Quay lại" ng-click="BackGiaoDich()" />

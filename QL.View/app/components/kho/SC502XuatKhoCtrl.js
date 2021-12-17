@@ -10,7 +10,8 @@ app.controller('SC502XuatKhoCtrl',
             $scope.GiaoDich = {
                 ChiTiet: [],
                 LoaiGiaoDich: 0,
-                IdNguoiTao: myAppConfig.IdCanBo
+                IdNguoiTao: myAppConfig.IdCanBo,
+                IdKhoa: myAppConfig.IdKhoa
             };
             $scope.refreshTonKho = function (key) {
                 svKho.GetTonKho({

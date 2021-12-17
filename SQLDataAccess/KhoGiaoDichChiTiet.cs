@@ -19,8 +19,9 @@ namespace SQLDataAccess
         public System.Guid IdSanPham { get; set; }
         public decimal SoLuong { get; set; }
         public System.Guid IdTonKho { get; set; }
+        public string GhiChu { get; set; }
     
-        public virtual KhoGiaoDich KhoGiaoDich { get; set; }
         public virtual KhoDMSanPham KhoDMSanPham { get; set; }
+        public virtual KhoGiaoDich KhoGiaoDich { get; set; }
     }
 }

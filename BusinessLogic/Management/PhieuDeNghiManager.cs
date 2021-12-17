@@ -238,6 +238,26 @@ namespace BusinessLogic.Management
                             }
                         }
                     }
+                    if (x.KhoGiaoDiches.Count > 0)
+                    {
+                        var gd = x.KhoGiaoDiches.FirstOrDefault();
+                        phieu.GiaoDichVatTu = gd.CopyAs<KhoGiaoDichModel>();
+                        phieu.GiaoDichVatTu.TenKhoa = gd.KhoaPhong.Ten;
+                        phieu.GiaoDichVatTu.ChiTiet = gd.KhoGiaoDichChiTiets.Select(y =>
+                        {
+                            var item = new KhoGiaoDichChiTietModel()
+                            {
+                                Id = y.Id,
+                                GhiChu = y.GhiChu ?? "",
+                                MaSanPham = y.KhoDMSanPham.Ma,
+                                TenSanPham = y.KhoDMSanPham.TenSanPham,
+                                TenDonVi = y.KhoDMSanPham.TuDien.TenTuDien,
+                                SoLuong = y.SoLuong,
+                            };
+                            return item;
+                        }).ToList();
+
+                    }
                     return phieu;
                 }).ToList();
             }

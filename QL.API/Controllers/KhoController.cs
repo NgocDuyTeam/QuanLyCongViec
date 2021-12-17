@@ -80,5 +80,53 @@ namespace QL.API.Controllers
                 return HttpInternalServerError(ex);
             }
         }
+        [Route("bcXuatNhapTon")]
+        [HttpGet]
+        public HttpResponseMessage BaoCaoXuatNhapTon(string sSearch, DateTime TuNgay, DateTime DenNgay)
+        {
+            try
+            {
+                int iTotal = 0;
+                var result = new ListSelect();
+                result.List = KhoManager.Instance.BaoCaoXuatNhapTon(sSearch, TuNgay, DenNgay.Date.AddDays(1));
+                result.iTotal = iTotal;
+                return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex);
+            }
+        }
+        [Route("bcXuatKhoaPhong")]
+        [HttpGet]
+        public HttpResponseMessage BCXuatKhoaPhong(string sSearch, DateTime TuNgay, DateTime DenNgay, Guid IdKhoa)
+        {
+            try
+            {
+                int iTotal = 0;
+                var result = new ListSelect();
+                result.List = KhoManager.Instance.BCXuatKhoaPhong(sSearch, TuNgay, DenNgay.Date.AddDays(1), IdKhoa);
+                result.iTotal = iTotal;
+                return HttpOk(result);
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex);
+            }
+        }
+        [Route("taoPhieuVTByPhieuDeNghi")]
+        [HttpPost]
+        public HttpResponseMessage TaoPhieuVTByPhieuDeNghi(KhoGiaoDichModel value)
+        {
+            try
+            {
+                KhoManager.Instance.CreateGiaoDichKho(value);
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
     }
 }

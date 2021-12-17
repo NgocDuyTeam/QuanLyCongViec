@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Data\ReportData.cs" />
+    <Compile Include="Data\CData.cs" />
     <Compile Include="Management\BienBanNghiemThuManager.cs" />
     <Compile Include="Management\BangMaManager.cs" />
     <Compile Include="Management\KhoManager.cs" />

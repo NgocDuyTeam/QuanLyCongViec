@@ -32,5 +32,17 @@ namespace QL.View.Controllers
             ViewBag.TitleUrl = " / Danh sách giao dịch kho ";
             return View();
         }
+        public ActionResult SC505XuatNhapTon()
+        {
+            ViewBag.Title = "Bệnh viện K - Hệ thống quản lý phiếu đề nghị";
+            ViewBag.TitleUrl = " / Báo cáo xuất nhập tồn ";
+            return View();
+        }
+        public ActionResult SC506BCXuatKhoaPhong()
+        {
+            ViewBag.Title = "Bệnh viện K - Hệ thống quản lý phiếu đề nghị";
+            ViewBag.TitleUrl = " / Báo cáo xuất xuống khoa ";
+            return View();
+        }
     }
 }

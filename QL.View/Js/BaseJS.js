@@ -93,3 +93,46 @@ function GetlstPage(pageTotal, pageIndex, functionLoad) {
     }
     return str;
 };
+
+function confirmPopup(title, warning, handlerYes, handlerNo, option, style) {
+    $("#confirmPopup").remove();
+
+    _handlerYes = handlerYes;
+    _handlerNo = handlerNo;
+    var sBuild = `<div id="confirmPopup" class="popup panel panel-default panel-${style}" style="display: none;">`;
+    sBuild += "<div class='panel-heading text-bold'>" + title + "</div>";
+    sBuild += '<div class="popup_content" style="text-align:center;" >';
+    sBuild += "<p>" + warning + "</p><br />";
+    sBuild += '<span><a onclick="confirmYes();" href="javascript:void(0)" id="btnOK" class="twitt-button twitt-save-button twitt-button-medium" tabindex="0"><span class=" "><span class=" "><span class="btn btn-primary" autofocus="true" style="width: 70px;">Đồng ý</span></span></span></a></span>';
+    sBuild += '<span style="margin-left:5px;"><a onclick="confirmNo();" href="javascript:void(0)" id="btnNO" class="twitt-button twitt-cancel-button twitt-button-medium" tabindex="1"><span class=" "><span class=" "><span class="btn btn-default">Không</span></span></span></a></span>';
+    sBuild += '</div></div>';
+    setTimeout(function () {
+        $('body').append(sBuild);
+        $("#confirmPopup").bPopup(option);
+        $("#btnOK").focus();
+        $("#confirmPopup").jkey('right', function () {
+            var currentElement = $(document.activeElement); // ID set by OnFocusIn
+            //var currentElement = $get(currentElementId); // ID set by OnFOcusIn
+            var curIndex = currentElement[0].tabIndex; //get current elements tab index
+            if (curIndex == 0) $("#btnNO").focus();
+        });
+        $("#confirmPopup").jkey('left', function () {
+            var currentElement = $(document.activeElement); // ID set by OnFocusIn
+            //var currentElement = $get(currentElementId); // ID set by OnFOcusIn
+            var curIndex = currentElement[0].tabIndex; //get current elements tab index
+            if (curIndex == 1) $("#btnOK").focus();
+        });
+    }, 0)
+}
+
+function confirmYes() {
+    $("#confirmPopup").bPopup().close();
+    $("#confirmPopup").remove();
+    if (_handlerYes) _handlerYes();
+}
+
+function confirmNo() {
+    $("#confirmPopup").bPopup().close();
+    $("#confirmPopup").remove();
+    if (_handlerNo) _handlerNo();
+}

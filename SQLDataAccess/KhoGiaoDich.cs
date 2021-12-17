@@ -21,14 +21,20 @@ namespace SQLDataAccess
         }
     
         public System.Guid Id { get; set; }
+        public string MaGiaoDich { get; set; }
         public int LoaiGiaoDich { get; set; }
         public System.DateTime NgayTao { get; set; }
         public System.Guid IdNguoiTao { get; set; }
         public bool Active { get; set; }
         public string GhiChu { get; set; }
-        public string MaGiaoDich { get; set; }
+        public System.Guid IdKhoa { get; set; }
+        public Nullable<System.Guid> IdPhieuDeNghi { get; set; }
+        public Nullable<System.Guid> IdCongViec { get; set; }
     
         public virtual CanBo CanBo { get; set; }
+        public virtual CongViecTheoQuyetDinh CongViecTheoQuyetDinh { get; set; }
+        public virtual KhoaPhong KhoaPhong { get; set; }
+        public virtual PhieuDeNghi PhieuDeNghi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KhoGiaoDichChiTiet> KhoGiaoDichChiTiets { get; set; }
     }

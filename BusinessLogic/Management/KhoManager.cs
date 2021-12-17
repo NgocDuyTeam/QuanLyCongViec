@@ -1,9 +1,11 @@
-﻿using BusinessLogic.Helper;
+﻿using BusinessLogic.Data;
+using BusinessLogic.Helper;
 using BusinessLogic.Model;
 using Framework.Extensions;
 using SQLDataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,6 +111,9 @@ namespace BusinessLogic.Management
                         IdNguoiTao = value.IdNguoiTao,
                         GhiChu = value.GhiChu,
                         MaGiaoDich = MaGiaoDich,
+                        IdKhoa = value.IdKhoa,
+                        IdPhieuDeNghi = value.IdPhieuDeNghi,
+                        IdCongViec = value.IdCongViec,
                         State = EDataState.Added
                     };
                     uow.Repository<KhoGiaoDich>().InsertOrUpdate(gd);
@@ -154,6 +159,9 @@ namespace BusinessLogic.Management
                         LoaiGiaoDich = 0,
                         IdNguoiTao = value.IdNguoiTao,
                         GhiChu = value.GhiChu,
+                        IdKhoa = value.IdKhoa,
+                        IdPhieuDeNghi = value.IdPhieuDeNghi,
+                        IdCongViec = value.IdCongViec,
                         State = EDataState.Added,
                     };
                     uow.Repository<KhoGiaoDich>().InsertOrUpdate(gd);
@@ -206,6 +214,33 @@ namespace BusinessLogic.Management
                 }
             }
             return null;
+        }
+        public DataTable BaoCaoXuatNhapTon(string sSearch, DateTime TuNgay, DateTime DenNgay)
+        {
+            if (sSearch == null)
+            {
+                sSearch = "";
+            }
+            ReportData data = new ReportData();
+            data.AddSqlParameter("@search", sSearch);
+            data.AddSqlParameter("@tungay", TuNgay);
+            data.AddSqlParameter("@denngay", DenNgay);
+            DataSet ds = data.GetDataSet(CProcName.proc_BCKho_Xuat_Nhap_Ton);
+            return ds.Tables[0];
+        }
+        public DataTable BCXuatKhoaPhong(string sSearch, DateTime TuNgay, DateTime DenNgay, Guid IdKhoa)
+        {
+            if (sSearch == null)
+            {
+                sSearch = "";
+            }
+            ReportData data = new ReportData();
+            data.AddSqlParameter("@search", sSearch);
+            data.AddSqlParameter("@tungay", TuNgay);
+            data.AddSqlParameter("@denngay", DenNgay);
+            data.AddSqlParameter("@idkhoa", IdKhoa);
+            DataSet ds = data.GetDataSet(CProcName.proc_BCKhoXuatKhoaPhong);
+            return ds.Tables[0];
         }
         #endregion
 
