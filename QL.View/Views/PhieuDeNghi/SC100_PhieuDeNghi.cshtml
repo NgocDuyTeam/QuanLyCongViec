@@ -42,7 +42,7 @@
         <div class="row col-lg-12">
             <div class="col-lg-2">Mục đề nghị</div>
             <div class="col-lg-2" style="padding-top:3px;padding-bottom:3px">
-                <ui-select ng-model="Phieu.IdCongViec" reset-search-input="false">
+                <ui-select ng-model="Phieu.IdCongViec" reset-search-input="false" ng-disabled="IsEdit">
                     <ui-select-match placeholder="Chọn ... ">{{$select.selected.TenCongViec}}</ui-select-match>
                     <ui-select-choices repeat="cv.Id as cv in DSCongViec | filter: $select.search" value="{{$select.selected.Id}}">
                         <div ng-bind-html="cv.TenCongViec | highlight:$select.search"></div>
@@ -53,7 +53,7 @@
         <div class="row col-lg-12">
             <div class="col-lg-2">Nội dung đề nghị</div>
             <div class="col-lg-8">
-                <textarea rows="3" class="form-control" name="NoiDungDeNghi" type="text" data-ng-model="Phieu.NoiDung" required></textarea>
+                <textarea rows="3" ng-disabled="IsEdit" class="form-control" name="NoiDungDeNghi" type="text" data-ng-model="Phieu.NoiDung" required></textarea>
             </div>
         </div>
         <div class="row col-lg-12">
@@ -101,7 +101,7 @@
 
         </div>
         <div class="col-lg-12 text-right">
-            <button class="btn btn-primary" ng-disabled="isDisabled" ng-click="savePhieu()">Lưu thông tin</button>
+            <button class="btn btn-primary" ng-disabled="isDisabled || IsEdit" ng-click="savePhieu()">Lưu thông tin</button>
         </div>
     </div>
 </div>

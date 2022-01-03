@@ -16,7 +16,6 @@ app.controller('SC102QLPhieuDeNghiCtrl',
             $scope.DSPhieu = [];
             $scope.DSKhoaPhong = [];
             $scope.DSCanBo = [];
-
             $scope.refreshData = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;
                 ngProgress.start();
@@ -27,7 +26,8 @@ app.controller('SC102QLPhieuDeNghiCtrl',
                     sTrangThai: $scope.sTrangThai,
                     iPageIndex: $scope.iPageIndex,
                     iPageSize: $scope.iPageSize,
-                    IdCanBo: $scope.IdCanBo
+                    IdCanBo: $scope.IdCanBo,
+                    IsTuChoi: false
                 }).$promise.then(
                     function (d) {
                         $scope.DSPhieu = d.List;
@@ -39,7 +39,6 @@ app.controller('SC102QLPhieuDeNghiCtrl',
                     }, function (err) { ngProgress.complete(); });
             }
             $scope.refreshData(1);
-
             svDanhMucKhoaPhong.GetDanhSachKhoaPhong({
                 iPageIndex: -1,
                 iPageSize: 1
@@ -151,5 +150,29 @@ app.controller('SC102QLPhieuDeNghiCtrl',
                             setTimeout(function () { newWin.close(); }, 10);
                         });
                     }, function (err) { ngProgress.complete(); });
+            }
+            $scope.ShowPopupTuChoi = function (phieu) {
+                $scope.Phieu = phieu;
+                $("#popupTuChoi").bPopup({ escClose: false, modalClose: false });
+                $("#popupTuChoi").show();
+                $scope.LyDoTuChoi = "";
+                $('#txtLyDo').focus();
+            };
+            $scope.closePopupTuChoi = function () {
+                $("#popupTuChoi").bPopup({}).close();
+            };
+            $scope.TuChoiDeNghi = function () {
+                svPhieuDeNghi.TuChoiDeNghi({
+                    IdPhieu: $scope.Phieu.Id,
+                    sNoiDung: $scope.LyDoTuChoi
+                }).$promise.then(
+                    function (d) {
+                        toaster.pop('success', "Thông báo", "Từ chối phiếu đề nghị thành công.");
+                        $scope.closePopupTuChoi();
+                        $scope.refreshData(1);
+                    }, function (err) {
+                        toaster.pop('error', "Thông báo", err.data);
+                        ngProgress.complete();
+                    });
             }
         }]);

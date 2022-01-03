@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Model;
+﻿using BusinessLogic.Helper;
+using BusinessLogic.Model;
 using Framework.Extensions;
 using SQLDataAccess;
 using System;
@@ -57,7 +58,7 @@ namespace BusinessLogic.Management
                 if (value.Id.IsNotNull())
                 {
                     var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
-                    phieu.TrangThai = "DaThucHien";
+                    phieu.TrangThai = CTrangThaiPhieu.DaThucHien;
                     phieu.State = EDataState.Modified;
                 }
                 uow.Save();
@@ -71,7 +72,7 @@ namespace BusinessLogic.Management
                 {
                     var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == value.Id).FirstOrDefault();
                     phieu.IdCanBoThucHien = value.IdCanBoThucHien;
-                    phieu.TrangThai = "DaPhanViec";
+                    phieu.TrangThai = CTrangThaiPhieu.DaPhanViec;
                     phieu.State = EDataState.Modified;
                     uow.Repository<PhieuDeNghi>().InsertOrUpdate(phieu);
                 }
@@ -98,7 +99,7 @@ namespace BusinessLogic.Management
                     {
                         result.TenCongViec = phieu.DanhMucCongViec.TenCongViec;
                     }
-                    if (phieu.TrangThai == "GuiYeuCau")
+                    if (phieu.TrangThai == CTrangThaiPhieu.GuiYeuCau)
                     {
                         result.sTrangThai = "Gửi yêu cầu";
                     }
@@ -141,13 +142,33 @@ namespace BusinessLogic.Management
                 }
             }
         }
+        public void TuChoiDeNghi(Guid IdPhieu, string sNoiDung)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var phieu = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.Id == IdPhieu).FirstOrDefault();
+                if (phieu != null)
+                {
+                    if (phieu.TrangThai != CTrangThaiPhieu.GuiYeuCau)
+                    {
+                        throw new Exception("Không thể từ chối phiếu khi đã tiếp nhận.");
+                    }
+                    phieu.State = EDataState.Modified;
+                    phieu.IsTuChoi = true;
+                    phieu.LyDoTuChoi = sNoiDung;
+                    uow.Repository<PhieuDeNghi>().Delete(phieu);
+                    uow.Save();
+                }
+            }
+        }
         public List<PhieuDeNghiModel> GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
-            , Guid? IdCanBo, int iPageIndex, int iPageSize, out int iTotal)
+            , Guid? IdCanBo, int iPageIndex, int iPageSize, bool IsTuChoi, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
                 IEnumerable<PhieuDeNghi> lstPhieu = null;
-                var query = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay);
+                var query = uow.Repository<PhieuDeNghi>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay
+                    && x.IsTuChoi == IsTuChoi);
                 if (IdKhoa.HasValue)
                 {
                     query = query.Filter(x => x.IdKhoa == IdKhoa);
@@ -184,15 +205,15 @@ namespace BusinessLogic.Management
                     {
                         phieu.TenCongViec = x.DanhMucCongViec.TenCongViec;
                     }
-                    if (x.TrangThai == "GuiYeuCau")
+                    if (x.TrangThai == CTrangThaiPhieu.GuiYeuCau)
                     {
                         phieu.sTrangThai = "Gửi yêu cầu";
                     }
-                    else if (x.TrangThai == "DaPhanViec")
+                    else if (x.TrangThai == CTrangThaiPhieu.DaPhanViec)
                     {
                         phieu.sTrangThai = "Đã phân công";
                     }
-                    else if (x.TrangThai == "DaThucHien")
+                    else if (x.TrangThai == CTrangThaiPhieu.DaThucHien)
                     {
                         phieu.sTrangThai = "Đã thực hiện";
                         if (x.BienBanNghiemThus.Count() > 0)
@@ -216,6 +237,26 @@ namespace BusinessLogic.Management
                                 phieu.lstBienBan.Add(bb);
                             }
                         }
+                    }
+                    if (x.KhoGiaoDiches.Count > 0)
+                    {
+                        var gd = x.KhoGiaoDiches.FirstOrDefault();
+                        phieu.GiaoDichVatTu = gd.CopyAs<KhoGiaoDichModel>();
+                        phieu.GiaoDichVatTu.TenKhoa = gd.KhoaPhong.Ten;
+                        phieu.GiaoDichVatTu.ChiTiet = gd.KhoGiaoDichChiTiets.Select(y =>
+                        {
+                            var item = new KhoGiaoDichChiTietModel()
+                            {
+                                Id = y.Id,
+                                GhiChu = y.GhiChu ?? "",
+                                MaSanPham = y.KhoDMSanPham.Ma,
+                                TenSanPham = y.KhoDMSanPham.TenSanPham,
+                                TenDonVi = y.KhoDMSanPham.TuDien.TenTuDien,
+                                SoLuong = y.SoLuong,
+                            };
+                            return item;
+                        }).ToList();
+
                     }
                     return phieu;
                 }).ToList();

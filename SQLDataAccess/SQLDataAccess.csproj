@@ -65,6 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BangMa.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
     <Compile Include="BienBanNghiemThu.cs">
       <DependentUpon>QuanLy.tt</DependentUpon>
     </Compile>
@@ -79,6 +82,18 @@
     </Compile>
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="EDataState.cs" />
+    <Compile Include="KhoDMSanPham.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoGiaoDich.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoGiaoDichChiTiet.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoTonKho.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
     <Compile Include="MauPhieuIn.cs">
       <DependentUpon>QuanLy.tt</DependentUpon>
     </Compile>
@@ -111,7 +126,14 @@
     </Compile>
     <Compile Include="Repository.cs" />
     <Compile Include="RepositoryQuery.cs" />
+<<<<<<< HEAD
     <Compile Include="sysdiagram.cs">
+=======
+    <Compile Include="TuDien.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TuDienLoai.cs">
+>>>>>>> 179ec457a4b9c946e52d3e1bbaf95587e3485f90
       <DependentUpon>QuanLy.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork.cs" />

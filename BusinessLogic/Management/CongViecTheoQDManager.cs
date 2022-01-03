@@ -37,6 +37,7 @@ namespace BusinessLogic.Management
                     cv.DanhSachKhoa = value.DanhSachKhoa;
                     cv.TenCongViec = value.TenCongViec;
                     cv.MoTaCongViec = value.MoTaCongViec;
+                    cv.SoTien = value.SoTien;
                     cv.State = EDataState.Modified;
                     uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
                 }

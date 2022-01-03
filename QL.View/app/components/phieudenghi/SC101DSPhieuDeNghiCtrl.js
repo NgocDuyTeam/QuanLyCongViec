@@ -25,7 +25,8 @@ app.controller('SC101DSPhieuDeNghiCtrl',
                     sTrangThai: $scope.sTrangThai,
                     iPageIndex: $scope.iPageIndex,
                     iPageSize: $scope.iPageSize,
-                    IdCanBo : ""
+                    IdCanBo: "",
+                    IsTuChoi: false
                 }).$promise.then(
                     function (d) {
                         $scope.DSPhieu = d.List;

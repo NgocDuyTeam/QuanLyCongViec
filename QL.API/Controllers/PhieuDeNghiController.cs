@@ -75,13 +75,13 @@ namespace QL.API.Controllers
         [Route("getPhieuDeNghiByPage")]
         [HttpGet]
         public HttpResponseMessage GetPhieuDeNghiByPage(Guid? IdKhoa, DateTime TuNgay, DateTime DenNgay, string sTrangThai
-            , Guid? IdCanBo, int iPageIndex, int iPageSize)
+            , Guid? IdCanBo, int iPageIndex, int iPageSize, bool IsTuChoi)
         {
             try
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, IdCanBo, iPageIndex, iPageSize, out iTotal);
+                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, IdCanBo, iPageIndex, iPageSize, IsTuChoi, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
             }
@@ -99,7 +99,7 @@ namespace QL.API.Controllers
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, IdCanBo, iPageIndex, iPageSize, out iTotal);
+                result.List = PhieuDeNghiManager.Instance.GetPhieuDeNghiByPage(IdKhoa, TuNgay, DenNgay.AddDays(1), sTrangThai, IdCanBo, iPageIndex, iPageSize, false, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
             }
@@ -129,6 +129,20 @@ namespace QL.API.Controllers
             try
             {
                 PhieuDeNghiManager.Instance.DeleteById(IdPhieu);
+                return HttpOk("");
+            }
+            catch (Exception ex)
+            {
+                return HttpInternalServerError(ex.Message);
+            }
+        }
+        [Route("tuChoiDeNghi")]
+        [HttpPost]
+        public HttpResponseMessage TuChoiDeNghi(Guid IdPhieu, string sNoiDung)
+        {
+            try
+            {
+                PhieuDeNghiManager.Instance.TuChoiDeNghi(IdPhieu, sNoiDung);
                 return HttpOk("");
             }
             catch (Exception ex)

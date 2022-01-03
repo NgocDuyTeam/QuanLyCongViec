@@ -171,6 +171,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\KhoController.cs" />
+    <Compile Include="Controllers\TuDienController.cs" />
+    <Compile Include="Controllers\KhoDMSanPhamController.cs" />
     <Compile Include="Controllers\MauPhieuInController.cs" />
     <Compile Include="Controllers\DanhMucCanBoController.cs" />
     <Compile Include="Controllers\DanhMucKhoaPhongController.cs" />
@@ -244,6 +247,14 @@
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{00CFA2F2-C69B-4AA6-B0EE-55D9F78E9FF0}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Extensions\Framework.Extensions.csproj">
+      <Project>{818BA037-394D-462B-8EFD-1CB3EB84A06D}</Project>
+      <Name>Framework.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLDataAccess\SQLDataAccess.csproj">
+      <Project>{2060D4C9-1115-4633-B232-831FA276A1CE}</Project>
+      <Name>SQLDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

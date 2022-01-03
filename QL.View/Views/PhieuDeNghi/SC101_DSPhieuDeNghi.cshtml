@@ -57,6 +57,9 @@
                             <a ng-if="phieu.TrangThai == 'GuiYeuCau'" ng-click="DeletePhieu(phieu.Id)"><i class="fa fa-trash" title="Xóa">Xóa</i> </a>
                         </td>
                     </tr>
+                    <tr ng-if="DSPhieu.length == 0">
+                        <td class="text-center" colspan="4">Không có dữ liệu</td>
+                    </tr>
                 </tbody>
             </table>
             <div class="row" ng-visible="{{iTotalPage>1}}">

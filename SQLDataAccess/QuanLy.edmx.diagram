@@ -21,7 +21,26 @@
         <AssociationConnector Association="QuanLy.FK_BienBanNghiemThu_CongViecTheoQuyetDinh" />
         <AssociationConnector Association="QuanLy.FK_BienBanNghiemThu_PhieuDeNghi" />
         <AssociationConnector Association="QuanLy.FK_CongViecTheoQuyetDinh_CanBo" />
+<<<<<<< HEAD
         <EntityTypeShape EntityType="QuanLy.sysdiagram" Width="1.5" PointX="5.375" PointY="6.75" />
+=======
+        <EntityTypeShape EntityType="QuanLy.KhoGiaoDichChiTiet" Width="1.5" PointX="14.125" PointY="7.125" />
+        <EntityTypeShape EntityType="QuanLy.KhoTonKho" Width="1.5" PointX="9.625" PointY="10.375" />
+        <EntityTypeShape EntityType="QuanLy.TuDien" Width="1.5" PointX="9.625" PointY="7" />
+        <EntityTypeShape EntityType="QuanLy.TuDienLoai" Width="1.5" PointX="7.375" PointY="7.25" />
+        <AssociationConnector Association="QuanLy.FK_TuDien_TuDienLoai" />
+        <EntityTypeShape EntityType="QuanLy.KhoDMSanPham" Width="1.5" PointX="11.875" PointY="6.875" />
+        <AssociationConnector Association="QuanLy.FK_KhoDMSanPham_TuDien" />
+        <AssociationConnector Association="QuanLy.FK_KhoGiaoDichChiTiet_KhoDMSanPham" />
+        <AssociationConnector Association="QuanLy.FK_KhoTonKho_KhoDMSanPham" />
+        <EntityTypeShape EntityType="QuanLy.BangMa" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="QuanLy.KhoGiaoDich" Width="1.5" PointX="10.5" PointY="2" />
+        <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_CanBo" />
+        <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_CongViecTheoQuyetDinh" />
+        <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_KhoaPhong" />
+        <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_PhieuDeNghi" />
+        <AssociationConnector Association="QuanLy.FK_KhoGiaoDichChiTiet_KhoGiaoDich" />
+>>>>>>> 179ec457a4b9c946e52d3e1bbaf95587e3485f90
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

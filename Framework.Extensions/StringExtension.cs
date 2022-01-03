@@ -12,6 +12,10 @@ namespace Framework.Extensions
         {
             return !string.IsNullOrEmpty(str);
         }
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
         public static string JoinEmbeddedLength(this string[] values)
         {
             StringBuilder builder = new StringBuilder();

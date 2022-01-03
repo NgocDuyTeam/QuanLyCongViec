@@ -117,8 +117,8 @@ app.controller('SC300BienBanNghiemThuCtrl',
                                     newWin.document.open();
                                     newWin.document.write('<html><body onload="window.print()">' + strPrint + '</body></html>');
                                     newWin.document.close();
-                                    setTimeout(function () { newWin.close(); }, 10);
-                                    window.location.href = "/PhieuDeNghi/SC103_NVPhieDeNghi";
+                                    setTimeout(function () { newWin.close(); window.location.href = "/PhieuDeNghi/SC103_NVPhieDeNghi"; }, 10);
+                                    
                                 });
                             }, function (err) { ngProgress.complete(); });
                     }, function (err) {

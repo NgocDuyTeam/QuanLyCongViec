@@ -21,6 +21,9 @@ namespace BusinessLogic.Model
         public string TenCBThucHien { get; set; }
         public string TenCongViec { get; set; }
         public string sTrangThai { get; set; }
+        public string LyDoTuChoi { get; set; }
+        public bool IsTuChoi { get; set; }
         public List<BienBanNghiemThuModel> lstBienBan { get; set; }
+        public KhoGiaoDichModel GiaoDichVatTu { get; set; }
     }
 }

@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CongViecTheoQDController.cs" />
     <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\DanhSachKhoaPhongController.cs" />
+    <Compile Include="Controllers\KhoController.cs" />
     <Compile Include="Controllers\NghiemThuController.cs" />
     <Compile Include="Controllers\PhieuDeNghiController .cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
@@ -150,14 +151,26 @@
     <Content Include="app\components\congviectheoQD\SC400CongViecTheoCtrl.js" />
     <Content Include="app\components\danhmuc\SC200DanhMucKhoaPhongCtrl.js" />
     <Content Include="app\components\danhmuc\SC201DanhMucCongViecCtrl.js" />
+    <Content Include="app\components\danhmuc\SC203DanhMucSanPhamCtrl.js" />
     <Content Include="app\components\danhmuc\SC202DanhMucCanBoCtrl.js" />
+    <Content Include="app\components\kho\SC502XuatKhoCtrl.js" />
+    <Content Include="app\components\kho\SC506BCXuatKhoaPhongCtrl.js" />
+    <Content Include="app\components\kho\SC505XuatNhapTonCtrl.js" />
+    <Content Include="app\components\kho\SC504GiaoDichKhoCtrl.js" />
+    <Content Include="app\directives\numberDirectives.js" />
+    <Content Include="app\components\kho\SC501NhapKhoCtrl.js" />
+    <Content Include="app\components\kho\SC503TonKhoCtrl.js" />
     <Content Include="app\components\nghiemthu\SC301NghiemThuCongViecCtrl.js" />
     <Content Include="app\components\nghiemthu\SC300BienBanNghiemThuCtrl.js" />
+    <Content Include="app\components\phieudenghi\SC104DSPhieuDeNghiTuChoiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC102QLPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC101DSPhieuDeNghiCtrl.js" />
     <Content Include="app\components\phieudenghi\SC100PhieuDeNghiCtrl.js" />
     <Content Include="app\services\svCongViectheoQD.js" />
     <Content Include="app\components\phieudenghi\SC103NVPhieuDeNghiCtrl.js" />
+    <Content Include="app\services\svKho.js" />
+    <Content Include="app\services\svTuDien.js" />
+    <Content Include="app\services\svDanhMucSanPham.js" />
     <Content Include="app\services\svDMKhoaPhong.js" />
     <Content Include="app\services\svDanhMucCanBo.js" />
     <Content Include="app\services\svDanhMucCongViec.js" />
@@ -7003,6 +7016,7 @@
     <Content Include="Js\lib\toastr\toastr.min.js" />
     <Content Include="Js\lib\underscore\underscore-min.js" />
     <Content Include="Js\lib\underscore\underscore.js" />
+    <Content Include="Js\ui\jquery.jkey.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -8716,9 +8730,17 @@
     <Content Include="Views\DanhMuc\SC202_DanhMucCanBo.cshtml" />
     <Content Include="Views\NghiemThu\SC300_BienBanNghiemThu.cshtml" />
     <Content Include="Views\CongViecTheoQD\SC400_CongViec.cshtml" />
-    <Content Include="Views\PhieuDeNghi\SC103_NVPhieDeNghi.cshtml" />
+    <Content Include="Views\PhieuDeNghi\SC103_NVPhieuDeNghi.cshtml" />
     <Content Include="Views\DanhMuc\SC200a_AddDanhMucKhoaPhong.cshtml" />
     <Content Include="Views\NghiemThu\SC301_NghiemThuCongViec.cshtml" />
+    <Content Include="Views\PhieuDeNghi\SC104_DSPhieuDeNghiTuChoi.cshtml" />
+    <Content Include="Views\DanhMuc\SC203_DanhMucSanPham.cshtml" />
+    <Content Include="Views\Kho\SC501NhapKho.cshtml" />
+    <Content Include="Views\Kho\SC502XuatKho.cshtml" />
+    <Content Include="Views\Kho\SC503TonKho.cshtml" />
+    <Content Include="Views\Kho\SC504GiaoDichKho.cshtml" />
+    <Content Include="Views\Kho\SC505XuatNhapTon.cshtml" />
+    <Content Include="Views\Kho\SC506BCXuatKhoaPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\utils\" />

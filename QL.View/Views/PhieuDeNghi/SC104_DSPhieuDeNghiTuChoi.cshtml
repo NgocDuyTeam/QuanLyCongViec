@@ -1,23 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "SC103_NVPhieDeNghi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row content-all-ql" data-ng-controller="SC103NVPhieuDeNghiCtrl" ng-cloak>
+<div class="row content-all-ql" data-ng-controller="SC104DSPhieuDeNghiTuChoiCtrl" ng-cloak>
     <div class="row col-sm-12">
-        <div class="col-lg-2">
-            <div class="input-group m-b">
-                <ui-select ng-model="$parent.IdKhoa" reset-search-input="false">
-                    <ui-select-match placeholder="Tất cả ... ">{{$select.selected.Ten}}</ui-select-match>
-                    <ui-select-choices repeat="khoa.Id as khoa in DSKhoaPhong | filter: $select.search" value="{{$select.selected.Id}}">
-                        <div ng-bind-html="khoa.Ten | highlight:$select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-        </div>
         <div class="col-lg-4">
-
             <div class="input-group m-b">
                 <span class="input-group-addon" style="background-color: #23c6c8; ">Thời gian: </span>
                 <input type="text" id="search_start_date" placeholder="__/__/____" name="search_start_date" class="form-control search_date_VN"
@@ -27,17 +15,16 @@
                        ng-model="DenNgay" model-view-value="true" ui-mask="99/99/9999">
             </div>
         </div>
-        <div class="col-sm-2">
-            <select class="form-control" ng-change="refreshData(1)" ng-model="sTrangThai">
-                <option value="">-- Tất cả --</option>
-                <option value="DaPhanViec">Chờ xử lý</option>
-                <option value="DaThucHien">Đã thực hiện</option>
-            </select>
+        <div class="col-lg-2">
+            <div class="input-group m-b">
+                <ui-select ng-model="$parent.IdKhoa" reset-search-input="false" ng-show="IsKhoa">
+                    <ui-select-match placeholder="Tất cả ... ">{{$select.selected.Ten}}</ui-select-match>
+                    <ui-select-choices repeat="khoa.Id as khoa in DSKhoaPhong | filter: $select.search" value="{{$select.selected.Id}}">
+                        <div ng-bind-html="khoa.Ten | highlight:$select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
         </div>
-
-
-    </div>
-    <div class="row col-sm-12" style="padding-top:5px">
         <div class="col-sm-2">
             <input class="btn btn-primary" type="button" style="float: right; margin-bottom: 5px; margin-right: 20px" value="Tìm kiếm" ng-click="refreshData(1)" />
         </div>
@@ -48,32 +35,28 @@
                 <thead>
                     <tr>
                         <th class="text-center">STT</th>
-                        <th class="text-center">Khoa đề nghị</th>
                         <th class="text-center">Ngày yêu cầu</th>
                         <th class="text-center">SDT Liên hệ Khoa</th>
                         <th class="text-center">Công việc</th>
-                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Lý do từ chối</th>
                         <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="phieu in DSPhieu">
                         <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
-                        <td>{{phieu.TenKhoa}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
                         <td class="text-center">{{SoDienThoai}}</td>
                         <td>{{phieu.TenCongViec}}</td>
-                        <td ng-if="phieu.TrangThai == 'DaPhanViec'">Chờ xử lý</td>
-                        <td ng-if="phieu.TrangThai == 'DaThucHien'">Đã thực hiện</td>
-                        <td class="text-center">
-                            <button ng-if="phieu.TrangThai == 'DaPhanViec'" class="btn btn-primary" ng-click="SaveTrangThaiHT(phieu)">Xác nhận hoàn thành</button>
-                            <a ng-if="phieu.TrangThai == 'DaThucHien'" href="/NghiemThu/SC300_BienBanNghiemThu?idPhieu={{phieu.Id}}" title="Biên bản">
-                                <i class="fas fa-plus">Tạo biên bản</i>
+                        <td>{{phieu.LyDoTuChoi}}</td>
+                        <td>
+                            <a ng-click="PrintPhieu(phieu)" title="In">
+                                <i class="fas fa-print">In</i>
                             </a>&nbsp;&nbsp;
-                            <a ng-if="phieu.TrangThai == 'DaThucHien' && phieu.lstBienBan!= null" ng-click="PrintBienBan(phieu)" title="In">
-                                <i class="fas fa-print">In biên bản</i>
-                            </a>
                         </td>
+                    </tr>
+                    <tr ng-if="DSPhieu.length == 0">
+                        <td class="text-center" colspan="5">Không có dữ liệu</td>
                     </tr>
                 </tbody>
             </table>
@@ -87,4 +70,8 @@
         </div>
     </div>
 </div>
+
+
+
+
 
