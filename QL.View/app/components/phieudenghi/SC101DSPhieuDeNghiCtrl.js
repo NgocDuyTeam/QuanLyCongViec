@@ -7,6 +7,9 @@ app.controller('SC101DSPhieuDeNghiCtrl',
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
             $scope.IdKhoa = myAppConfig.IdKhoa;
+            $scope.SoDienThoai = myAppConfig.SoDienThoai;
+            $scope.TenKhoa = myAppConfig.TenKhoa;
+            $scope.Ten = myAppConfig.SoDienThoai;
             $scope.sTrangThai = "GuiYeuCau_DaPhanViec";
             $scope.iPageIndex = 1;
             $scope.iPageSize = "20";

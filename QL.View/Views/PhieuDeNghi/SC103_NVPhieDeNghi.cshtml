@@ -50,6 +50,7 @@
                         <th class="text-center">STT</th>
                         <th class="text-center">Khoa đề nghị</th>
                         <th class="text-center">Ngày yêu cầu</th>
+                        <th class="text-center">SDT Liên hệ Khoa</th>
                         <th class="text-center">Công việc</th>
                         <th class="text-center">Trạng thái</th>
                         <th class="text-center">Thao tác</th>
@@ -60,6 +61,7 @@
                         <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
                         <td>{{phieu.TenKhoa}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
+                        <td class="text-center">{{SoDienThoai}}</td>
                         <td>{{phieu.TenCongViec}}</td>
                         <td ng-if="phieu.TrangThai == 'DaPhanViec'">Chờ xử lý</td>
                         <td ng-if="phieu.TrangThai == 'DaThucHien'">Đã thực hiện</td>

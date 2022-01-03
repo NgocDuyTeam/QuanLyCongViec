@@ -76,7 +76,7 @@ namespace QL.View.Controllers
                         }
                         else if (cb.Role == "Khoa")
                         {
-                            return RedirectToAction("SC101_DSPhieuDeNghi", "PhieuDeNghi");
+                            return RedirectToAction("SC100_PhieuDeNghi", "PhieuDeNghi");
                         }
                         
                     }

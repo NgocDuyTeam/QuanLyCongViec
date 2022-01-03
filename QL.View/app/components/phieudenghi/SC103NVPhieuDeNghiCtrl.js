@@ -13,6 +13,7 @@ app.controller('SC103NVPhieuDeNghiCtrl',
             $scope.iPageIndex = 1;
             $scope.iPageSize = "20";
             $scope.IdCanBo = myAppConfig.IdCanBo;
+            $scope.SoDienThoai = myAppConfig.SoDienThoai;
             $scope.DSPhieu = [];
             $scope.DSKhoaPhong = [];
             $scope.DSCanBo = [];

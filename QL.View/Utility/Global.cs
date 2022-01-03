@@ -41,6 +41,7 @@ namespace QL.View.Utility
                             Role = TaiKhoan.Role,
                             IdKhoa = TaiKhoan.IdKhoa,
                             HoVaTen = TaiKhoan.HoVaTen,
+                            SoDienThoai = TaiKhoan.SoDienThoai,
 
                         };
                         if (TaiKhoan.IdKhoa.HasValue)

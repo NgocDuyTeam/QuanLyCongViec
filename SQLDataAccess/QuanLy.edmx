@@ -34,6 +34,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PassWord" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CongViecTheoQuyetDinh">
           <Key>
@@ -84,6 +85,16 @@
           <Property Name="IdCanBoDeNghi" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IdCanBoThucHien" Type="uniqueidentifier" />
           <Property Name="IdCongViec" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_BienBanNghiemThu_CanBo">
           <End Role="CanBo" Type="Self.CanBo" Multiplicity="0..1" />
@@ -201,6 +212,7 @@
           <EntitySet Name="KhoaPhong" EntityType="Self.KhoaPhong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MauPhieuIn" EntityType="Self.MauPhieuIn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuDeNghi" EntityType="Self.PhieuDeNghi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BienBanNghiemThu_CanBo" Association="Self.FK_BienBanNghiemThu_CanBo">
             <End Role="CanBo" EntitySet="CanBo" />
             <End Role="BienBanNghiemThu" EntitySet="BienBanNghiemThu" />
@@ -286,6 +298,7 @@
             <End Role="CanBo" EntitySet="CanBoes" />
             <End Role="CongViecTheoQuyetDinh" EntitySet="CongViecTheoQuyetDinhs" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="QuanLy.sysdiagram" />
         </EntityContainer>
         <EntityType Name="CanBo">
           <Key>
@@ -303,6 +316,7 @@
           <NavigationProperty Name="PhieuDeNghis1" Relationship="QuanLy.FK_PhieuDeNghi_CanBo1" FromRole="CanBo" ToRole="PhieuDeNghi" />
           <NavigationProperty Name="BienBanNghiemThus" Relationship="QuanLy.FK_BienBanNghiemThu_CanBo" FromRole="CanBo" ToRole="BienBanNghiemThu" />
           <NavigationProperty Name="CongViecTheoQuyetDinhs" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_CanBo" FromRole="CanBo" ToRole="CongViecTheoQuyetDinh" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           </EntityType>
         <EntityType Name="KhoaPhong">
           <Key>
@@ -493,6 +507,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -504,6 +528,7 @@
           <EntitySetMapping Name="CanBoes">
             <EntityTypeMapping TypeName="QuanLy.CanBo">
               <MappingFragment StoreEntitySet="CanBo">
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -585,6 +610,17 @@
                 <ScalarProperty Name="DanhSachKhoa" ColumnName="DanhSachKhoa" />
                 <ScalarProperty Name="MoTaCongViec" ColumnName="MoTaCongViec" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLy.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

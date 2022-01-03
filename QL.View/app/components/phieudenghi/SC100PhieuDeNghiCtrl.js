@@ -65,6 +65,7 @@ app.controller('SC100PhieuDeNghiCtrl',
                                     setTimeout(function () { newWin.close(); }, 10);
                                     window.location.href = "/PhieuDeNghi/SC101_DSPhieuDeNghi";
                                 });
+                               
                             }, function (err) { ngProgress.complete(); });
                     }, function (err) {
                         ngProgress.complete();

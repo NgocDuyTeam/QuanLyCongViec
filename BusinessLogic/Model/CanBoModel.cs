@@ -16,5 +16,6 @@ namespace BusinessLogic.Model
         public string PassWord { get; set; }
         public string Role { get; set; }
         public string TenKhoa { get; set; }
+        public String SoDienThoai { get; set; }
     }
 }

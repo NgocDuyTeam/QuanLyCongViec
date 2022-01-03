@@ -30,6 +30,7 @@ namespace SQLDataAccess
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string Role { get; set; }
+        public string SoDienThoai { get; set; }
     
         public virtual KhoaPhong KhoaPhong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

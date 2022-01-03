@@ -111,6 +111,9 @@
     </Compile>
     <Compile Include="Repository.cs" />
     <Compile Include="RepositoryQuery.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QuanLy.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

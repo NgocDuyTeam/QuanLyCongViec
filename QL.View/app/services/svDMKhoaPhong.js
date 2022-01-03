@@ -1,7 +1,7 @@
 ﻿'use strict';
 var app = angular.module('uiApp');
 
-app.factory('svDanhMucKhoaPhong111', function (myAppConfig, $resource) {
+app.factory('svDanhMucKhoaPhong', function (myAppConfig, $resource) {
     var baseUrl = myAppConfig.baseUrl;
     return $resource(baseUrl + 'api/dmkhoaphong/',
         { id: '@id' },

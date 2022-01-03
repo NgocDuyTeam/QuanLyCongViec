@@ -33,6 +33,7 @@
                     <tr>
                         <th class="text-center">STT</th>
                         <th class="text-center">Ngày yêu cầu</th>
+                        <th class="text-center">SDT Liên hệ Khoa</th>
                         <th class="text-center">Công việc</th>
                         <th class="text-center">Thao tác</th>
                     </tr>
@@ -41,6 +42,7 @@
                     <tr data-ng-repeat="phieu in DSPhieu">
                         <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
+                        <td class="text-center">{{SoDienThoai}}</td>
                         <td>{{phieu.TenCongViec}}</td>
                         <td class="text-right">
                             <a ng-if="phieu.TrangThai == 'DaThucHien' && phieu.lstBienBan!= null" ng-click="PrintBienBan(phieu)" title="In">

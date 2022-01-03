@@ -28,5 +28,6 @@ var app = angular
         baseUrl: _baseUrl, TenKhoa: _tenKhoa
         , IdCanBo: _idCanBo, IdKhoa: _idKhoa
         , HoVaTen: _hovaten, Role: _role
+        , SoDienThoai: _sodienthoai
     }
     );

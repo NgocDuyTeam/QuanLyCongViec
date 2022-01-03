@@ -21,6 +21,7 @@
         <AssociationConnector Association="QuanLy.FK_BienBanNghiemThu_CongViecTheoQuyetDinh" />
         <AssociationConnector Association="QuanLy.FK_BienBanNghiemThu_PhieuDeNghi" />
         <AssociationConnector Association="QuanLy.FK_CongViecTheoQuyetDinh_CanBo" />
+        <EntityTypeShape EntityType="QuanLy.sysdiagram" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
