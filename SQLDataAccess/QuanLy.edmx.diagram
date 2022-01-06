@@ -37,6 +37,7 @@
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_KhoaPhong" />
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_PhieuDeNghi" />
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDichChiTiet_KhoGiaoDich" />
+        <AssociationConnector Association="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

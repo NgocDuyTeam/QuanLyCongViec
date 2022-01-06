@@ -33,7 +33,6 @@ namespace BusinessLogic.Management
         {
             using (var uow = new UnitOfWork())
             {
-                IEnumerable<KhoDMSanPham> lstSP = null;
                 var loaitudien = uow.Repository<TuDienLoai>().Query().Filter(x => x.LoaiTuDien == sLoaiTuDien).FirstOrDefault();
                 if (loaitudien != null)
                 {
@@ -43,6 +42,20 @@ namespace BusinessLogic.Management
                         item.TenLoaiTuDien = x.TuDienLoai.TenLoai;
                         return item;
                     }).OrderBy(x => x.TenTuDien).ToList();
+                }
+            }
+            return null;
+        }
+        public TuDienModel SelectByMaAndLoai(string sMa, string sLoaiTuDien)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var loaitudien = uow.Repository<TuDienLoai>().Query().Filter(x => x.LoaiTuDien == sLoaiTuDien).FirstOrDefault(); var loaitudien = uow.Repository<TuDienLoai>().Query().Filter(x => x.LoaiTuDien == sLoaiTuDien).FirstOrDefault();
+                if (loaitudien != null)
+                {
+                    var tudien = uow.Repository<TuDien>().Query().Filter(x => x.IdLoaiTuDien == loaitudien.Id
+                    && x.MaTuDien == sMa).FirstOrDefault();
+                    return tudien.CopyAs<TuDienModel>();
                 }
             }
             return null;
