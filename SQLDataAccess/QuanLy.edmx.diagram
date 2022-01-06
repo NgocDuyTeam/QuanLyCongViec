@@ -40,7 +40,7 @@
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_KhoaPhong" />
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_PhieuDeNghi" />
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDichChiTiet_KhoGiaoDich" />
->>>>>>> 179ec457a4b9c946e52d3e1bbaf95587e3485f90
+        <AssociationConnector Association="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

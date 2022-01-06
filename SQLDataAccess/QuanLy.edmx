@@ -61,6 +61,7 @@
           <Property Name="IdCanBo" Type="uniqueidentifier" />
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
           <Property Name="SoTien" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="IdTienDo" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="DanhMucCongViec">
           <Key>
@@ -232,6 +233,18 @@
             </Principal>
             <Dependent Role="CongViecTheoQuyetDinh">
               <PropertyRef Name="IdCanBo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CongViecTheoQuyetDinh_TuDien">
+          <End Role="TuDien" Type="Self.TuDien" Multiplicity="1" />
+          <End Role="CongViecTheoQuyetDinh" Type="Self.CongViecTheoQuyetDinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuDien">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CongViecTheoQuyetDinh">
+              <PropertyRef Name="IdTienDo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -430,6 +443,10 @@
             <End Role="CanBo" EntitySet="CanBo" />
             <End Role="CongViecTheoQuyetDinh" EntitySet="CongViecTheoQuyetDinh" />
           </AssociationSet>
+          <AssociationSet Name="FK_CongViecTheoQuyetDinh_TuDien" Association="Self.FK_CongViecTheoQuyetDinh_TuDien">
+            <End Role="TuDien" EntitySet="TuDien" />
+            <End Role="CongViecTheoQuyetDinh" EntitySet="CongViecTheoQuyetDinh" />
+          </AssociationSet>
           <AssociationSet Name="FK_KhoDMSanPham_TuDien" Association="Self.FK_KhoDMSanPham_TuDien">
             <End Role="TuDien" EntitySet="TuDien" />
             <End Role="KhoDMSanPham" EntitySet="KhoDMSanPham" />
@@ -577,6 +594,10 @@
           <AssociationSet Name="FK_KhoGiaoDichChiTiet_KhoGiaoDich" Association="QuanLy.FK_KhoGiaoDichChiTiet_KhoGiaoDich">
             <End Role="KhoGiaoDich" EntitySet="KhoGiaoDiches" />
             <End Role="KhoGiaoDichChiTiet" EntitySet="KhoGiaoDichChiTiets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CongViecTheoQuyetDinh_TuDien" Association="QuanLy.FK_CongViecTheoQuyetDinh_TuDien">
+            <End Role="TuDien" EntitySet="TuDiens" />
+            <End Role="CongViecTheoQuyetDinh" EntitySet="CongViecTheoQuyetDinhs" />
           </AssociationSet>
           </EntityContainer>
 >>>>>>> 179ec457a4b9c946e52d3e1bbaf95587e3485f90
@@ -748,6 +769,8 @@
           <NavigationProperty Name="CanBo" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_CanBo" FromRole="CongViecTheoQuyetDinh" ToRole="CanBo" />
           <NavigationProperty Name="KhoGiaoDiches" Relationship="QuanLy.FK_KhoGiaoDich_CongViecTheoQuyetDinh" FromRole="CongViecTheoQuyetDinh" ToRole="KhoGiaoDich" />
           <Property Name="SoTien" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="IdTienDo" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="TuDien" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" FromRole="CongViecTheoQuyetDinh" ToRole="TuDien" />
         </EntityType>
         <Association Name="FK_BienBanNghiemThu_CanBo">
           <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="0..1" />
@@ -843,6 +866,7 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TuDienLoai" Relationship="QuanLy.FK_TuDien_TuDienLoai" FromRole="TuDien" ToRole="TuDienLoai" />
           <NavigationProperty Name="KhoDMSanPhams" Relationship="QuanLy.FK_KhoDMSanPham_TuDien" FromRole="TuDien" ToRole="KhoDMSanPham" />
+          <NavigationProperty Name="CongViecTheoQuyetDinhs" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" FromRole="TuDien" ToRole="CongViecTheoQuyetDinh" />
         </EntityType>
         <EntityType Name="TuDienLoai">
           <Key>
@@ -1008,6 +1032,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CongViecTheoQuyetDinh_TuDien">
+          <End Type="QuanLy.TuDien" Role="TuDien" Multiplicity="1" />
+          <End Type="QuanLy.CongViecTheoQuyetDinh" Role="CongViecTheoQuyetDinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TuDien">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CongViecTheoQuyetDinh">
+              <PropertyRef Name="IdTienDo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
 >>>>>>> 179ec457a4b9c946e52d3e1bbaf95587e3485f90
     </edmx:ConceptualModels>
@@ -1097,6 +1133,7 @@
           <EntitySetMapping Name="CongViecTheoQuyetDinhs">
             <EntityTypeMapping TypeName="QuanLy.CongViecTheoQuyetDinh">
               <MappingFragment StoreEntitySet="CongViecTheoQuyetDinh">
+                <ScalarProperty Name="IdTienDo" ColumnName="IdTienDo" />
                 <ScalarProperty Name="SoTien" ColumnName="SoTien" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="IdCanBo" ColumnName="IdCanBo" />

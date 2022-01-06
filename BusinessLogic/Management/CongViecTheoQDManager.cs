@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Model;
+﻿using BusinessLogic.Helper;
+using BusinessLogic.Model;
 using Framework.Extensions;
 using SQLDataAccess;
 using System;
@@ -38,6 +39,7 @@ namespace BusinessLogic.Management
                     cv.TenCongViec = value.TenCongViec;
                     cv.MoTaCongViec = value.MoTaCongViec;
                     cv.SoTien = value.SoTien;
+                    cv.IdTienDo = GetStartTienDoByTien(value.SoTien ?? 0);
                     cv.State = EDataState.Modified;
                     uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
                 }
@@ -173,7 +175,29 @@ namespace BusinessLogic.Management
 
 
         #endregion
-
+        private Guid GetStartTienDoByTien(decimal SoTien)
+        {
+            if (SoTien >= 20000000 && SoTien < 50000000)
+            {
+                var tudien = TuDienManager.Instance.SelectByMaAndLoai(CGoiThau20_50.DuToan_1, CLoaiTuDien.GoiThau20_50);
+                return tudien.Id;
+            }
+            else if (SoTien >= 50000000 && SoTien < 100000000)
+            {
+                var tudien = TuDienManager.Instance.SelectByMaAndLoai(CGoiThau50_100.DuToan_1, CLoaiTuDien.GoiThau50_100);
+                return tudien.Id;
+            }
+            else if (SoTien >= 100000000)
+            {
+                var tudien = TuDienManager.Instance.SelectByMaAndLoai(CGoiThauTren100.DT_BCKTKT_1, CLoaiTuDien.GoiThauTren100);
+                return tudien.Id;
+            }
+            else
+            {
+                var tudien = TuDienManager.Instance.SelectByMaAndLoai(CGoiThauDuoi20.DuToan_1, CLoaiTuDien.GoiThauDuoi20);
+                return tudien.Id;
+            }
+        }
 
     }
 }

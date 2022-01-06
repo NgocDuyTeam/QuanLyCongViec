@@ -32,6 +32,7 @@
                         <th class="text-center">STT</th>
                         <th class="text-center">Tên công việc</th>
                         <th class="text-center">Cán bộ</th>
+                        <th class="text-center">Số tiền</th>
                         <th class="text-center">Ngày tạo</th>
                         <th class="text-center">Thao tác</th>
                     </tr>
@@ -41,6 +42,7 @@
                         <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
                         <td>{{phieu.TenCongViec}}</td>
                         <td>{{phieu.TenCanBo}}</td>
+                        <td>{{phieu.SoTien|number}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
                         <td class="text-right">
                             <a ng-if="IsKhoa" ng-click="InPhieuVatTu(phieu.GiaoDichVatTu)" title="In vật tư">
