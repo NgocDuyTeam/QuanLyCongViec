@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Management;
 using BusinessLogic.Model;
+using BusinessLogic.Utilities;
 using QL.API.Http;
 using QL.API.Models;
 using System;
@@ -27,6 +28,7 @@ namespace QL.API.Controllers
             }
             catch (Exception ex)
             {
+                ex.Log();
                 return HttpInternalServerError(ex.Message);
             }
         }
@@ -52,12 +54,14 @@ namespace QL.API.Controllers
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = CongViecTheoQDManager.Instance.GetPhieuDeNghiByPage(TuNgay, DenNgay.AddDays(1), IdKhoa, iPageIndex, iPageSize, out iTotal);
+                result.List = CongViecTheoQDManager.Instance.GetPhieuDeNghiByPage(TuNgay, DenNgay.AddDays(1)
+                    , IdKhoa, true, iPageIndex, iPageSize, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
             }
             catch (Exception ex)
             {
+                ex.Log();
                 return HttpInternalServerError(ex.Message);
             }
         }

@@ -23,5 +23,14 @@ namespace BusinessLogic.Model
         /// </summary>
         public string sDanhSachKhoa { get; set; }
         public List<BienBanNghiemThuModel> lstBienBan { get; set; }
+        public string sTienDo { get; set; }
+        public List<TienDoCongViecModel> lstTienDo { get; set; }
+    }
+    public class TienDoCongViecModel
+    {
+        public int STT { get; set; }
+        public bool TrangThai { get; set; }
+        public string TienDo { get; set; }
+        public Guid Id { get; set; }
     }
 }

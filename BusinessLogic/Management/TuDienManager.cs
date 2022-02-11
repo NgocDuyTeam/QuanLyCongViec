@@ -50,7 +50,7 @@ namespace BusinessLogic.Management
         {
             using (var uow = new UnitOfWork())
             {
-                var loaitudien = uow.Repository<TuDienLoai>().Query().Filter(x => x.LoaiTuDien == sLoaiTuDien).FirstOrDefault(); var loaitudien = uow.Repository<TuDienLoai>().Query().Filter(x => x.LoaiTuDien == sLoaiTuDien).FirstOrDefault();
+                var loaitudien = uow.Repository<TuDienLoai>().Query().Filter(x => x.LoaiTuDien == sLoaiTuDien).FirstOrDefault();
                 if (loaitudien != null)
                 {
                     var tudien = uow.Repository<TuDien>().Query().Filter(x => x.IdLoaiTuDien == loaitudien.Id
@@ -60,7 +60,34 @@ namespace BusinessLogic.Management
             }
             return null;
         }
-
+        public TuDienModel SelectById(Guid Id)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var tudien = uow.Repository<TuDien>().Query().Filter(x => x.Id == Id).FirstOrDefault();
+                if (tudien != null)
+                {
+                    return tudien.CopyAs<TuDienModel>();
+                }
+            }
+            return null;
+        }
+        public List<TuDienModel> GetDanhSachTuDienByIdTuDien(Guid Id)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var tudien = uow.Repository<TuDien>().Query().Filter(x => x.Id == Id).FirstOrDefault();
+                if (tudien != null)
+                {
+                    return tudien.TuDienLoai.TuDiens.OrderBy(x => x.MaTuDien).Select(x =>
+                      {
+                          var item = x.CopyAs<TuDienModel>();
+                          return item;
+                      }).ToList();
+                }
+            }
+            return null;
+        }
         #endregion
 
         #region private

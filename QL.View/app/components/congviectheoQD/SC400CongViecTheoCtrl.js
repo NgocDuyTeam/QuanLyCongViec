@@ -270,7 +270,7 @@ app.controller('SC400CongViecTheoCtrl',
                         $scope.GiaoDich.DanhSachKhoa += $scope.DSKhoaPhong[i].Id + ";";
                     }
                 }
-                if ($scope.GiaoDich.DanhSachKhoa=="") {
+                if ($scope.GiaoDich.DanhSachKhoa == "") {
                     toaster.pop('warning', "Thông báo", "Chưa có khoa/ phòng.");
                     return;
                 }
@@ -362,4 +362,29 @@ app.controller('SC400CongViecTheoCtrl',
                     }, function (err) { ngProgress.complete(); });
             }
             //endregion
+            //region popup tien do cong viec
+            $scope.openPopupTienDo = function (cv) {
+                $scope.CongViec = cv;
+                $("#popupTienDo").bPopup({ escClose: false, modalClose: false });
+                $("#popupTienDo").show();
+            };
+            $scope.closePopupTienDo = function () {
+                $("#popupTienDo").bPopup({}).close();
+            };
+            $scope.saveTienDoCongViec = function (td) {
+                if (!confirm('Xác nhận chuyển sang tiến độ: ' + td.TienDo))
+                    return;
+                ngProgress.start();
+                $scope.CongViec.IdTienDo = td.Id;
+                svCongViectheoQD.saveCongViec($scope.CongViec).$promise.then(
+                    function (d) {
+                        toaster.pop('success', "Thông báo", "Lưu thông tin thành công.");
+                        $scope.closePopupTienDo();
+                        $scope.refreshData(1);
+                        ngProgress.complete();
+                    }, function (err) {
+                        ngProgress.complete();
+                    });
+            }
+            //Endregion
         }]);

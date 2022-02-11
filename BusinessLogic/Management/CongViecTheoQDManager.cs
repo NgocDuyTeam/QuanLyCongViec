@@ -39,7 +39,7 @@ namespace BusinessLogic.Management
                     cv.TenCongViec = value.TenCongViec;
                     cv.MoTaCongViec = value.MoTaCongViec;
                     cv.SoTien = value.SoTien;
-                    cv.IdTienDo = GetStartTienDoByTien(value.SoTien ?? 0);
+                    cv.IdTienDo = value.IdTienDo;
                     cv.State = EDataState.Modified;
                     uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
                 }
@@ -47,6 +47,8 @@ namespace BusinessLogic.Management
                 {
                     var cv = value.CopyAs<CongViecTheoQuyetDinh>();
                     cv.State = EDataState.Added;
+                    cv.Active = true;
+                    cv.IdTienDo = GetStartTienDoByTien(value.SoTien ?? 0);
                     cv.NgayTao = DateTime.Now;
                     cv.Id = Guid.NewGuid();
                     uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
@@ -67,14 +69,16 @@ namespace BusinessLogic.Management
             }
             return null;
         }
-        public List<CongViecTheoQDModel> GetPhieuDeNghiByPage(DateTime TuNgay, DateTime DenNgay, Guid? IdKhoa, int iPageIndex, int iPageSize, out int iTotal)
+        public List<CongViecTheoQDModel> GetPhieuDeNghiByPage(DateTime TuNgay, DateTime DenNgay
+            , Guid? IdKhoa, bool IsActive, int iPageIndex, int iPageSize, out int iTotal)
         {
             using (var uow = new UnitOfWork())
             {
                 IEnumerable<CongViecTheoQuyetDinh> lstPhieu = null;
                 var sKhoa = IdKhoa.IsNotNull() ? IdKhoa.Value.ToString() : "";
                 var query = uow.Repository<CongViecTheoQuyetDinh>().Query().Filter(x => x.NgayTao >= TuNgay && x.NgayTao < DenNgay
-                    && (sKhoa == "" || x.DanhSachKhoa.Contains(sKhoa)));
+                    && (sKhoa == "" || x.DanhSachKhoa.Contains(sKhoa))
+                    && x.Active == IsActive);
                 if (iPageIndex != -1)
                 {
                     lstPhieu = query.OrderBy(x => x.OrderByDescending(y => y.NgayTao)).GetPage(iPageIndex, iPageSize, out iTotal);
@@ -87,6 +91,25 @@ namespace BusinessLogic.Management
                 return lstPhieu.Select(x =>
                 {
                     var phieu = x.CopyAs<CongViecTheoQDModel>();
+                    var tudien = TuDienManager.Instance.GetDanhSachTuDienByIdTuDien(x.IdTienDo);
+                    phieu.lstTienDo = new List<TienDoCongViecModel>();
+                    bool check = false;
+                    for (int i = 0; i < tudien.Count; i++)
+                    {
+                        var td = new TienDoCongViecModel()
+                        {
+                            STT = i + 1,
+                            Id = tudien[i].Id,
+                            TienDo = tudien[i].TenTuDien,
+                            TrangThai = check,
+                        };
+                        if (tudien[i].Id == x.IdTienDo)
+                        {
+                            check = true;
+                        }
+                        phieu.lstTienDo.Add(td);
+                    }
+                    phieu.sTienDo = x.TuDien.TenTuDien;
                     if (x.CanBo != null)
                     {
                         phieu.TenCanBo = x.CanBo.HoVaTen;
@@ -165,8 +188,9 @@ namespace BusinessLogic.Management
                     }
                     if (cv.BienBanNghiemThus.Count() == 0)
                     {
-                        cv.State = EDataState.Deleted;
-                        uow.Repository<CongViecTheoQuyetDinh>().Delete(cv);
+                        cv.State = EDataState.Modified;
+                        cv.Active = false;
+                        uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
                         uow.Save();
                     }
                 }

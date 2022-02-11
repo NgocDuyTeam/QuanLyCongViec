@@ -18,11 +18,14 @@
         <div class="col-sm-2">
             <input class="btn btn-primary" type="button" style="float: right; margin-bottom: 5px; margin-right: 20px" value="Tìm kiếm" ng-click="refreshData(1)" />
         </div>
+        <div class="col-sm-2">
+            <button ng-if="!IsKhoa" class="btn btn-primary" type="button" style="" ng-click="ShowAddOrUpdateCongViec()">
+                <i class="fas fa-plus">Thêm biên bản&nbsp;&nbsp;</i>
+            </button>
+        </div>
     </div>
     <div class="row col-sm-12">
-        <div class="col-sm-2">
-            <input ng-if="!IsKhoa" class="btn btn-primary" type="button" style="" value="Thêm" ng-click="ShowAddOrUpdateCongViec()" />
-        </div>
+      
     </div>
     <div class="row col-lg-12" style="margin-top:15px">
         <div style="width: 100%; height: 500px">
@@ -31,6 +34,7 @@
                     <tr>
                         <th class="text-center">STT</th>
                         <th class="text-center">Tên công việc</th>
+                        <th class="text-center">Tiến độ</th>
                         <th class="text-center">Cán bộ</th>
                         <th class="text-center">Số tiền</th>
                         <th class="text-center">Ngày tạo</th>
@@ -41,6 +45,7 @@
                     <tr data-ng-repeat="phieu in DSCongViec">
                         <td class="text-center">{{$index+1+ iPageSize*(iPageIndex-1)}}</td>
                         <td>{{phieu.TenCongViec}}</td>
+                        <td><a ng-click="openPopupTienDo(phieu)">{{phieu.sTienDo}}</a></td>
                         <td>{{phieu.TenCanBo}}</td>
                         <td>{{phieu.SoTien|number}}</td>
                         <td class="text-center">{{phieu.NgayTao | date: 'dd/MM/yyyy'}}</td>
@@ -105,7 +110,7 @@
                         Số tiền
                     </div>
                     <div class="col-lg-4">
-                        <input id="txtSoTien" type="text" class="form-control" ng-model="CongViec.SoTien" numbers-only />
+                        <input id="txtSoTien" ng-disabled="CongViec.Id" type="text" class="form-control" ng-model="CongViec.SoTien" numbers-only />
                     </div>
                     <div class="col-lg-4" style="padding-top:10px">
                         {{CongViec.SoTien| number}}
@@ -278,10 +283,10 @@
             <button class="btn" ng-click="closePopupVatTu()">Đóng</button>
         </div>
     </div>
-@*----------------------------------------------------------------------------------*@
+    @*----------------------------------------------------------------------------------*@
     <div class="popup" style="display: none;width:800px" id="popupDanhSachPhieuVT" data-key-trap>
         <h4>
-            Danh sách phiếu vật tư 
+            Danh sách phiếu vật tư
             <a class="action close popup_close col-lg-2 b-close" my-click-once data-ng-click="closePopupDanhSachPhieuVT()" title="Đóng của sổ">
                 (Đóng)
             </a>
@@ -324,6 +329,32 @@
         </div>
         <div class="col-lg-12" style="margin-bottom:20px;text-align:right">
             <button class="btn" ng-click="closePopupDanhSachPhieuVT()">Đóng</button>
+        </div>
+    </div>
+    <div class="popup" style="display: none;width:800px" id="popupTienDo" data-key-trap>
+        <h4>
+            Cập nhật tiến độ công việc
+            <a class="action close popup_close col-lg-2 b-close" my-click-once data-ng-click="closePopupTienDo()" title="Đóng của sổ">
+                (Đóng)
+            </a>
+        </h4>
+        <div class="popup_content" style="">
+            <div class="row" style="margin-left:0px; margin-right:0px;">
+                <div class="col-lg-12">
+                    <div class="col-lg-6">
+                        Tiến độ hiện tại: {{CongViec.sTienDo}}
+                    </div>
+                </div>
+                <div class="col-lg-12" style="margin-top:10px">
+                    <div class="col-lg-3" style="padding-top:5px" ng-repeat="td in CongViec.lstTienDo">
+                        <button ng-click="saveTienDoCongViec(td)" ng-disabled="!td.TrangThai" type="button" style="width:100%;height:40px" class="btn btn-primary">{{td.STT}}. {{td.TienDo}}</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12" style="margin-bottom:20px;text-align:right">
+            <button class="btn" ng-click="closePopupTienDo()">Đóng</button>
         </div>
     </div>
 </div>

@@ -53,7 +53,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MoTaCongViec" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="MoTaCongViec" Type="nvarchar" MaxLength="1000" />
           <Property Name="DanhSachKhoa" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="TenCongViec" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="250" />
@@ -61,6 +61,7 @@
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
           <Property Name="SoTien" Type="decimal" Precision="18" Scale="3" />
           <Property Name="IdTienDo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DanhMucCongViec">
           <Key>
@@ -210,30 +211,6 @@
             </Principal>
             <Dependent Role="CanBo">
               <PropertyRef Name="IdKhoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CongViecTheoQuyetDinh_CanBo">
-          <End Role="CanBo" Type="Self.CanBo" Multiplicity="0..1" />
-          <End Role="CongViecTheoQuyetDinh" Type="Self.CongViecTheoQuyetDinh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CanBo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CongViecTheoQuyetDinh">
-              <PropertyRef Name="IdCanBo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CongViecTheoQuyetDinh_TuDien">
-          <End Role="TuDien" Type="Self.TuDien" Multiplicity="1" />
-          <End Role="CongViecTheoQuyetDinh" Type="Self.CongViecTheoQuyetDinh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TuDien">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CongViecTheoQuyetDinh">
-              <PropertyRef Name="IdTienDo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -423,14 +400,6 @@
           <AssociationSet Name="FK_CanBo_KhoaPhong" Association="Self.FK_CanBo_KhoaPhong">
             <End Role="KhoaPhong" EntitySet="KhoaPhong" />
             <End Role="CanBo" EntitySet="CanBo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CongViecTheoQuyetDinh_CanBo" Association="Self.FK_CongViecTheoQuyetDinh_CanBo">
-            <End Role="CanBo" EntitySet="CanBo" />
-            <End Role="CongViecTheoQuyetDinh" EntitySet="CongViecTheoQuyetDinh" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CongViecTheoQuyetDinh_TuDien" Association="Self.FK_CongViecTheoQuyetDinh_TuDien">
-            <End Role="TuDien" EntitySet="TuDien" />
-            <End Role="CongViecTheoQuyetDinh" EntitySet="CongViecTheoQuyetDinh" />
           </AssociationSet>
           <AssociationSet Name="FK_KhoDMSanPham_TuDien" Association="Self.FK_KhoDMSanPham_TuDien">
             <End Role="TuDien" EntitySet="TuDien" />
@@ -735,7 +704,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="MoTaCongViec" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaCongViec" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="DanhSachKhoa" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="TenCongViec" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -747,6 +716,7 @@
           <Property Name="SoTien" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="IdTienDo" Type="Guid" Nullable="false" />
           <NavigationProperty Name="TuDien" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" FromRole="CongViecTheoQuyetDinh" ToRole="TuDien" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_BienBanNghiemThu_CanBo">
           <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="0..1" />
@@ -1094,6 +1064,7 @@
           <EntitySetMapping Name="CongViecTheoQuyetDinhs">
             <EntityTypeMapping TypeName="QuanLy.CongViecTheoQuyetDinh">
               <MappingFragment StoreEntitySet="CongViecTheoQuyetDinh">
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="IdTienDo" ColumnName="IdTienDo" />
                 <ScalarProperty Name="SoTien" ColumnName="SoTien" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
