@@ -48,14 +48,15 @@ namespace QL.API.Controllers
         }
         [Route("getByPage")]
         [HttpGet]
-        public HttpResponseMessage GetByPage(DateTime TuNgay, DateTime DenNgay, Guid? IdKhoa, int iPageIndex, int iPageSize)
+        public HttpResponseMessage GetByPage(DateTime TuNgay, DateTime DenNgay, Guid? IdKhoa, string sTienDo, Guid IdCanBo
+            , int iPageIndex, int iPageSize)
         {
             try
             {
                 int iTotal = 0;
                 var result = new ListSelect();
                 result.List = CongViecTheoQDManager.Instance.GetPhieuDeNghiByPage(TuNgay, DenNgay.AddDays(1)
-                    , IdKhoa, true, iPageIndex, iPageSize, out iTotal);
+                    , IdKhoa, true, sTienDo, IdCanBo, iPageIndex, iPageSize, out iTotal);
                 result.iTotal = iTotal;
                 return HttpOk(result);
             }

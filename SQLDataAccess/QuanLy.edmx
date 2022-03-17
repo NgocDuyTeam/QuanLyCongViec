@@ -62,6 +62,7 @@
           <Property Name="SoTien" Type="decimal" Precision="18" Scale="3" />
           <Property Name="IdTienDo" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="GhiChuTienDo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DanhMucCongViec">
           <Key>
@@ -717,6 +718,7 @@
           <Property Name="IdTienDo" Type="Guid" Nullable="false" />
           <NavigationProperty Name="TuDien" Relationship="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" FromRole="CongViecTheoQuyetDinh" ToRole="TuDien" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="GhiChuTienDo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_BienBanNghiemThu_CanBo">
           <End Type="QuanLy.CanBo" Role="CanBo" Multiplicity="0..1" />
@@ -1064,6 +1066,7 @@
           <EntitySetMapping Name="CongViecTheoQuyetDinhs">
             <EntityTypeMapping TypeName="QuanLy.CongViecTheoQuyetDinh">
               <MappingFragment StoreEntitySet="CongViecTheoQuyetDinh">
+                <ScalarProperty Name="GhiChuTienDo" ColumnName="GhiChuTienDo" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="IdTienDo" ColumnName="IdTienDo" />
                 <ScalarProperty Name="SoTien" ColumnName="SoTien" />

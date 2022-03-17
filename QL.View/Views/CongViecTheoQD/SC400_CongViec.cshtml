@@ -16,6 +16,20 @@
             </div>
         </div>
         <div class="col-sm-2">
+            <select class="form-control" style="width: 80px" ng-model="sTienDo">
+                <option value="">-- Tất cả --</option>
+                <option value="GoiThauDuoi20">Dưới 20tr</option>
+                <option value="GoiThau20_50">Từ 20tr - 50tr</option>
+                <option value="GoiThau50_100">Từ 50tr - 100tr</option>
+                <option value="GoiThauTren100">Trên 100tr</option>
+            </select>
+        </div>
+          <div class="col-sm-2">
+            <select class="form-control" ng-model="IdCanBo"
+                    ng-options="cb.Id as cb.HoVaTen for cb in DSCanBo">
+            </select>
+        </div>
+        <div class="col-sm-2">
             <input class="btn btn-primary" type="button" style="float: right; margin-bottom: 5px; margin-right: 20px" value="Tìm kiếm" ng-click="refreshData(1)" />
         </div>
         <div class="col-sm-2">
@@ -349,7 +363,11 @@
                     <div class="col-lg-3" style="padding-top:5px" ng-repeat="td in CongViec.lstTienDo">
                         <button ng-click="saveTienDoCongViec(td)" ng-disabled="!td.TrangThai" type="button" style="width:100%;height:40px" class="btn btn-primary">{{td.STT}}. {{td.TienDo}}</button>
                     </div>
-
+                </div>
+                <div class="col-lg-12" style="margin-top:10px">
+                    <div class="col-lg-12">
+                        <textarea class="form-control" ng-model="CongViec.GhiChuTienDo" placeholder="Ghi chú tiến độ" rows="3"></textarea>
+                    </div>
                 </div>
             </div>
         </div>

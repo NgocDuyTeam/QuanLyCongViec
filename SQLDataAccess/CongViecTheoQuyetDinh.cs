@@ -31,6 +31,7 @@ namespace SQLDataAccess
         public Nullable<decimal> SoTien { get; set; }
         public System.Guid IdTienDo { get; set; }
         public bool Active { get; set; }
+        public string GhiChuTienDo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BienBanNghiemThu> BienBanNghiemThus { get; set; }

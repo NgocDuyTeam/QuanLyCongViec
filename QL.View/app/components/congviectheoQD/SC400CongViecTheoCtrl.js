@@ -3,9 +3,9 @@ var app = angular.module('uiApp');
 
 app.controller('SC400CongViecTheoCtrl',
     ['$scope', '$compile', '$resource', '$filter', 'myAppConfig', 'ngProgress', 'toaster', 'svBienBanNghiemThu', 'svMauPhieuIn',
-        'svDanhMucKhoaPhong', 'svCongViectheoQD', 'svKho',
+        'svDanhMucKhoaPhong', 'svCongViectheoQD', 'svKho','svDanhMucCanBo',
         function ($scope, $compile, $resource, $filter, myAppConfig, ngProgress, toaster, svBienBanNghiemThu, svMauPhieuIn
-            , svDanhMucKhoaPhong, svCongViectheoQD, svKho) {
+            , svDanhMucKhoaPhong, svCongViectheoQD, svKho, svDanhMucCanBo) {
 
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
@@ -15,11 +15,20 @@ app.controller('SC400CongViecTheoCtrl',
             $scope.DSKhoaPhong = [];
             $scope.CongViec = {};
             $scope.IdKhoa = "";
+            $scope.sTienDo = "";
+            $scope.IdCanBo = "00000000-0000-0000-0000-000000000000";
             $scope.IsKhoa = false;
             if (myAppConfig.Role == "Khoa") {
                 $scope.IsKhoa = true;
                 $scope.IdKhoa = myAppConfig.IdKhoa;
             }
+            svDanhMucCanBo.GetDanhSachByRole({
+                sRole: 'NhanVien'
+            }).$promise.then(
+                function (d) {
+                    $scope.DSCanBo = d.List;
+                    $scope.DSCanBo.splice(0, 0, { HoVaTen: "-- Chọn cán bộ -- ", Id: '00000000-0000-0000-0000-000000000000' });
+                }, function (err) { });
             $scope.refreshData = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;
                 ngProgress.start();
@@ -28,7 +37,9 @@ app.controller('SC400CongViecTheoCtrl',
                     DenNgay: moment($scope.DenNgay, "DD/MM/YYYY").format("MM/DD/YYYY"),
                     iPageIndex: $scope.iPageIndex,
                     iPageSize: $scope.iPageSize,
-                    IdKhoa: $scope.IdKhoa
+                    IdKhoa: $scope.IdKhoa,
+                    sTienDo: $scope.sTienDo,
+                    IdCanBo: $scope.IdCanBo
                 }).$promise.then(
                     function (d) {
                         $scope.DSCongViec = d.List;
