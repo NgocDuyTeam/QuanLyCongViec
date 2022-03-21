@@ -8746,6 +8746,7 @@
     <Folder Include="app\utils\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\Reports\Output\" />
+    <Folder Include="Database\" />
     <Folder Include="Helper\" />
     <Folder Include="Js\lib\angular-ui-router\release\" />
     <Folder Include="Js\lib\ngprogress\build\" />
