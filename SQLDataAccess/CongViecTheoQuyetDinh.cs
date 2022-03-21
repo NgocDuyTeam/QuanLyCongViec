@@ -32,6 +32,7 @@ namespace SQLDataAccess
         public System.Guid IdTienDo { get; set; }
         public bool Active { get; set; }
         public string GhiChuTienDo { get; set; }
+        public Nullable<System.Guid> IdNguon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BienBanNghiemThu> BienBanNghiemThus { get; set; }
@@ -39,5 +40,6 @@ namespace SQLDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KhoGiaoDich> KhoGiaoDiches { get; set; }
         public virtual TuDien TuDien { get; set; }
+        public virtual TuDien TuDien1 { get; set; }
     }
 }

@@ -7,6 +7,7 @@ app.controller('SC505XuatNhapTonCtrl',
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
             $scope.sSearch = "";
+            $scope.FileExcelName = "";
             $scope.refreshData = function () {
                 ngProgress.start();
                 svKho.BCXuatNhapTon({
@@ -16,9 +17,13 @@ app.controller('SC505XuatNhapTonCtrl',
                 }).$promise.then(
                     function (d) {
                         $scope.DsGiaoDich = d.List;
+                        $scope.FileExcelName = d.FileExcelName;
                         ngProgress.complete();
                     }, function (err) { ngProgress.complete(); });
             }
             $scope.refreshData();
+            $scope.XuatExcel = function () {
+                window.open($scope.FileExcelName);
+            }
 //..................................................................................................
         }]);

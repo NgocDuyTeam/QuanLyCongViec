@@ -41,6 +41,7 @@ namespace BusinessLogic.Management
                     cv.SoTien = value.SoTien;
                     cv.IdTienDo = value.IdTienDo;
                     cv.GhiChuTienDo = value.GhiChuTienDo;
+                    cv.IdNguon = value.IdNguon;
                     cv.State = EDataState.Modified;
                     uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
                 }
@@ -51,6 +52,7 @@ namespace BusinessLogic.Management
                     cv.Active = true;
                     cv.IdTienDo = GetStartTienDoByTien(value.SoTien ?? 0);
                     cv.NgayTao = DateTime.Now;
+                    cv.IdNguon = value.IdNguon;
                     cv.Id = Guid.NewGuid();
                     uow.Repository<CongViecTheoQuyetDinh>().InsertOrUpdate(cv);
                 }

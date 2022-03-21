@@ -3,9 +3,9 @@ var app = angular.module('uiApp');
 
 app.controller('SC400CongViecTheoCtrl',
     ['$scope', '$compile', '$resource', '$filter', 'myAppConfig', 'ngProgress', 'toaster', 'svBienBanNghiemThu', 'svMauPhieuIn',
-        'svDanhMucKhoaPhong', 'svCongViectheoQD', 'svKho','svDanhMucCanBo',
+        'svDanhMucKhoaPhong', 'svCongViectheoQD', 'svKho', 'svDanhMucCanBo','svTuDien',
         function ($scope, $compile, $resource, $filter, myAppConfig, ngProgress, toaster, svBienBanNghiemThu, svMauPhieuIn
-            , svDanhMucKhoaPhong, svCongViectheoQD, svKho, svDanhMucCanBo) {
+            , svDanhMucKhoaPhong, svCongViectheoQD, svKho, svDanhMucCanBo, svTuDien) {
 
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
@@ -13,6 +13,7 @@ app.controller('SC400CongViecTheoCtrl',
             $scope.iPageSize = "20";
             $scope.DSCongViec = [];
             $scope.DSKhoaPhong = [];
+            $scope.DSNguon = [];
             $scope.CongViec = {};
             $scope.IdKhoa = "";
             $scope.sTienDo = "";
@@ -60,7 +61,6 @@ app.controller('SC400CongViecTheoCtrl',
                         $scope.BienBan.TenKhoa = $scope.Phieu.TenKhoa;
                     }, function (err) { ngProgress.complete(); });
             }
-
             svDanhMucKhoaPhong.GetDanhSachKhoaPhong({
                 iPageIndex: -1,
                 iPageSize: -1
@@ -68,7 +68,12 @@ app.controller('SC400CongViecTheoCtrl',
                 function (d) {
                     $scope.DSKhoaPhong = d.List;
                 }, function (err) { });
-
+            svTuDien.GetTuDienByLoai({
+                sLoaiTuDien: 'Nguon'
+            }).$promise.then(
+                function (d) {
+                    $scope.DSNguon = d.List;
+                }, function (err) { ngProgress.complete(); });
             $scope.ShowAddOrUpdateCongViec = function (cv) {
                 if (cv != null) {
                     $scope.openPopup();

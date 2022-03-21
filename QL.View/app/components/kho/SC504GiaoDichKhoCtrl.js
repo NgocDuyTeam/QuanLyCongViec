@@ -9,6 +9,7 @@ app.controller('SC504GiaoDichKhoCtrl',
             $scope.iPageSize = "20";
             $scope.TuNgay = moment().format('DD/MM/YYYY');
             $scope.DenNgay = moment().format('DD/MM/YYYY');
+            $scope.FileExcelName = "";
             $scope.refreshData = function (iPageIndex) {
                 $scope.iPageIndex = iPageIndex;
                 svKho.GetDanhSachGiaoDich({
@@ -20,6 +21,7 @@ app.controller('SC504GiaoDichKhoCtrl',
                 }).$promise.then(
                     function (d) {
                         $scope.DsGiaoDich = d.List;
+                        $scope.FileExcelName = d.FileExcelName;
                         $scope.iTotal = d.iTotal != null ? d.iTotal : 0;
                         $scope.iTotalPage = Math.floor(($scope.iTotal - 1) / $scope.iPageSize) + 1;
                         var lstPage = GetlstPage($scope.iTotalPage, $scope.iPageIndex, 'refreshData');
@@ -27,5 +29,8 @@ app.controller('SC504GiaoDichKhoCtrl',
                     }, function (err) { ngProgress.complete(); });
             }
             $scope.refreshData(1);
+            $scope.XuatExcel = function () {
+                window.open($scope.FileExcelName);
+            }
 //..................................................................................................
         }]);

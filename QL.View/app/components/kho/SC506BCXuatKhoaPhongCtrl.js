@@ -8,6 +8,7 @@ app.controller('SC506BCXuatKhoaPhongCtrl',
             $scope.DenNgay = moment().format('DD/MM/YYYY');
             $scope.IdKhoa = "00000000-0000-0000-0000-000000000000";
             $scope.sSearch = "";
+            $scope.FileExcelName = "";
             svDanhMucKhoaPhong.GetDanhSachKhoaPhong({
                 iPageIndex: -1,
                 iPageSize: 1
@@ -30,9 +31,13 @@ app.controller('SC506BCXuatKhoaPhongCtrl',
                 }).$promise.then(
                     function (d) {
                         $scope.DsGiaoDich = d.List;
+                        $scope.FileExcelName = d.FileExcelName;
                         ngProgress.complete();
                     }, function (err) { ngProgress.complete(); });
             }
             $scope.refreshData();
+            $scope.XuatExcel = function () {
+                window.open($scope.FileExcelName);
+            }
 //..................................................................................................
         }]);

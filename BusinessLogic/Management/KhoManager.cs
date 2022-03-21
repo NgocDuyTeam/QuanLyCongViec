@@ -92,6 +92,7 @@ namespace BusinessLogic.Management
                     var item = x.CopyAs<KhoGiaoDichModel>();
                     item.TenCanBo = x.CanBo.HoVaTen;
                     item.TenKhoa = x.KhoaPhong.Ten;
+                    item.sLoaiGiaoDich = x.LoaiGiaoDich == 1 ? "Nhập" : "Xuất";
                     return item;
                 }).ToList();
             }

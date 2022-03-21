@@ -38,6 +38,7 @@
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDich_PhieuDeNghi" />
         <AssociationConnector Association="QuanLy.FK_KhoGiaoDichChiTiet_KhoGiaoDich" />
         <AssociationConnector Association="QuanLy.FK_CongViecTheoQuyetDinh_TuDien" />
+        <AssociationConnector Association="QuanLy.FK_CongViecTheoQuyetDinh_TuDien1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

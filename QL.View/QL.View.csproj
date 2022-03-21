@@ -5397,8 +5397,8 @@
     <Content Include="Js\lib\angular-ui-mask\src\mask.js" />
     <Content Include="Js\lib\angular-ui-mask\test\maskSpec.js" />
     <Content Include="Js\lib\angular-ui-mask\test\maskSpec.protractor.js" />
-    <Content Include="Js\lib\angular-ui-router\release\angular-ui-router.js" />
-    <Content Include="Js\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="Js\lib\angular-ui-router\angular-ui-router.js" />
+    <Content Include="Js\lib\angular-ui-router\angular-ui-router.min.js" />
     <Content Include="Js\lib\angular-ui-router\src\common.js" />
     <Content Include="Js\lib\angular-ui-router\src\resolve.js" />
     <Content Include="Js\lib\angular-ui-router\src\state.js" />
@@ -6839,8 +6839,8 @@
     <Content Include="Js\lib\moment\templates\default.js" />
     <Content Include="Js\lib\moment\templates\locale-header.js" />
     <Content Include="Js\lib\moment\templates\test-header.js" />
-    <Content Include="Js\lib\ngprogress\build\ngProgress.js" />
-    <Content Include="Js\lib\ngprogress\build\ngProgress.min.js" />
+    <Content Include="Js\lib\ngprogress\ngProgress.js" />
+    <Content Include="Js\lib\ngprogress\ngProgress.min.js" />
     <Content Include="Js\lib\ngprogress\ngProgress.css" />
     <Content Include="Js\lib\require.js" />
     <Content Include="Js\lib\tinymce\jquery.tinymce.js" />
@@ -7929,18 +7929,18 @@
     <Content Include="Content\js\Trumbowyg-master-editor\plugins\table\ui\sass\trumbowyg.table.scss" />
     <Content Include="Content\js\Trumbowyg-master-editor\README.md" />
     <Content Include="Content\js\Trumbowyg-master-editor\src\ui\sass\trumbowyg.scss" />
-    <Content Include="Content\Report\Templates\BaoCaoKetQuaXetTNAll.xlsx" />
-    <Content Include="Content\Report\Templates\BaoCaoKetQuaXetTNLanDau.xlsx" />
-    <Content Include="Content\Report\Templates\DanhSachDangKy.xlsx" />
-    <Content Include="Content\Report\Templates\DanhSachDangKyCu.xlsx" />
-    <Content Include="Content\Report\Templates\DanhSachPhong.xlsx" />
-    <Content Include="Content\Report\Templates\DanhSachTotNghiep.xlsx" />
-    <Content Include="Content\Report\Templates\DanhSachTotNghiepCu.xlsx" />
-    <Content Include="Content\Report\Templates\DanhSachTruong.xlsx" />
-    <Content Include="Content\Report\Templates\DeNghiCongNhanTN.xlsx" />
-    <Content Include="Content\Report\Templates\DeNghiCongNhanTNCu.xlsx" />
-    <Content Include="Content\Report\Templates\KhongDuDKCongNhanTN.xlsx" />
-    <Content Include="Content\Report\Templates\KhongDuDKCongNhanTNCu.xlsx" />
+    <Content Include="Content\Reports\Templates\BaoCaoKetQuaXetTNAll.xlsx" />
+    <Content Include="Content\Reports\Templates\BaoCaoKetQuaXetTNLanDau.xlsx" />
+    <Content Include="Content\Reports\Templates\DanhSachDangKy.xlsx" />
+    <Content Include="Content\Reports\Templates\DanhSachDangKyCu.xlsx" />
+    <Content Include="Content\Reports\Templates\DanhSachPhong.xlsx" />
+    <Content Include="Content\Reports\Templates\DanhSachTotNghiep.xlsx" />
+    <Content Include="Content\Reports\Templates\DanhSachTotNghiepCu.xlsx" />
+    <Content Include="Content\Reports\Templates\DanhSachTruong.xlsx" />
+    <Content Include="Content\Reports\Templates\DeNghiCongNhanTN.xlsx" />
+    <Content Include="Content\Reports\Templates\DeNghiCongNhanTNCu.xlsx" />
+    <Content Include="Content\Reports\Templates\KhongDuDKCongNhanTN.xlsx" />
+    <Content Include="Content\Reports\Templates\KhongDuDKCongNhanTNCu.xlsx" />
     <Content Include="Js\jquery-ui-1.13.0\package.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
@@ -8745,7 +8745,10 @@
   <ItemGroup>
     <Folder Include="app\utils\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Reports\Output\" />
     <Folder Include="Helper\" />
+    <Folder Include="Js\lib\angular-ui-router\release\" />
+    <Folder Include="Js\lib\ngprogress\build\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

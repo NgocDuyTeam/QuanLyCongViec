@@ -24,7 +24,7 @@
                 <option value="GoiThauTren100">Trên 100tr</option>
             </select>
         </div>
-          <div class="col-sm-2">
+        <div class="col-sm-2">
             <select class="form-control" ng-model="IdCanBo"
                     ng-options="cb.Id as cb.HoVaTen for cb in DSCanBo">
             </select>
@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="row col-sm-12">
-      
+
     </div>
     <div class="row col-lg-12" style="margin-top:15px">
         <div style="width: 100%; height: 500px">
@@ -128,6 +128,16 @@
                     </div>
                     <div class="col-lg-4" style="padding-top:10px">
                         {{CongViec.SoTien| number}}
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding-top:3px">
+                    <div class="col-lg-3">
+                        Số tiền
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" ng-model="CongViec.IdNguon"
+                                ng-options="nguon.Id as nguon.TenTuDien for nguon in DSNguon">
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-12" style="padding-top:3px">

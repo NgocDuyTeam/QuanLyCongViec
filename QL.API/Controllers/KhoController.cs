@@ -1,5 +1,7 @@
-﻿using BusinessLogic.Management;
+﻿using BusinessLogic.ExcelReport;
+using BusinessLogic.Management;
 using BusinessLogic.Model;
+using BusinessLogic.Utils;
 using Framework.Extensions;
 using QL.API.Http;
 using QL.API.Models;
@@ -64,8 +66,22 @@ namespace QL.API.Controllers
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = KhoManager.Instance.SelectGiaoDichByPage(TuNgay, DenNgay.Date.AddDays(1), iStatus, iPageIndex, iPageSize, out iTotal);
+                var lst = KhoManager.Instance.SelectGiaoDichByPage(TuNgay, DenNgay.Date.AddDays(1), iStatus, iPageIndex, iPageSize, out iTotal);
+                result.List = lst;
                 result.iTotal = iTotal;
+                ReportExcelDataSet cReport = new ReportExcelDataSet(CFileNameTemplate.SC504_DanhSachGiaoDichKho);
+                cReport.AddFindAndReplaceItem("<THOIGIAN>", "từ ngày " + TuNgay.ToString("dd/MM/yyyy") + " đến ngày " + DenNgay.ToString("dd/MM/yyyy"));
+                cReport.FindAndReplace();
+                string[] col = {"MaGiaoDich",
+                                    "NgayTao",
+                                    "TenKhoa",
+                                    "TenCanBo",
+                                    "sLoaiGiaoDich",
+                                    "GhiChu",
+                                    };
+                // Thêm thông tin nguồn dược
+                cReport.Export2ExcelByIEnumerable(lst, 7, 1, col);
+                result.FileExcelName = cReport.SaveFile();
                 return HttpOk(result);
             }
             catch (Exception ex)
@@ -95,8 +111,15 @@ namespace QL.API.Controllers
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = KhoManager.Instance.BaoCaoXuatNhapTon(sSearch, TuNgay, DenNgay.Date.AddDays(1));
+                var lstData = KhoManager.Instance.BaoCaoXuatNhapTon(sSearch, TuNgay, DenNgay.Date.AddDays(1));
+                result.List = lstData;
                 result.iTotal = iTotal;
+                ReportExcelDataSet cReport = new ReportExcelDataSet(CFileNameTemplate.SC505_XuatNhapTon);
+                cReport.AddFindAndReplaceItem("<THOIGIAN>", "từ ngày " + TuNgay.ToString("dd/MM/yyyy") + " đến ngày " + DenNgay.ToString("dd/MM/yyyy"));
+                cReport.FindAndReplace();
+                // Thêm thông tin nguồn dược
+                cReport.Export2ExcelBoldLine(lstData, 7, 1, lstData.Columns.Count);
+                result.FileExcelName = cReport.SaveFile();
                 return HttpOk(result);
             }
             catch (Exception ex)
@@ -112,8 +135,15 @@ namespace QL.API.Controllers
             {
                 int iTotal = 0;
                 var result = new ListSelect();
-                result.List = KhoManager.Instance.BCXuatKhoaPhong(sSearch, TuNgay, DenNgay.Date.AddDays(1), IdKhoa);
+                var lstData = KhoManager.Instance.BCXuatKhoaPhong(sSearch, TuNgay, DenNgay.Date.AddDays(1), IdKhoa);
+                result.List = lstData;
                 result.iTotal = iTotal;
+                ReportExcelDataSet cReport = new ReportExcelDataSet(CFileNameTemplate.SC506_XuatKhoPhong);
+                cReport.AddFindAndReplaceItem("<THOIGIAN>", "từ ngày " + TuNgay.ToString("dd/MM/yyyy") + " đến ngày " + DenNgay.ToString("dd/MM/yyyy"));
+                cReport.FindAndReplace();
+                // Thêm thông tin nguồn dược
+                cReport.Export2ExcelBoldLine(lstData, 7, 1, lstData.Columns.Count);
+                result.FileExcelName = cReport.SaveFile();
                 return HttpOk(result);
             }
             catch (Exception ex)

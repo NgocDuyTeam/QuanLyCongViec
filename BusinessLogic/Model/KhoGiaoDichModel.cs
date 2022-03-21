@@ -23,6 +23,7 @@ namespace BusinessLogic.Model
         public string TenCanBo { get; set; }
         public string TenKhoa { get; set; }
         public string DanhSachKhoa { get; set; }
+        public string sLoaiGiaoDich { get; set; }
     }
 
 }

@@ -7,7 +7,8 @@ namespace QL.API.Models
 {
     public class ListSelect
     {
-            public int iTotal { get; set; }
-            public Object List { get; set; }
+        public int iTotal { get; set; }
+        public Object List { get; set; }
+        public string FileExcelName { get; set; }
     }
 }
